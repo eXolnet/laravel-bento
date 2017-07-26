@@ -18,7 +18,7 @@ class SegmentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('debugbar', function () {
+        $this->app->singleton('segment', function () {
             return new Segment();
         });
     }

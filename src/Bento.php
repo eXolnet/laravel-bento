@@ -1,8 +1,8 @@
-<?php namespace Exolnet\Segment;
+<?php namespace Exolnet\Bento;
 
 use Illuminate\Support\Collection;
 
-class Segment
+class Bento
 {
     /**
      * @var \Illuminate\Support\Collection
@@ -16,7 +16,7 @@ class Segment
 
     /**
      * @param string $name
-     * @return \Exolnet\Segment\Feature
+     * @return \Exolnet\Bento\Feature
      */
     public function feature($name)
     {
@@ -31,7 +31,7 @@ class Segment
      * @param string $name
      * @param string $strategy
      * @param array ...$options
-     * @return \Exolnet\Segment\Feature
+     * @return \Exolnet\Bento\Feature
      */
     public function aim($name, $strategy, ...$options)
     {

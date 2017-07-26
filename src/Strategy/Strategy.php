@@ -1,4 +1,4 @@
-<?php namespace Exolnet\Segment\Strategy;
+<?php namespace Exolnet\Bento\Strategy;
 
 use Illuminate\Support\Str;
 
@@ -12,11 +12,11 @@ abstract class Strategy
     /**
      * @param string $name
      * @param array $options
-     * @return \Exolnet\Segment\Strategy\Strategy
+     * @return \Exolnet\Bento\Strategy\Strategy
      */
     public static function make($name, ...$options)
     {
-        $className = '\\Exolnet\\Segment\\Strategy\\'. Str::studly($name);
+        $className = '\\Exolnet\\Bento\\Strategy\\'. Str::studly($name);
 
         return new $className(...$options);
     }

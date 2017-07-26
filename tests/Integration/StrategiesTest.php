@@ -1,30 +1,30 @@
-<?php namespace Exolnet\Segment\Tests\Integration;
+<?php namespace Exolnet\Bento\Tests\Integration;
 
-use Exolnet\Segment\Segment;
+use Exolnet\Bento\Bento;
 use PHPUnit_Framework_TestCase;
 
 class StrategiesTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Exolnet\Segment\Segment::__construct
+     * @var \Exolnet\Bento\Bento
      */
-    protected $segment;
+    protected $bento;
 
     public function setUp()
     {
-        $this->segment = new Segment();
+        $this->bento = new Bento();
     }
 
     public function testEveryoneStrategy()
     {
-        $isLaunched = $this->segment->aim('name', 'everyone')->isLaunched();
+        $isLaunched = $this->bento->aim('name', 'everyone')->isLaunched();
 
         $this->assertTrue($isLaunched);
     }
 
     public function testNobodyStrategy()
     {
-        $isLaunched = $this->segment->aim('name', 'nobody')->isLaunched();
+        $isLaunched = $this->bento->aim('name', 'nobody')->isLaunched();
 
         $this->assertFalse($isLaunched);
     }

@@ -1,31 +1,31 @@
-<?php namespace Exolnet\Segment\Tests\Integration;
+<?php namespace Exolnet\Bento\Tests\Integration;
 
-use Exolnet\Segment\Feature;
-use Exolnet\Segment\Segment;
+use Exolnet\Bento\Feature;
+use Exolnet\Bento\Bento;
 use PHPUnit_Framework_TestCase;
 
 class FeatureCreationTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Exolnet\Segment\Segment::__construct
+     * @var \Exolnet\Bento\Bento
      */
-    protected $segment;
+    protected $bento;
 
     public function setUp()
     {
-        $this->segment = new Segment();
+        $this->bento = new Bento();
     }
 
     public function testCreateNewFeature()
     {
-        $feature = $this->segment->feature('name');
+        $feature = $this->bento->feature('name');
 
         $this->assertInstanceOf(Feature::class, $feature);
     }
 
     public function testFeatureAimFluent()
     {
-        $feature = $this->segment->feature('name')->aim('percent', 10);
+        $feature = $this->bento->feature('name')->aim('percent', 10);
 
         $this->assertInstanceOf(Feature::class, $feature);
         $this->assertCount(1, $feature->getStrategies());
@@ -33,7 +33,7 @@ class FeatureCreationTest extends PHPUnit_Framework_TestCase
 
     public function testFeatureAim()
     {
-        $feature = $this->segment->aim('name', 'percent', 10);
+        $feature = $this->bento->aim('name', 'percent', 10);
 
         $this->assertInstanceOf(Feature::class, $feature);
         $this->assertCount(1, $feature->getStrategies());
@@ -41,7 +41,7 @@ class FeatureCreationTest extends PHPUnit_Framework_TestCase
 
     public function testLaunchFeatureDefault()
     {
-        $isLaunched = $this->segment->isLaunched('name');
+        $isLaunched = $this->bento->isLaunched('name');
 
         $this->assertTrue($isLaunched);
     }

@@ -1,5 +1,5 @@
 {
-    "name": "exolnet/laravel-segment",
+    "name": "exolnet/laravel-bento",
     "description": "Laravel module to launch features at people.",
     "keywords": ["laravel", "feature", "aim", "ab", "target"],
     "license": "MIT",
@@ -10,8 +10,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/eXolnet/laravel-segment/issues",
-        "source": "https://github.com/eXolnet/laravel-segment"
+        "issues": "https://github.com/eXolnet/laravel-bento/issues",
+        "source": "https://github.com/eXolnet/laravel-bento"
     },
     "require": {
         "php": ">=5.6.0",
@@ -23,18 +23,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Exolnet\\Segment\\": "src/"
+            "Exolnet\\Bento\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Exolnet\\Segment\\Tests\\": "tests"
+            "Exolnet\\Bento\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Exolnet\\Segment\\SegmentServiceProvider"
+                "Exolnet\\Bento\\BentoServiceProvider"
             ]
         }
     }

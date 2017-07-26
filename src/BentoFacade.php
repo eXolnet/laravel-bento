@@ -1,11 +1,11 @@
-<?php namespace Exolnet\Segment;
+<?php namespace Exolnet\Bento;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Exolnet\Segment\Segment
+ * @see \Exolnet\Bento\Bento
  */
-class SegmentFacade extends Facade
+class BentoFacade extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -14,6 +14,6 @@ class SegmentFacade extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'segment';
+        return 'bento';
     }
 }

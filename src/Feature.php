@@ -1,6 +1,6 @@
-<?php namespace Exolnet\Segment;
+<?php namespace Exolnet\Bento;
 
-use Exolnet\Segment\Strategy\Strategy;
+use Exolnet\Bento\Strategy\Strategy;
 
 class Feature
 {
@@ -34,7 +34,7 @@ class Feature
      */
     public function isLaunched()
     {
-        /** @var \Exolnet\Segment\Strategy\Strategy $strategy */
+        /** @var \Exolnet\Bento\Strategy\Strategy $strategy */
         foreach ($this->strategies as $strategy) {
             if ( ! $strategy->isLaunched()) {
                 return false;

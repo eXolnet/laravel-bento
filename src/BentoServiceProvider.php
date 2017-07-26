@@ -1,9 +1,9 @@
-<?php namespace Exolnet\Segment;
+<?php namespace Exolnet\Bento;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 
-class SegmentServiceProvider extends ServiceProvider
+class BentoServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -19,7 +19,7 @@ class SegmentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('segment', Segment::class);
+        $this->app->singleton('bento', Bento::class);
 
         $this->registerBladeDirectives();
     }
@@ -33,7 +33,7 @@ class SegmentServiceProvider extends ServiceProvider
     {
         $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
             $bladeCompiler->directive('launch', function ($expression) {
-                return "<?php if (\Exolnet\Segment\SegmentFacade::isLaunched($expression)): ?>";
+                return "<?php if (\Exolnet\Bento\BentoFacade::isLaunched($expression)): ?>";
             });
 
             $bladeCompiler->directive('endlaunch', function () {
@@ -41,7 +41,7 @@ class SegmentServiceProvider extends ServiceProvider
             });
 
             $bladeCompiler->directive('unlesslaunch', function ($expression) {
-                return "<?php if ( ! \Exolnet\Segment\SegmentFacade::isLaunched($expression)): ?>";
+                return "<?php if ( ! \Exolnet\Bento\BentoFacade::isLaunched($expression)): ?>";
             });
 
             $bladeCompiler->directive('endunlesslaunch', function () {

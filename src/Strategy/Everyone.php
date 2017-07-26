@@ -1,4 +1,4 @@
-<?php namespace Exolnet\Segment\Strategy;
+<?php namespace Exolnet\Bento\Strategy;
 
 class Everyone extends Strategy
 {

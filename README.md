@@ -11,11 +11,55 @@ The core concepts of this library are based on [Airbnb's Trebuchet](https://gith
 
 ## Installation
 
-TODO
+Require this package with composer:
+
+```
+composer require eXolnet/laravel-bento
+```
+
+After updating composer, add the ServiceProvider to the providers array in `config/app.php`:
+
+```
+\eXolnet\Bento\BentoServiceProvider::class
+```
+
+Finally, add the Facade to the facades array in `config/app.php`: 
+
+```
+'Bento' => \eXolnet\Bento\BentoFacade::class
+```
 
 ## Usage
 
-TODO
+Define features and their launch strategies. You can define one strategy with the `aim` method:
+
+```
+Bento::aim('feature', 'percent', 10);
+```
+
+Or you can combine multiple strategies:
+
+```
+Bento::feature('feature')->aim('percent', 10)->aim('hostname', 'example.com');
+```
+
+Then, you can check if a feature is launched for a visitor with the `isLaunched` method:
+
+```
+if (Bento::isLaunched('feature')) {
+    //
+}
+```
+
+Or use the handy macro in your Blade templates:
+
+```
+@launch('feature')
+    Feature is launched!
+@else
+    Coming soon!
+@endlaunch
+```
 
 ## Testing
 

@@ -16,5 +16,12 @@
         "psr-4": {
             "Exolnet\\Segment\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Exolnet\\Segment\\SegmentServiceProvider"
+            ]
+        }
     }
 }

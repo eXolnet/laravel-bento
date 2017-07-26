@@ -34,6 +34,10 @@ class Feature
      */
     public function isLaunched()
     {
+        if (empty($this->strategies)) {
+            return false;
+        }
+
         /** @var \Exolnet\Bento\Strategy\Strategy $strategy */
         foreach ($this->strategies as $strategy) {
             if ( ! $strategy->isLaunched()) {

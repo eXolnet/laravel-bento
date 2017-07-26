@@ -43,6 +43,6 @@ class FeatureCreationTest extends PHPUnit_Framework_TestCase
     {
         $isLaunched = $this->bento->isLaunched('name');
 
-        $this->assertTrue($isLaunched);
+        $this->assertFalse($isLaunched);
     }
 }

@@ -2,13 +2,13 @@
 
 class Segment
 {
-	public function feature($name)
-	{
-		// Find a feature
-	}
+    public function feature($name)
+    {
+        // Find a feature
+    }
 
-	public function launch($name)
-	{
-		// Is a feature laucnhed?
-	}
+    public function launch($name)
+    {
+        // Is a feature launched?
+    }
 }

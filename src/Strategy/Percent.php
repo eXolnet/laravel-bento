@@ -25,8 +25,6 @@ class Percent extends Strategy
         // Generate a unique number for the visitor that will always be the same.
         $visitorId = crc32($request->ip() . $request->header('user-agent'));
 
-        dd($request->header());
-
         // Limit this value between 1 and 100.
         $percentile = $visitorId % 100 + 1;
 

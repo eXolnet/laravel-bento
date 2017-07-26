@@ -20,7 +20,17 @@ class Percent extends Strategy
      */
     public function isLaunched()
     {
-        // TODO-AD: Find a way to launch feature to same users based on the percent <adeschambeault@exolnet.com>
-        return false;
+        $request = request();
+
+        // Generate a unique number for the visitor that will always be the same.
+        $visitorId = crc32($request->ip() . $request->header('user-agent'));
+
+        dd($request->header());
+
+        // Limit this value between 1 and 100.
+        $percentile = $visitorId % 100 + 1;
+
+        // Based on the calculated percentile, we identify if the user has access to the feature.
+        return $percentile <= $this->percent;
     }
 }

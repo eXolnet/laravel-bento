@@ -7,9 +7,9 @@ class Environment extends Strategy
      */
     protected $environments;
 
-	/**
-	 * @param array|string $environments
-	 */
+    /**
+     * @param array|string $environments
+     */
     public function __construct($environments)
     {
         $this->environments = (array)$environments;

@@ -20,13 +20,13 @@ composer require eXolnet/laravel-bento
 After updating composer, add the ServiceProvider to the providers array in `config/app.php`:
 
 ```
-\eXolnet\Bento\BentoServiceProvider::class
+eXolnet\Bento\BentoServiceProvider::class
 ```
 
 Finally, add the Facade to the facades array in `config/app.php`: 
 
 ```
-'Bento' => \eXolnet\Bento\BentoFacade::class
+'Bento' => eXolnet\Bento\BentoFacade::class
 ```
 
 ## Usage
@@ -66,7 +66,7 @@ Or use the handy macro in your Blade templates:
 To run the phpUnit tests, please use:
 
 ``` bash
-$ vendor/bin/phpunit -c phpunix.xml
+$ vendor/bin/phpunit
 ```
 
 ## License

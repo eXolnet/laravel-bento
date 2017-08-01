@@ -34,7 +34,7 @@ class FeatureTest extends UnitTest
     {
         $feature = new Feature();
 
-        BentoFacade::shouldReceive('makeStrategy');
+        BentoFacade::shouldReceive('makeStrategy')->with('everyone');
 
         $actual = $feature->aim('everyone');
 
@@ -46,8 +46,8 @@ class FeatureTest extends UnitTest
         $feature = new Feature();
         $stub = new Stub(true);
 
-        BentoFacade::shouldReceive('makeStrategy')->andReturn($stub);
-        $feature->aim('everyone');
+        BentoFacade::shouldReceive('makeStrategy')->with('nobody')->andReturn($stub);
+        $feature->aim('nobody');
 
         $strategies = $feature->getStrategies();
 
@@ -63,7 +63,7 @@ class FeatureTest extends UnitTest
         $feature = new Feature();
         $stub = new Stub(true);
 
-        BentoFacade::shouldReceive('makeStrategy')->withArgs(['visitorPercent', 10])->andReturn($stub);
+        BentoFacade::shouldReceive('makeStrategy')->with('visitorPercent', 10)->andReturn($stub);
 
         $feature->visitorPercent(10);
 

@@ -9,6 +9,11 @@ class Bento
      */
     protected $features;
 
+    /**
+     * @var int
+     */
+    protected $visitorId;
+
     public function __construct()
     {
         $this->features = new Collection();
@@ -46,4 +51,37 @@ class Bento
     {
         return $this->feature($name)->isLaunched();
     }
+
+	/**
+	 * @return string
+	 */
+	public function getVisitorId()
+	{
+		if ( ! $this->visitorId) {
+			$this->visitorId = $this->makeVisitorId();
+		}
+
+		return $this->visitorId;
+	}
+
+	/**
+	 * @param string $visitorId
+	 * @return $this
+	 */
+	public function setVisitorId($visitorId)
+	{
+		$this->visitorId = $visitorId;
+
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	protected function makeVisitorId()
+	{
+		$request = request();
+
+		return crc32($request->ip() . $request->header('user-agent'));
+	}
 }

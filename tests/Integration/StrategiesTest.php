@@ -1,9 +1,12 @@
 <?php namespace Exolnet\Bento\Tests\Integration;
 
 use Exolnet\Bento\Bento;
+use Exolnet\Bento\BentoFacade;
+use Exolnet\Bento\StrategyFactory;
+use Exolnet\Bento\Tests\IntegrationTest;
 use PHPUnit_Framework_TestCase;
 
-class StrategiesTest extends PHPUnit_Framework_TestCase
+class StrategiesTest extends IntegrationTest
 {
     /**
      * @var \Exolnet\Bento\Bento
@@ -12,7 +15,9 @@ class StrategiesTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->bento = new Bento();
+        parent::setUp();
+
+        $this->bento = BentoFacade::getFacadeRoot();
     }
 
 //    public function testEnvironmentStrategy()
@@ -58,13 +63,13 @@ class StrategiesTest extends PHPUnit_Framework_TestCase
 
     public function testLogicNotStrategy()
     {
-        $this->assertFalse($this->bento->aim('name1', 'nobody')->launch());
+        $this->assertFalse($this->bento->aim('name1', 'logic-not', 'everyone')->launch());
+        $this->assertTrue($this->bento->aim('name2', 'logic-not', 'nobody')->launch());
     }
 
     public function testNobodyStrategy()
     {
-        $this->assertFalse($this->bento->aim('name1', 'logic-not', 'everyone')->launch());
-        $this->assertTrue($this->bento->aim('name2', 'logic-not', 'nobody')->launch());
+        $this->assertFalse($this->bento->aim('name1', 'nobody')->launch());
     }
 
 //    public function testPercentStrategy()
@@ -78,4 +83,19 @@ class StrategiesTest extends PHPUnit_Framework_TestCase
 //        $this->assertTrue($this->bento->aim('name1', 'user', [1, 2])->launch());
 //        $this->assertFalse$this->bento->aim('name2', 'user', [1, 2])->launch());
 //    }
+
+    public function testCustomStrategy()
+    {
+        $this->bento->customStrategy('custom1', function () {
+            return true;
+        });
+
+        $this->assertTrue($this->bento->aim('name1', 'custom1')->launch());
+
+        $this->bento->customStrategy('custom2', function () {
+            return false;
+        });
+
+        $this->assertFalse($this->bento->aim('name2', 'custom2')->launch());
+    }
 }

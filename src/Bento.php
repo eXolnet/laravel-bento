@@ -5,18 +5,26 @@ use Illuminate\Support\Collection;
 class Bento
 {
     /**
-     * @var \Illuminate\Support\Collection
+     * @var \Exolnet\Bento\StrategyFactory
      */
-    protected $features;
+    protected $factory;
+
+    /**
+     * @var array
+     */
+    protected $features = [];
 
     /**
      * @var int
      */
     protected $visitorId;
 
-    public function __construct()
+    /**
+     * @param \Exolnet\Bento\StrategyFactory $factory
+     */
+    public function __construct(StrategyFactory $factory)
     {
-        $this->features = new Collection();
+        $this->factory = $factory;
     }
 
     /**
@@ -83,5 +91,27 @@ class Bento
         $request = request();
 
         return crc32($request->ip() . $request->header('user-agent'));
+    }
+
+    /**
+     * @param string $name
+     * @param array ...$options
+     * @return \Exolnet\Bento\Strategy\Strategy
+     */
+    public function makeStrategy($name, ...$options)
+    {
+        return $this->factory->make($name, ...$options);
+    }
+
+    /**
+     * @param string $name
+     * @param callable $callback
+     * @return $this
+     */
+    public function defineStrategy($name, callable $callback)
+    {
+        $this->factory->register($name, $callback);
+
+        return $this;
     }
 }

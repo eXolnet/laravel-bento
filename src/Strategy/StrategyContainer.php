@@ -1,5 +1,7 @@
 <?php namespace Exolnet\Bento\Strategy;
 
+use Exolnet\Bento\BentoFacade;
+
 abstract class StrategyContainer
 {
     /**
@@ -38,7 +40,7 @@ abstract class StrategyContainer
      */
     public function aim($strategy, ...$options)
     {
-        $this->strategies[] = Strategy::make($strategy, ...$options);
+        $this->strategies[] = BentoFacade::makeStrategy($strategy, ...$options);
 
         return $this;
     }

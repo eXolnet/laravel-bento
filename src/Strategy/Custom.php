@@ -6,13 +6,19 @@ class Custom extends Strategy
      * @var callable
      */
     protected $callback;
+    /**
+     * @var array
+     */
+    private $options;
 
     /**
      * @param callable $callback
+     * @param array $options
      */
-    public function __construct(callable $callback)
+    public function __construct(callable $callback, array $options = [])
     {
         $this->callback = $callback;
+        $this->options = $options;
     }
 
     /**
@@ -20,6 +26,6 @@ class Custom extends Strategy
      */
     public function launch()
     {
-        return call_user_func($this->callback);
+        return call_user_func($this->callback, $this->options);
     }
 }

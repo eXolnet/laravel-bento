@@ -61,6 +61,23 @@ Or use the handy macro in your Blade templates:
 @endlaunch
 ```
 
+### Custom Strategies
+
+You can also define your own custom strategies like so:
+
+```
+Bento::defineStrategy('role', function($role) {
+    return Auth::user() && Auth::user()->role === $role;
+})
+```
+
+Then, you can use your custom strategy like the default one:
+
+```
+Bento::feature('feature')->aim('role', 'admin');
+```
+
+
 ## Testing
 
 To run the phpUnit tests, please use:

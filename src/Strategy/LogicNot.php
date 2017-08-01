@@ -1,5 +1,7 @@
 <?php namespace Exolnet\Bento\Strategy;
 
+use Exolnet\Bento\BentoFacade;
+
 class LogicNot extends Strategy
 {
     /**
@@ -13,7 +15,7 @@ class LogicNot extends Strategy
      */
     public function __construct($name, ...$options)
     {
-        $this->strategy = Strategy::make($name, ...$options);
+        $this->strategy = BentoFacade::makeStrategy($name, ...$options);
     }
 
     /**

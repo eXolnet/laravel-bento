@@ -33,7 +33,7 @@ class BentoServiceProvider extends ServiceProvider
     {
         $this->app->afterResolving('blade.compiler', function (BladeCompiler $bladeCompiler) {
             $bladeCompiler->directive('launch', function ($expression) {
-                return "<?php if (\Exolnet\Bento\BentoFacade::isLaunched($expression)): ?>";
+                return "<?php if (\Exolnet\Bento\BentoFacade::launch($expression)): ?>";
             });
 
             $bladeCompiler->directive('endlaunch', function () {
@@ -41,7 +41,7 @@ class BentoServiceProvider extends ServiceProvider
             });
 
             $bladeCompiler->directive('unlesslaunch', function ($expression) {
-                return "<?php if ( ! \Exolnet\Bento\BentoFacade::isLaunched($expression)): ?>";
+                return "<?php if ( ! \Exolnet\Bento\BentoFacade::launch($expression)): ?>";
             });
 
             $bladeCompiler->directive('endunlesslaunch', function () {

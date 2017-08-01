@@ -41,8 +41,8 @@ class FeatureCreationTest extends PHPUnit_Framework_TestCase
 
     public function testLaunchFeatureDefault()
     {
-        $isLaunched = $this->bento->isLaunched('name');
+        $launch = $this->bento->launch('name');
 
-        $this->assertFalse($isLaunched);
+        $this->assertFalse($launch);
     }
 }

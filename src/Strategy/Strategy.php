@@ -7,7 +7,7 @@ abstract class Strategy
     /**
      * @return bool
      */
-    abstract public function isLaunched();
+    abstract public function launch();
 
     /**
      * @param string $name

@@ -7,12 +7,12 @@ class Feature extends LogicAnd
     /**
      * @return bool
      */
-    public function isLaunched()
+    public function launch()
     {
         if (! $this->hasStrategies()) {
             return false;
         }
 
-        return parent::isLaunched();
+        return parent::launch();
     }
 }

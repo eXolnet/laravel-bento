@@ -46,5 +46,5 @@ abstract class StrategyContainer
     /**
      * @return bool
      */
-    abstract public function isLaunched();
+    abstract public function launch();
 }

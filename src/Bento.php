@@ -47,9 +47,9 @@ class Bento
      * @param string $name
      * @return bool
      */
-    public function isLaunched($name)
+    public function launch($name)
     {
-        return $this->feature($name)->isLaunched();
+        return $this->feature($name)->launch();
     }
 
     /**

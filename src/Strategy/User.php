@@ -20,7 +20,7 @@ class User extends Strategy
     /**
      * @return bool
      */
-    public function isLaunched()
+    public function launch()
     {
         $userId = Auth::id();
 

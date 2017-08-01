@@ -18,7 +18,7 @@ class Environment extends Strategy
     /**
      * @return bool
      */
-    public function isLaunched()
+    public function launch()
     {
         $environment = app()->environment();
 

@@ -19,8 +19,8 @@ class LogicNot extends Strategy
     /**
      * @return bool
      */
-    public function isLaunched()
+    public function launch()
     {
-        return ! $this->strategy->isLaunched();
+        return ! $this->strategy->launch();
     }
 }

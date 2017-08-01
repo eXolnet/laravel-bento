@@ -18,7 +18,7 @@ class Hostname extends Strategy
     /**
      * @return bool
      */
-    public function isLaunched()
+    public function launch()
     {
         $request = request();
 

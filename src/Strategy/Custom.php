@@ -18,7 +18,7 @@ class Custom extends Strategy
     /**
      * @return bool
      */
-    public function isLaunched()
+    public function launch()
     {
         return call_user_func($this->callback);
     }

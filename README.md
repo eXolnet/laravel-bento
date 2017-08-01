@@ -43,10 +43,10 @@ Or you can combine multiple strategies:
 Bento::feature('feature')->aim('visitor-percent', 10)->aim('hostname', 'example.com');
 ```
 
-Then, you can check if a feature is launched for a visitor with the `isLaunched` method:
+Then, you can check if a feature is launched for a visitor with the `launch` method:
 
 ```
-if (Bento::isLaunched('feature')) {
+if (Bento::launch('feature')) {
     //
 }
 ```

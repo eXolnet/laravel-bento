@@ -5,7 +5,7 @@ class Everyone extends Strategy
     /**
      * @return bool
      */
-    public function isLaunched()
+    public function launch()
     {
         return true;
     }

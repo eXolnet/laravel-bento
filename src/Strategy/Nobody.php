@@ -5,7 +5,7 @@ class Nobody extends Strategy
     /**
      * @return bool
      */
-    public function isLaunched()
+    public function launch()
     {
         return false;
     }

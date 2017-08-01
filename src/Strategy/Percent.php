@@ -23,7 +23,7 @@ abstract class Percent extends Strategy
     /**
      * @return bool
      */
-    public function isLaunched()
+    public function launch()
     {
         // Limit the unique ID between 1 and 100.
         $percentile = $this->getUniqueId() % 100 + 1;

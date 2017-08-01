@@ -9,9 +9,9 @@ class User extends Strategy
      */
     protected $userIds;
 
-	/**
-	 * @param array|int $userIds
-	 */
+    /**
+     * @param array|int $userIds
+     */
     public function __construct($userIds)
     {
         $this->userIds = (array)$userIds;

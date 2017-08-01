@@ -66,8 +66,16 @@ Or use the handy macro in your Blade templates:
 To run the phpUnit tests, please use:
 
 ``` bash
-$ vendor/bin/phpunit
+$ composer test
 ```
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Security
+
+If you discover any security related issues, please email adeschambeault@exolnet.com instead of using the issue tracker.
 
 ## License
 

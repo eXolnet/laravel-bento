@@ -9,7 +9,7 @@ class LogicAnd extends Logic
     {
         /** @var \Exolnet\Bento\Strategy\Strategy $strategy */
         foreach ($this->strategies as $strategy) {
-            if ( ! $strategy->isLaunched()) {
+            if (! $strategy->isLaunched()) {
                 return false;
             }
         }

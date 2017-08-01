@@ -9,7 +9,7 @@ class Feature extends LogicAnd
      */
     public function isLaunched()
     {
-        if ( ! $this->hasStrategies()) {
+        if (! $this->hasStrategies()) {
             return false;
         }
 

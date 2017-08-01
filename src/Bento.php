@@ -25,7 +25,7 @@ class Bento
      */
     public function feature($name)
     {
-        if ( ! isset($this->features[$name])) {
+        if (! isset($this->features[$name])) {
             $this->features[$name] = new Feature();
         }
 
@@ -52,36 +52,36 @@ class Bento
         return $this->feature($name)->isLaunched();
     }
 
-	/**
-	 * @return string
-	 */
-	public function getVisitorId()
-	{
-		if ( ! $this->visitorId) {
-			$this->visitorId = $this->makeVisitorId();
-		}
+    /**
+     * @return string
+     */
+    public function getVisitorId()
+    {
+        if (! $this->visitorId) {
+            $this->visitorId = $this->makeVisitorId();
+        }
 
-		return $this->visitorId;
-	}
+        return $this->visitorId;
+    }
 
-	/**
-	 * @param string $visitorId
-	 * @return $this
-	 */
-	public function setVisitorId($visitorId)
-	{
-		$this->visitorId = $visitorId;
+    /**
+     * @param string $visitorId
+     * @return $this
+     */
+    public function setVisitorId($visitorId)
+    {
+        $this->visitorId = $visitorId;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return int
-	 */
-	protected function makeVisitorId()
-	{
-		$request = request();
+    /**
+     * @return int
+     */
+    protected function makeVisitorId()
+    {
+        $request = request();
 
-		return crc32($request->ip() . $request->header('user-agent'));
-	}
+        return crc32($request->ip() . $request->header('user-agent'));
+    }
 }

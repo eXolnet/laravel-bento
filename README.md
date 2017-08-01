@@ -68,7 +68,7 @@ You can also define your own custom strategies like so:
 ```
 Bento::defineStrategy('role', function($role) {
     return Auth::user() && Auth::user()->role === $role;
-})
+});
 ```
 
 Then, you can use your custom strategy like the default one:

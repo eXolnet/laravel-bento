@@ -86,13 +86,13 @@ class StrategiesTest extends IntegrationTest
 
     public function testCustomStrategy()
     {
-        $this->bento->customStrategy('custom1', function () {
+        $this->bento->defineStrategy('custom1', function () {
             return true;
         });
 
         $this->assertTrue($this->bento->aim('name1', 'custom1')->launch());
 
-        $this->bento->customStrategy('custom2', function () {
+        $this->bento->defineStrategy('custom2', function () {
             return false;
         });
 

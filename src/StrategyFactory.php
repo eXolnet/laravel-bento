@@ -2,6 +2,7 @@
 
 use Exolnet\Bento\Strategy\Custom;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
 class StrategyFactory
 {
@@ -24,6 +25,10 @@ class StrategyFactory
         }
 
         $className = '\\Exolnet\\Bento\\Strategy\\'. Str::studly($name);
+
+        if (! class_exists($className)) {
+            throw new InvalidArgumentException('Could not instantiate strategy with name '. $name);
+        }
 
         return new $className(...$options);
     }

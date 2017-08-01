@@ -46,6 +46,16 @@ abstract class StrategyContainer
     }
 
     /**
+     * @param string $strategy
+     * @param array $options
+     * @return \Exolnet\Bento\Strategy\StrategyContainer
+     */
+    public function __call($strategy, array $options)
+    {
+        return $this->aim($strategy, ...$options);
+    }
+
+    /**
      * @return bool
      */
     abstract public function launch();

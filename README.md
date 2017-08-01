@@ -77,6 +77,12 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 If you discover any security related issues, please email adeschambeault@exolnet.com instead of using the issue tracker.
 
+## Credits
+
+- [Alexandre D'Eschambeault](https://github.com/xel1045)
+- [Airbnb Trebuchet](https://github.com/airbnb/trebuchet)
+- [All Contributors](../../contributors)
+
 ## License
 
 This code is licensed under the [MIT license](http://choosealicense.com/licenses/mit/). Please see the [license file](LICENSE) for more information.

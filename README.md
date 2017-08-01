@@ -61,6 +61,51 @@ Or use the handy macro in your Blade templates:
 @endlaunch
 ```
 
+### Default Strategies
+
+By default, multiple strategies are available to target your visitors:
+
+* Environment
+* Everyone
+* Hostname 
+* Logic And
+* Logic Or
+* Logic Not
+* Nobody
+* User (specific user IDs)
+* User Percent (a fraction of all connected visitors)
+* Visitor Percent (a fraction of all your visitors)
+
+### Logic Strategies
+
+You can aim your visitor with more complex rules using the logic strategies:
+
+#### Logic Not
+
+```
+Bento::aim('feature', 'logic-not', 'everybody');
+```
+
+#### Logic And
+
+```
+Bento::aim('feature', 'logic-and', function($feature) {
+    $feature
+        ->aim('environment', 'production')
+        ->aim('visitor-percent', 20);
+});
+```
+
+#### Logic Or
+
+```
+Bento::aim('feature', 'logic-or', function($feature) {
+    $feature
+        ->aim('environment', 'staging')
+        ->aim('user', [1, 2]);
+});
+```
+
 ### Custom Strategies
 
 You can also define your own custom strategies like so:

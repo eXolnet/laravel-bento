@@ -31,6 +31,8 @@ Finally, add the Facade to the facades array in `config/app.php`:
 
 ## Usage
 
+### Create Features
+
 Define features and their launch strategies. You can define one strategy with the `aim` method:
 
 ```
@@ -42,6 +44,8 @@ Or you can combine multiple strategies:
 ```
 Bento::feature('feature')->aim('visitor-percent', 10)->aim('hostname', 'example.com');
 ```
+
+### Launch Your Features
 
 Then, you can check if a feature is launched for a visitor with the `launch` method:
 

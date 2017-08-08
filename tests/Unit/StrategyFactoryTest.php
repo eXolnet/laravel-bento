@@ -5,6 +5,7 @@ use Exolnet\Bento\Strategy\Custom;
 use Exolnet\Bento\Strategy\Everyone;
 use Exolnet\Bento\Strategy\Stub;
 use Exolnet\Bento\Strategy\User;
+use Exolnet\Bento\Strategy\UserPercent;
 use Exolnet\Bento\StrategyFactory;
 use Exolnet\Bento\Tests\UnitTest;
 use Illuminate\Container\Container;
@@ -64,6 +65,19 @@ class StrategyFactoryTest extends UnitTest
         $this->assertEquals([42], $strategy->getUserIds());
     }
 
+    public function testMakeClassWithFeatureAware()
+    {
+        $guard = m::mock(Guard::class);
+
+        $this->container->shouldReceive('make')->with(Guard::class)->andReturn($guard);
+
+        /** @var \Exolnet\Bento\Strategy\UserPercent $strategy */
+        $strategy = $this->factory->make($this->feature, 'user-percent', [42]);
+
+        $this->assertInstanceOf(UserPercent::class, $strategy);
+        $this->assertSame($this->feature, $strategy->getFeature());
+    }
+
     public function testMakeCustomStrategy()
     {
         $this->factory->register('custom', function () {
@@ -105,5 +119,22 @@ class StrategyFactoryTest extends UnitTest
 
         $this->assertInstanceOf(Custom::class, $strategy);
         $this->assertEquals(2, count($strategy->getOptions()));
+    }
+
+    public function testMakeCustomWithFeatureAware()
+    {
+        $guard = m::mock(Guard::class);
+
+        $this->container->shouldReceive('make')->with(Guard::class)->andReturn($guard);
+
+        $this->factory->register('custom', function (Guard $guard, Feature $feature, $customParameter) {
+            return true;
+        });
+
+        /** @var \Exolnet\Bento\Strategy\Custom $strategy */
+        $strategy = $this->factory->make($this->feature, 'custom', 42);
+
+        $this->assertInstanceOf(Custom::class, $strategy);
+        $this->assertEquals(3, count($strategy->getOptions()));
     }
 }

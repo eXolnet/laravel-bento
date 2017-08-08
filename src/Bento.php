@@ -1,7 +1,5 @@
 <?php namespace Exolnet\Bento;
 
-use Illuminate\Support\Collection;
-
 class Bento
 {
     /**
@@ -34,7 +32,7 @@ class Bento
     public function feature($name)
     {
         if (! isset($this->features[$name])) {
-            $this->features[$name] = new Feature();
+            $this->features[$name] = new Feature($this);
         }
 
         return $this->features[$name];

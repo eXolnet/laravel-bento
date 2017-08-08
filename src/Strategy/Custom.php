@@ -22,6 +22,14 @@ class Custom extends Strategy
     }
 
     /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    /**
      * @return bool
      */
     public function launch()

@@ -1,13 +1,27 @@
 <?php namespace Exolnet\Bento\Strategy;
 
+use Exolnet\Bento\Bento;
 use Exolnet\Bento\BentoFacade;
 
 abstract class StrategyContainer
 {
     /**
+     * @var \Exolnet\Bento\Bento
+     */
+    protected $bento;
+
+    /**
      * @var array
      */
     protected $strategies = [];
+
+    /**
+     * @param \Exolnet\Bento\Bento $bento
+     */
+    public function __construct(Bento $bento)
+    {
+        $this->bento = $bento;
+    }
 
     /**
      * @return array
@@ -40,7 +54,7 @@ abstract class StrategyContainer
      */
     public function aim($strategy, ...$options)
     {
-        $this->strategies[] = BentoFacade::makeStrategy($strategy, ...$options);
+        $this->strategies[] = $this->bento->makeStrategy($strategy, ...$options);
 
         return $this;
     }

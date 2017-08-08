@@ -1,21 +1,29 @@
 <?php namespace Exolnet\Bento\Strategy;
 
+use Exolnet\Bento\Bento;
 use Exolnet\Bento\BentoFacade;
 
 class LogicNot extends Strategy
 {
+    /**
+     * @var \Exolnet\Bento\Bento
+     */
+    protected $bento;
+
     /**
      * @var \Exolnet\Bento\Strategy\Strategy
      */
     protected $strategy;
 
     /**
-     * @param $name
+     * @param \Exolnet\Bento\Bento $bento
+     * @param string $name
      * @param array ...$options
      */
-    public function __construct($name, ...$options)
+    public function __construct(Bento $bento, $name, ...$options)
     {
-        $this->strategy = BentoFacade::makeStrategy($name, ...$options);
+        $this->bento = $bento;
+        $this->strategy = $this->bento->makeStrategy($name, ...$options);
     }
 
     /**

@@ -18,6 +18,14 @@ abstract class Percent extends Strategy
     /**
      * @return int
      */
+    public function getPercent()
+    {
+        return $this->percent;
+    }
+
+    /**
+     * @return int
+     */
     abstract public function getUniqueId();
 
     /**

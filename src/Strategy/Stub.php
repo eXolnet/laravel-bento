@@ -18,6 +18,14 @@ class Stub extends Strategy
     /**
      * @return bool
      */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @return bool
+     */
     public function launch()
     {
         return $this->state;

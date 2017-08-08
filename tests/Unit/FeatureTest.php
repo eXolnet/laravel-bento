@@ -1,77 +1,85 @@
 <?php namespace Exolnet\Bento\Tests\Unit;
 
+use Exolnet\Bento\Bento;
 use Exolnet\Bento\BentoFacade;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\Stub;
 use Exolnet\Bento\Tests\UnitTest;
+use Mockery as m;
 
 class FeatureTest extends UnitTest
 {
+    /**
+     * @var \Mockery\MockInterface|\Exolnet\Bento\Bento
+     */
+    protected $bento;
+
+    /**
+     * @var \Exolnet\Bento\Feature
+     */
+    protected $feature;
+
+    public function setUp()
+    {
+        $this->bento = m::mock(Bento::class);
+        $this->feature = new Feature($this->bento);
+    }
+
     public function testFeatureIsInstantiable()
     {
-        $actual = new Feature();
-
-        $this->assertInstanceOf(Feature::class, $actual);
+        $this->assertInstanceOf(Feature::class, $this->feature);
     }
 
     public function testFeatureHasNoStrategiesByDefault()
     {
-        $feature = new Feature();
-
-        $this->assertEmpty($feature->getStrategies());
-        $this->assertEquals(0, $feature->countStrategies());
-        $this->assertFalse($feature->hasStrategies());
+        $this->assertEmpty($this->feature->getStrategies());
+        $this->assertEquals(0, $this->feature->countStrategies());
+        $this->assertFalse($this->feature->hasStrategies());
     }
 
     public function testFeatureIsNotLaunchWithoutStrategy()
     {
-        $feature = new Feature();
-
-        $this->assertFalse($feature->launch());
+        $this->assertFalse($this->feature->launch());
     }
 
     public function testFeatureAimIsFluent()
     {
-        $feature = new Feature();
+        $this->bento->shouldReceive('makeStrategy')->with('everyone');
 
-        BentoFacade::shouldReceive('makeStrategy')->with('everyone');
+        $actual = $this->feature->aim('everyone');
 
-        $actual = $feature->aim('everyone');
-
-        $this->assertSame($actual, $feature);
+        $this->assertSame($actual, $this->feature);
     }
 
     public function testAddStrategiesToFeature()
     {
-        $feature = new Feature();
         $stub = new Stub(true);
 
-        BentoFacade::shouldReceive('makeStrategy')->with('nobody')->andReturn($stub);
-        $feature->aim('nobody');
+        $this->bento->shouldReceive('makeStrategy')->with('nobody')->andReturn($stub);
+        $this->feature->aim('nobody');
 
-        $strategies = $feature->getStrategies();
+        $strategies = $this->feature->getStrategies();
 
         $this->assertCount(1, $strategies);
-        $this->assertEquals(1, $feature->countStrategies());
-        $this->assertTrue($feature->hasStrategies());
+        $this->assertEquals(1, $this->feature->countStrategies());
+        $this->assertTrue($this->feature->hasStrategies());
 
         $this->assertSame($stub, $strategies[0]);
     }
 
     public function testAddStrategiesThroughMethodCall()
     {
-        $feature = new Feature();
         $stub = new Stub(true);
 
-        BentoFacade::shouldReceive('makeStrategy')->with('visitorPercent', 10)->andReturn($stub);
+        $this->bento->shouldReceive('makeStrategy')->with('visitorPercent', 10)->andReturn($stub);
 
-        $feature->visitorPercent(10);
+        $this->feature->visitorPercent(10);
 
-        $strategies = $feature->getStrategies();
+        $strategies = $this->feature->getStrategies();
 
         $this->assertCount(1, $strategies);
-        $this->assertEquals(1, $feature->countStrategies());
-        $this->assertTrue($feature->hasStrategies());
+        $this->assertEquals(1, $this->feature->countStrategies());
+        $this->assertTrue($this->feature->hasStrategies());
 
         $this->assertSame($stub, $strategies[0]);
     }

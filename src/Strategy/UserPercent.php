@@ -1,5 +1,6 @@
 <?php namespace Exolnet\Bento\Strategy;
 
+use Exolnet\Bento\Feature;
 use Illuminate\Contracts\Auth\Guard;
 
 class UserPercent extends Percent
@@ -11,11 +12,12 @@ class UserPercent extends Percent
 
     /**
      * @param \Illuminate\Contracts\Auth\Guard $guard
+     * @param \Exolnet\Bento\Feature $feature
      * @param int $percent
      */
-    public function __construct(Guard $guard, $percent)
+    public function __construct(Guard $guard, Feature $feature, $percent)
     {
-        parent::__construct($percent);
+        parent::__construct($feature, $percent);
 
         $this->guard = $guard;
     }

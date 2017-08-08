@@ -1,13 +1,19 @@
 <?php namespace Exolnet\Bento\Strategy;
 
 use Exolnet\Bento\Bento;
+use Exolnet\Bento\Feature;
 
-abstract class StrategyContainer
+abstract class StrategyContainer implements FeatureAware
 {
     /**
      * @var \Exolnet\Bento\Bento
      */
     protected $bento;
+
+    /**
+     * @var \Exolnet\Bento\Feature
+     */
+    protected $feature;
 
     /**
      * @var array
@@ -16,10 +22,20 @@ abstract class StrategyContainer
 
     /**
      * @param \Exolnet\Bento\Bento $bento
+     * @param \Exolnet\Bento\Feature $feature
      */
-    public function __construct(Bento $bento)
+    public function __construct(Bento $bento, Feature $feature)
     {
         $this->bento = $bento;
+        $this->feature = $feature;
+    }
+
+    /**
+     * @return \Exolnet\Bento\Feature
+     */
+    public function getFeature()
+    {
+        return $this->feature;
     }
 
     /**
@@ -53,7 +69,7 @@ abstract class StrategyContainer
      */
     public function aim($strategy, ...$options)
     {
-        $this->strategies[] = $this->bento->makeStrategy($strategy, ...$options);
+        $this->strategies[] = $this->bento->makeStrategy($this->feature, $strategy, ...$options);
 
         return $this;
     }

@@ -1,5 +1,6 @@
 <?php namespace Exolnet\Bento\Tests\Unit;
 
+use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\Custom;
 use Exolnet\Bento\Strategy\Everyone;
 use Exolnet\Bento\Strategy\Stub;
@@ -13,6 +14,11 @@ use Mockery as m;
 class StrategyFactoryTest extends UnitTest
 {
     /**
+     * @var \Mockery\MockInterface|\Exolnet\Bento\Feature
+     */
+    protected $feature;
+
+    /**
      * @var \Mockery\MockInterface|\Illuminate\Container\Container
      */
     protected $container;
@@ -24,13 +30,14 @@ class StrategyFactoryTest extends UnitTest
 
     public function setUp()
     {
+        $this->feature = m::mock(Feature::class);
         $this->container = m::mock(Container::class);
         $this->factory = new StrategyFactory($this->container);
     }
 
     public function testMakeClassStrategy()
     {
-        $strategy = $this->factory->make('everyone');
+        $strategy = $this->factory->make($this->feature, 'everyone');
 
         $this->assertInstanceOf(Everyone::class, $strategy);
     }
@@ -38,7 +45,7 @@ class StrategyFactoryTest extends UnitTest
     public function testMakeClassStrategyWithOptions()
     {
         /** @var \Exolnet\Bento\Strategy\Stub $strategy */
-        $strategy = $this->factory->make('stub', true);
+        $strategy = $this->factory->make($this->feature, 'stub', true);
 
         $this->assertInstanceOf(Stub::class, $strategy);
         $this->assertTrue($strategy->getState());
@@ -51,7 +58,7 @@ class StrategyFactoryTest extends UnitTest
         $this->container->shouldReceive('make')->with(Guard::class)->andReturn($guard);
 
         /** @var \Exolnet\Bento\Strategy\User $strategy */
-        $strategy = $this->factory->make('user', [42]);
+        $strategy = $this->factory->make($this->feature, 'user', [42]);
 
         $this->assertInstanceOf(User::class, $strategy);
         $this->assertEquals([42], $strategy->getUserIds());
@@ -64,7 +71,7 @@ class StrategyFactoryTest extends UnitTest
         });
 
         /** @var \Exolnet\Bento\Strategy\Custom $strategy */
-        $strategy = $this->factory->make('custom');
+        $strategy = $this->factory->make($this->feature, 'custom');
 
         $this->assertInstanceOf(Custom::class, $strategy);
         $this->assertEquals(0, count($strategy->getOptions()));
@@ -77,7 +84,7 @@ class StrategyFactoryTest extends UnitTest
         });
 
         /** @var \Exolnet\Bento\Strategy\Custom $strategy */
-        $strategy = $this->factory->make('custom', 42);
+        $strategy = $this->factory->make($this->feature, 'custom', 42);
 
         $this->assertInstanceOf(Custom::class, $strategy);
         $this->assertEquals(1, count($strategy->getOptions()));
@@ -94,7 +101,7 @@ class StrategyFactoryTest extends UnitTest
         });
 
         /** @var \Exolnet\Bento\Strategy\Custom $strategy */
-        $strategy = $this->factory->make('custom', 42);
+        $strategy = $this->factory->make($this->feature, 'custom', 42);
 
         $this->assertInstanceOf(Custom::class, $strategy);
         $this->assertEquals(2, count($strategy->getOptions()));

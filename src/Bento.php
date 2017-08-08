@@ -32,7 +32,7 @@ class Bento
     public function feature($name)
     {
         if (! isset($this->features[$name])) {
-            $this->features[$name] = new Feature($this);
+            $this->features[$name] = new Feature($this, $name);
         }
 
         return $this->features[$name];
@@ -92,13 +92,14 @@ class Bento
     }
 
     /**
+     * @param \Exolnet\Bento\Feature $feature
      * @param string $name
      * @param array ...$options
      * @return \Exolnet\Bento\Strategy\Strategy
      */
-    public function makeStrategy($name, ...$options)
+    public function makeStrategy(Feature $feature, $name, ...$options)
     {
-        return $this->factory->make($name, ...$options);
+        return $this->factory->make($feature, $name, ...$options);
     }
 
     /**

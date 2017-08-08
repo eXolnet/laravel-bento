@@ -1,6 +1,7 @@
 <?php namespace Exolnet\Bento\Strategy;
 
 use Exolnet\Bento\Bento;
+use Exolnet\Bento\Feature;
 
 class VisitorPercent extends Percent
 {
@@ -11,11 +12,12 @@ class VisitorPercent extends Percent
 
     /**
      * @param \Exolnet\Bento\Bento $bento
+     * @param \Exolnet\Bento\Feature $feature
      * @param int $percent
      */
-    public function __construct(Bento $bento, $percent)
+    public function __construct(Bento $bento, Feature $feature, $percent)
     {
-        parent::__construct($percent);
+        parent::__construct($feature, $percent);
 
         $this->bento = $bento;
     }

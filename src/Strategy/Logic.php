@@ -1,16 +1,18 @@
 <?php namespace Exolnet\Bento\Strategy;
 
 use Exolnet\Bento\Bento;
+use Exolnet\Bento\Feature;
 
 abstract class Logic extends StrategyContainer
 {
     /**
      * @param \Exolnet\Bento\Bento $bento
+     * @param \Exolnet\Bento\Feature $feature
      * @param callable|null $callback
      */
-    public function __construct(Bento $bento, callable $callback = null)
+    public function __construct(Bento $bento, Feature $feature, callable $callback = null)
     {
-        parent::__construct($bento);
+        parent::__construct($bento, $feature);
 
         if ($callback) {
             $callback($this);

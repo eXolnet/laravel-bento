@@ -2,7 +2,6 @@
 
 use Exolnet\Bento\Strategy\Custom;
 use Illuminate\Container\Container;
-use Illuminate\Routing\RouteDependencyResolverTrait;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use ReflectionClass;
@@ -10,7 +9,7 @@ use ReflectionFunction;
 
 class StrategyFactory
 {
-    use RouteDependencyResolverTrait;
+    use StrategyDependencyResolverTrait;
 
     /**
      * @var \Illuminate\Container\Container
@@ -31,39 +30,43 @@ class StrategyFactory
     }
 
     /**
+     * @param \Exolnet\Bento\Feature $feature
      * @param string $name
      * @param array $parameters
      * @return \Exolnet\Bento\Strategy\Strategy
      */
-    public function make($name, ...$parameters)
+    public function make(Feature $feature, $name, ...$parameters)
     {
         if (isset($this->customStrategies[$name])) {
-            return $this->makeCustom($name, $parameters);
+            return $this->makeCustom($feature, $name, $parameters);
         }
 
-        return $this->makeClass($name, $parameters);
+        return $this->makeClass($feature, $name, $parameters);
     }
 
     /**
+     * @param \Exolnet\Bento\Feature $feature
      * @param string $name
      * @param array $parameters
      * @return \Exolnet\Bento\Strategy\Custom
      */
-    protected function makeCustom($name, array $parameters)
+    protected function makeCustom(Feature $feature, $name, array $parameters)
     {
         $customStrategy = $this->customStrategies[$name];
 
-        $parameters = $this->resolveMethodDependencies($parameters, new ReflectionFunction($customStrategy));
+        $closure = new ReflectionFunction($customStrategy);
+        $parameters = $this->resolveMethodDependencies($feature, $parameters, $closure);
 
         return new Custom($customStrategy, $parameters);
     }
 
     /**
+     * @param \Exolnet\Bento\Feature $feature
      * @param string $name
      * @param array $parameters
      * @return \Exolnet\Bento\Strategy\Strategy
      */
-    protected function makeClass($name, array $parameters)
+    protected function makeClass(Feature $feature, $name, array $parameters)
     {
         $className = '\\Exolnet\\Bento\\Strategy\\'. Str::studly($name);
 
@@ -74,7 +77,7 @@ class StrategyFactory
         $constructor = (new ReflectionClass($className))->getConstructor();
 
         if ($constructor) {
-            $parameters = $this->resolveMethodDependencies($parameters, $constructor);
+            $parameters = $this->resolveMethodDependencies($feature, $parameters, $constructor);
         }
 
         return new $className(...$parameters);

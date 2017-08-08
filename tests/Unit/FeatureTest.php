@@ -22,7 +22,7 @@ class FeatureTest extends UnitTest
     public function setUp()
     {
         $this->bento = m::mock(Bento::class);
-        $this->feature = new Feature($this->bento);
+        $this->feature = new Feature($this->bento, 'name');
     }
 
     public function testFeatureIsInstantiable()
@@ -44,7 +44,7 @@ class FeatureTest extends UnitTest
 
     public function testFeatureAimIsFluent()
     {
-        $this->bento->shouldReceive('makeStrategy')->with('everyone');
+        $this->bento->shouldReceive('makeStrategy')->with($this->feature, 'everyone');
 
         $actual = $this->feature->aim('everyone');
 
@@ -55,7 +55,7 @@ class FeatureTest extends UnitTest
     {
         $stub = new Stub(true);
 
-        $this->bento->shouldReceive('makeStrategy')->with('nobody')->andReturn($stub);
+        $this->bento->shouldReceive('makeStrategy')->with($this->feature, 'nobody')->andReturn($stub);
         $this->feature->aim('nobody');
 
         $strategies = $this->feature->getStrategies();
@@ -71,7 +71,7 @@ class FeatureTest extends UnitTest
     {
         $stub = new Stub(true);
 
-        $this->bento->shouldReceive('makeStrategy')->with('visitorPercent', 10)->andReturn($stub);
+        $this->bento->shouldReceive('makeStrategy')->with($this->feature, 'visitorPercent', 10)->andReturn($stub);
 
         $this->feature->visitorPercent(10);
 

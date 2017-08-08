@@ -1,7 +1,6 @@
 <?php namespace Exolnet\Bento\Strategy;
 
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Support\Facades\Auth;
 
 class UserPercent extends Percent
 {

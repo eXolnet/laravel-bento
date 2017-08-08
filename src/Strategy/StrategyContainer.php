@@ -1,7 +1,6 @@
 <?php namespace Exolnet\Bento\Strategy;
 
 use Exolnet\Bento\Bento;
-use Exolnet\Bento\BentoFacade;
 
 abstract class StrategyContainer
 {

@@ -5,9 +5,12 @@
 [![Build Status](https://img.shields.io/travis/eXolnet/laravel-bento/master.svg?style=flat-square)](https://travis-ci.org/eXolnet/laravel-bento)
 [![Total Downloads](https://img.shields.io/packagist/dt/eXolnet/laravel-bento.svg?style=flat-square)](https://packagist.org/packages/eXolnet/laravel-bento)
 
-This project aim to launch features at people. By defining your features and the launch strategies, Bento will take care of enabling the features to the right people. 
+Bento helps you organize feature launches by custom user segments.
+Create and organize rules to make features available to certain users.
 
-The core concepts of this library are based on [Airbnb's Trebuchet](https://github.com/airbnb/trebuchet) project for Ruby.
+Define your features, define your segmentation strategies and let Bento launch each feature to the right people. 
+
+The core concepts of this library are inspired by [Airbnb's Trebuchet](https://github.com/airbnb/trebuchet) project for Ruby.
 
 ## Installation
 
@@ -33,7 +36,7 @@ Finally, add the Facade to the facades array in `config/app.php`:
 
 ### Create Features
 
-Define features and their launch strategies. You can define one strategy with the `aim` method:
+Define features and their launch segmentation strategies. You can define one strategy with the `aim` method:
 
 ```
 Bento::aim('feature', 'visitor-percent', 10);
@@ -65,24 +68,21 @@ Or use the handy macro in your Blade templates:
 @endlaunch
 ```
 
-### Default Strategies
+### Basic Segmentation Strategies
 
-By default, multiple strategies are available to target your visitors:
+The following segmentation strategies are available to help quickly target your users:
 
 * Environment
 * Everyone
 * Hostname 
-* Logic And
-* Logic Or
-* Logic Not
 * Nobody
 * User (specific user IDs)
 * User Percent (a fraction of all connected visitors)
 * Visitor Percent (a fraction of all your visitors)
 
-### Logic Strategies
+### Logic Segmentation Strategies
 
-You can aim your visitor with more complex rules using the logic strategies:
+Additional logic segmentation strategies are available to help target your users with more complex rules.
 
 #### Logic Not
 
@@ -110,9 +110,11 @@ Bento::aim('feature', 'logic-or', function($feature) {
 });
 ```
 
-### Custom Strategies
+### Custom Segmentation Strategies
 
-You can also define your own custom strategies and inject dependencies like the method injection of Laravel in controllers:
+You can create your own custom strategies.
+
+You can also inject dependencies the same way [Laravel Controllers' method injection](https://laravel.com/docs/5.4/controllers#dependency-injection-and-controllers) works. A common use-case for method injection is injecting the `Illuminate\Contracts\Auth\Guard` instance into your strategy to target users by property:
 
 ```
 use Illuminate\Contracts\Auth\Guard;

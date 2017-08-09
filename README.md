@@ -112,11 +112,13 @@ Bento::aim('feature', 'logic-or', function($feature) {
 
 ### Custom Strategies
 
-You can also define your own custom strategies like so:
+You can also define your own custom strategies and inject dependencies like the method injection of Laravel in controllers:
 
 ```
-Bento::defineStrategy('role', function($role) {
-    return Auth::user() && Auth::user()->role === $role;
+use Illuminate\Contracts\Auth\Guard;
+
+Bento::defineStrategy('role', function(Guard $guard, $role) {
+    return $guard->user() && $guard->user()->role === $role;
 });
 ```
 

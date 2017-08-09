@@ -8,7 +8,7 @@
 Bento helps you organize feature launches by custom user segments.
 Create and organize rules to make features available to certain users.
 
-Define your features, define your segmentation strategies and let Bento launch each feature to the right people. 
+Define your features, define your segmentation strategies and let Bento launch each feature to the right people. Bento can also help you run A/B testing on your applications. 
 
 The core concepts of this library are inspired by [Airbnb's Trebuchet](https://github.com/airbnb/trebuchet) project for Ruby.
 

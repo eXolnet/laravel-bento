@@ -42,7 +42,10 @@
         "laravel": {
             "providers": [
                 "Exolnet\\Bento\\BentoServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Bento": "Exolnet\\Bento\\BentoFacade"
+            }
         }
     }
 }

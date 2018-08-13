@@ -1,4 +1,6 @@
-<?php namespace Exolnet\Bento\Tests\Integration;
+<?php
+
+namespace Exolnet\Bento\Tests\Integration;
 
 use Exolnet\Bento\BentoFacade;
 use Exolnet\Bento\Feature;

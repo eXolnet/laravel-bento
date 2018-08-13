@@ -1,6 +1,8 @@
-<?php namespace Exolnet\Bento\Strategy;
+<?php
 
-use \Illuminate\Contracts\Config\Repository as ConfigRepository;
+namespace Exolnet\Bento\Strategy;
+
+use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class Environment extends Strategy
 {

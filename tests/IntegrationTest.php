@@ -1,4 +1,6 @@
-<?php namespace Exolnet\Bento\Tests;
+<?php
+
+namespace Exolnet\Bento\Tests;
 
 use Exolnet\Bento\BentoServiceProvider;
 use Orchestra\Testbench\TestCase;

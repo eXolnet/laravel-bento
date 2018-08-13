@@ -1,4 +1,6 @@
-<?php namespace Exolnet\Bento;
+<?php
+
+namespace Exolnet\Bento;
 
 use Exolnet\Bento\Strategy\Custom;
 use Illuminate\Contracts\Container\Container;

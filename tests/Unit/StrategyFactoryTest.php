@@ -1,4 +1,6 @@
-<?php namespace Exolnet\Bento\Tests\Unit;
+<?php
+
+namespace Exolnet\Bento\Tests\Unit;
 
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\Custom;

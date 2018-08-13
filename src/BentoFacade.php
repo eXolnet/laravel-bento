@@ -1,4 +1,6 @@
-<?php namespace Exolnet\Bento;
+<?php
+
+namespace Exolnet\Bento;
 
 use Illuminate\Support\Facades\Facade;
 

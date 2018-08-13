@@ -1,4 +1,6 @@
-<?php namespace Exolnet\Bento\Strategy;
+<?php
+
+namespace Exolnet\Bento\Strategy;
 
 class LogicAnd extends Logic
 {

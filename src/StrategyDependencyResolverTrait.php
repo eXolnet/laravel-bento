@@ -2,9 +2,9 @@
 
 namespace Exolnet\Bento;
 
-use ReflectionParameter;
 use Illuminate\Support\Arr;
 use ReflectionFunctionAbstract;
+use ReflectionParameter;
 
 trait StrategyDependencyResolverTrait
 {

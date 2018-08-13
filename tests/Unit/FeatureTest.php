@@ -3,7 +3,6 @@
 namespace Exolnet\Bento\Tests\Unit;
 
 use Exolnet\Bento\Bento;
-use Exolnet\Bento\BentoFacade;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\Stub;
 use Exolnet\Bento\Tests\UnitTest;

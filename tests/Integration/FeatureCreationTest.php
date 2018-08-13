@@ -4,10 +4,7 @@ namespace Exolnet\Bento\Tests\Integration;
 
 use Exolnet\Bento\BentoFacade;
 use Exolnet\Bento\Feature;
-use Exolnet\Bento\Bento;
-use Exolnet\Bento\StrategyFactory;
 use Exolnet\Bento\Tests\IntegrationTest;
-use PHPUnit_Framework_TestCase;
 
 class FeatureCreationTest extends IntegrationTest
 {

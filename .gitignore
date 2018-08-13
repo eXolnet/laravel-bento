@@ -3,4 +3,6 @@
 composer.phar
 composer.lock
 .DS_Store
-.idea
+.idea/
+phpunit.xml
+Thumbs.db

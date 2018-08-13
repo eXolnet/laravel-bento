@@ -6,10 +6,11 @@ class Custom extends Strategy
      * @var callable
      */
     protected $callback;
+
     /**
      * @var array
      */
-    private $options;
+    protected $options;
 
     /**
      * @param callable $callback

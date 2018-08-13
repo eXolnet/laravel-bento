@@ -1,13 +1,13 @@
 <?php namespace Exolnet\Bento\Strategy;
 
-use Illuminate\Foundation\Application;
+use \Illuminate\Contracts\Config\Repository as ConfigRepository;
 
 class Environment extends Strategy
 {
     /**
-     * @var \Illuminate\Foundation\Application
+     * @var \Illuminate\Contracts\Config\Repository
      */
-    protected $app;
+    protected $config;
 
     /**
      * @var array
@@ -15,12 +15,12 @@ class Environment extends Strategy
     protected $environments;
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param \Illuminate\Contracts\Config\Repository $config
      * @param array|string $environments
      */
-    public function __construct(Application $app, $environments)
+    public function __construct(ConfigRepository $config, $environments)
     {
-        $this->app = $app;
+        $this->config = $config;
         $this->environments = (array)$environments;
     }
 
@@ -29,7 +29,7 @@ class Environment extends Strategy
      */
     public function launch()
     {
-        $environment = $this->app->environment();
+        $environment = $this->config->get('app.env');
 
         return in_array($environment, $this->environments);
     }

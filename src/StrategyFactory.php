@@ -1,7 +1,7 @@
 <?php namespace Exolnet\Bento;
 
 use Exolnet\Bento\Strategy\Custom;
-use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
 use ReflectionClass;
@@ -12,7 +12,7 @@ class StrategyFactory
     use StrategyDependencyResolverTrait;
 
     /**
-     * @var \Illuminate\Container\Container
+     * @var \Illuminate\Contracts\Container\Container
      */
     protected $container;
 
@@ -22,7 +22,7 @@ class StrategyFactory
     protected $customStrategies = [];
 
     /**
-     * @param  \Illuminate\Container\Container  $container
+     * @param \Illuminate\Contracts\Container\Container $container
      */
     public function __construct(Container $container)
     {

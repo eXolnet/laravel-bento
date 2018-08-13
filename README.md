@@ -20,16 +20,16 @@ Require this package with composer:
 composer require eXolnet/laravel-bento
 ```
 
-After updating composer, add the ServiceProvider to the providers array in `config/app.php`:
+If you don't use package auto-discovery, add the service provider to the ``providers`` array in `config/app.php`:
 
 ```
-eXolnet\Bento\BentoServiceProvider::class
+Exolnet\Bento\BentoServiceProvider::class
 ```
 
-Finally, add the Facade to the facades array in `config/app.php`: 
+And the facade to the ``facades`` array in `config/app.php`: 
 
 ```
-'Bento' => eXolnet\Bento\BentoFacade::class
+'Bento' => Exolnet\Bento\BentoFacade::class
 ```
 
 ## Usage

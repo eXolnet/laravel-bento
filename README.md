@@ -72,6 +72,7 @@ Or use the handy macro in your Blade templates:
 
 The following segmentation strategies are available to help quickly target your users:
 
+* Date
 * Environment
 * Everyone
 * Hostname 

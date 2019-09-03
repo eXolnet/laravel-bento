@@ -2,7 +2,7 @@
 
 namespace Exolnet\Bento\Strategy;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
 class Date extends Strategy
 {

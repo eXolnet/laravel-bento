@@ -29,7 +29,7 @@ class Hostname extends Strategy
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         $host = $this->request->getHost();
 

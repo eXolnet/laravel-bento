@@ -12,9 +12,10 @@ trait StrategyDependencyResolverTrait
      * Resolve the given method's type-hinted dependencies.
      *
      * @param \Exolnet\Bento\Feature $feature
-     * @param  array $parameters
-     * @param  \ReflectionFunctionAbstract $reflector
+     * @param array $parameters
+     * @param \ReflectionFunctionAbstract $reflector
      * @return array
+     * @throws \ReflectionException
      */
     protected function resolveMethodDependencies(
         Feature $feature,
@@ -48,7 +49,7 @@ trait StrategyDependencyResolverTrait
      * @param  array $parameters
      * @return mixed
      */
-    protected function transformDependency(ReflectionParameter $parameter, Feature $feature, $parameters)
+    protected function transformDependency(ReflectionParameter $parameter, Feature $feature, array $parameters)
     {
         $class = $parameter->getClass();
 
@@ -73,7 +74,7 @@ trait StrategyDependencyResolverTrait
      * @param  array  $parameters
      * @return bool
      */
-    protected function alreadyInParameters($class, array $parameters)
+    protected function alreadyInParameters(string $class, array $parameters): bool
     {
         return ! is_null(Arr::first($parameters, function ($value) use ($class) {
             return $value instanceof $class;
@@ -88,7 +89,7 @@ trait StrategyDependencyResolverTrait
      * @param  mixed  $value
      * @return void
      */
-    protected function spliceIntoParameters(array &$parameters, $offset, $value)
+    protected function spliceIntoParameters(array &$parameters, $offset, $value): void
     {
         array_splice($parameters, $offset, 0, [$value]);
     }

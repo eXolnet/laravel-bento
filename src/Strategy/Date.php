@@ -25,7 +25,7 @@ class Date extends Strategy
      * @param string|int $date
      * @param string $operator
      */
-    public function __construct($date, $operator = '>=')
+    public function __construct($date, string $operator = '>=')
     {
         $this->date = Carbon::parse($date);
         $this->operator = $operator;
@@ -34,7 +34,7 @@ class Date extends Strategy
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         $now = static::getNow();
 
@@ -56,7 +56,7 @@ class Date extends Strategy
     /**
      * @return \Carbon\Carbon
      */
-    protected static function getNow()
+    protected static function getNow(): Carbon
     {
         if (! static::$now) {
             static::$now = Carbon::now();

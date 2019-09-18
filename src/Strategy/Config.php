@@ -20,7 +20,7 @@ class Config extends Strategy
      * @param \Illuminate\Contracts\Config\Repository $config
      * @param string $key
      */
-    public function __construct(ConfigRepository $config, $key)
+    public function __construct(ConfigRepository $config, string $key)
     {
         $this->config = $config;
         $this->key = $key;
@@ -29,8 +29,8 @@ class Config extends Strategy
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
-        return $this->config->get($this->key);
+        return (bool)$this->config->get($this->key);
     }
 }

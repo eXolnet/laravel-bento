@@ -38,7 +38,7 @@ class LogicNot extends Strategy implements FeatureAware
     /**
      * @return \Exolnet\Bento\Feature
      */
-    public function getFeature()
+    public function getFeature(): Feature
     {
         return $this->feature;
     }
@@ -46,7 +46,7 @@ class LogicNot extends Strategy implements FeatureAware
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         return ! $this->strategy->launch();
     }

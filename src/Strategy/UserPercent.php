@@ -25,9 +25,9 @@ class UserPercent extends Percent
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getUniqueId()
+    public function getUniqueId(): ?int
     {
         return $this->guard->id();
     }

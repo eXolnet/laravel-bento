@@ -27,7 +27,7 @@ class VisitorPercent extends Percent
     /**
      * @return int
      */
-    public function getUniqueId()
+    public function getUniqueId(): ?int
     {
         return $this->bento->getVisitorId();
     }

@@ -25,7 +25,7 @@ class Feature extends LogicAnd
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -33,7 +33,7 @@ class Feature extends LogicAnd
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         if (! $this->hasStrategies()) {
             return false;

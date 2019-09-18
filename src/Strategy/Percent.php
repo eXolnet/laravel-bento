@@ -20,7 +20,7 @@ abstract class Percent extends Strategy implements FeatureAware
      * @param \Exolnet\Bento\Feature $feature
      * @param int $percent
      */
-    public function __construct(Feature $feature, $percent)
+    public function __construct(Feature $feature, int $percent)
     {
         $this->feature = $feature;
         $this->percent = $percent;
@@ -29,7 +29,7 @@ abstract class Percent extends Strategy implements FeatureAware
     /**
      * @return \eXolnet\Bento\Feature
      */
-    public function getFeature()
+    public function getFeature(): Feature
     {
         return $this->feature;
     }
@@ -37,20 +37,20 @@ abstract class Percent extends Strategy implements FeatureAware
     /**
      * @return int
      */
-    public function getPercent()
+    public function getPercent(): int
     {
         return $this->percent;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    abstract public function getUniqueId();
+    abstract public function getUniqueId(): ?int;
 
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         if (! $uniqueId = $this->getUniqueId()) {
             return false;

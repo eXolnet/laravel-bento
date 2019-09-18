@@ -2,6 +2,8 @@
 
 namespace Exolnet\Bento;
 
+use Exolnet\Bento\Strategy\Strategy;
+
 class Bento
 {
     /**
@@ -31,7 +33,7 @@ class Bento
      * @param string $name
      * @return \Exolnet\Bento\Feature
      */
-    public function feature($name)
+    public function feature(string $name): Feature
     {
         if (! isset($this->features[$name])) {
             $this->features[$name] = new Feature($this, $name);
@@ -46,7 +48,7 @@ class Bento
      * @param array ...$options
      * @return \Exolnet\Bento\Feature
      */
-    public function aim($name, $strategy, ...$options)
+    public function aim(string $name, string $strategy, ...$options): Feature
     {
         return $this->feature($name)->aim($strategy, ...$options);
     }
@@ -55,15 +57,15 @@ class Bento
      * @param string $name
      * @return bool
      */
-    public function launch($name)
+    public function launch(string $name): bool
     {
         return $this->feature($name)->launch();
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getVisitorId()
+    public function getVisitorId(): int
     {
         if (! $this->visitorId) {
             $this->visitorId = $this->makeVisitorId();
@@ -73,10 +75,10 @@ class Bento
     }
 
     /**
-     * @param string $visitorId
+     * @param int $visitorId
      * @return $this
      */
-    public function setVisitorId($visitorId)
+    public function setVisitorId(int $visitorId)
     {
         $this->visitorId = $visitorId;
 
@@ -86,7 +88,7 @@ class Bento
     /**
      * @return int
      */
-    protected function makeVisitorId()
+    protected function makeVisitorId(): int
     {
         $request = request();
 
@@ -98,8 +100,9 @@ class Bento
      * @param string $name
      * @param array ...$options
      * @return \Exolnet\Bento\Strategy\Strategy
+     * @throws \ReflectionException
      */
-    public function makeStrategy(Feature $feature, $name, ...$options)
+    public function makeStrategy(Feature $feature, string $name, ...$options)
     {
         return $this->factory->make($feature, $name, ...$options);
     }
@@ -109,7 +112,7 @@ class Bento
      * @param callable $callback
      * @return $this
      */
-    public function defineStrategy($name, callable $callback)
+    public function defineStrategy(string $name, callable $callback): self
     {
         $this->factory->register($name, $callback);
 

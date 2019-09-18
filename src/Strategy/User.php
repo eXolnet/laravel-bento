@@ -30,9 +30,9 @@ class User extends Strategy
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getUserIds()
+    public function getUserIds(): ?array
     {
         return $this->userIds;
     }
@@ -40,7 +40,7 @@ class User extends Strategy
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         if (! $userId = $this->guard->id()) {
             return false;

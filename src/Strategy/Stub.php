@@ -12,15 +12,15 @@ class Stub extends Strategy
     /**
      * @param bool $state
      */
-    public function __construct($state)
+    public function __construct(bool $state)
     {
-        $this->state = (bool)$state;
+        $this->state = $state;
     }
 
     /**
      * @return bool
      */
-    public function getState()
+    public function getState(): bool
     {
         return $this->state;
     }
@@ -28,7 +28,7 @@ class Stub extends Strategy
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         return $this->state;
     }

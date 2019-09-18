@@ -3,6 +3,7 @@
 namespace Exolnet\Bento;
 
 use Exolnet\Bento\Strategy\Custom;
+use Exolnet\Bento\Strategy\Strategy;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
@@ -36,8 +37,9 @@ class StrategyFactory
      * @param string $name
      * @param array $parameters
      * @return \Exolnet\Bento\Strategy\Strategy
+     * @throws \ReflectionException
      */
-    public function make(Feature $feature, $name, ...$parameters)
+    public function make(Feature $feature, string $name, ...$parameters)
     {
         if (isset($this->customStrategies[$name])) {
             return $this->makeCustom($feature, $name, $parameters);
@@ -51,8 +53,9 @@ class StrategyFactory
      * @param string $name
      * @param array $parameters
      * @return \Exolnet\Bento\Strategy\Custom
+     * @throws \ReflectionException
      */
-    protected function makeCustom(Feature $feature, $name, array $parameters)
+    protected function makeCustom(Feature $feature, string $name, array $parameters): Custom
     {
         $customStrategy = $this->customStrategies[$name];
 
@@ -67,8 +70,9 @@ class StrategyFactory
      * @param string $name
      * @param array $parameters
      * @return \Exolnet\Bento\Strategy\Strategy
+     * @throws \ReflectionException
      */
-    protected function makeClass(Feature $feature, $name, array $parameters)
+    protected function makeClass(Feature $feature, string $name, array $parameters)
     {
         $className = '\\Exolnet\\Bento\\Strategy\\'. Str::studly($name);
 
@@ -90,7 +94,7 @@ class StrategyFactory
      * @param callable $callback
      * @return $this
      */
-    public function register($name, callable $callback)
+    public function register(string $name, callable $callback): self
     {
         $this->customStrategies[$name] = $callback;
 

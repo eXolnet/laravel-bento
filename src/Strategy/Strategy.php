@@ -7,5 +7,5 @@ abstract class Strategy
     /**
      * @return bool
      */
-    abstract public function launch();
+    abstract public function launch(): bool;
 }

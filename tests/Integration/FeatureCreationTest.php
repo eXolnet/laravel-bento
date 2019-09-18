@@ -13,21 +13,30 @@ class FeatureCreationTest extends IntegrationTest
      */
     protected $bento;
 
-    public function setUp()
+    /**
+     * @return void
+     */
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->bento = BentoFacade::getFacadeRoot();
     }
 
-    public function testCreateNewFeature()
+    /**
+     * @return void
+     */
+    public function testCreateNewFeature(): void
     {
         $feature = $this->bento->feature('name');
 
         $this->assertInstanceOf(Feature::class, $feature);
     }
 
-    public function testFeatureAimFluent()
+    /**
+     * @return void
+     */
+    public function testFeatureAimFluent(): void
     {
         $feature = $this->bento->feature('name')->aim('visitor-percent', 10);
 
@@ -35,7 +44,10 @@ class FeatureCreationTest extends IntegrationTest
         $this->assertCount(1, $feature->getStrategies());
     }
 
-    public function testFeatureAim()
+    /**
+     * @return void
+     */
+    public function testFeatureAim(): void
     {
         $feature = $this->bento->aim('name', 'visitor-percent', 10);
 
@@ -43,7 +55,10 @@ class FeatureCreationTest extends IntegrationTest
         $this->assertCount(1, $feature->getStrategies());
     }
 
-    public function testLaunchFeatureDefault()
+    /**
+     * @return void
+     */
+    public function testLaunchFeatureDefault(): void
     {
         $launch = $this->bento->launch('name');
 

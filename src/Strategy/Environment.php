@@ -29,7 +29,7 @@ class Environment extends Strategy
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         $environment = $this->config->get('app.env');
 

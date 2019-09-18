@@ -20,30 +20,45 @@ class FeatureTest extends UnitTest
      */
     protected $feature;
 
-    public function setUp()
+    /**
+     * @return void
+     */
+    public function setUp(): void
     {
         $this->bento = m::mock(Bento::class);
         $this->feature = new Feature($this->bento, 'name');
     }
 
-    public function testFeatureIsInstantiable()
+    /**
+     * @return void
+     */
+    public function testFeatureIsInstantiable(): void
     {
         $this->assertInstanceOf(Feature::class, $this->feature);
     }
 
-    public function testFeatureHasNoStrategiesByDefault()
+    /**
+     * @return void
+     */
+    public function testFeatureHasNoStrategiesByDefault(): void
     {
         $this->assertEmpty($this->feature->getStrategies());
         $this->assertEquals(0, $this->feature->countStrategies());
         $this->assertFalse($this->feature->hasStrategies());
     }
 
-    public function testFeatureIsNotLaunchWithoutStrategy()
+    /**
+     * @return void
+     */
+    public function testFeatureIsNotLaunchWithoutStrategy(): void
     {
         $this->assertFalse($this->feature->launch());
     }
 
-    public function testFeatureAimIsFluent()
+    /**
+     * @return void
+     */
+    public function testFeatureAimIsFluent(): void
     {
         $this->bento->shouldReceive('makeStrategy')->with($this->feature, 'everyone');
 
@@ -52,7 +67,10 @@ class FeatureTest extends UnitTest
         $this->assertSame($actual, $this->feature);
     }
 
-    public function testAddStrategiesToFeature()
+    /**
+     * @return void
+     */
+    public function testAddStrategiesToFeature(): void
     {
         $stub = new Stub(true);
 
@@ -68,7 +86,10 @@ class FeatureTest extends UnitTest
         $this->assertSame($stub, $strategies[0]);
     }
 
-    public function testAddStrategiesThroughMethodCall()
+    /**
+     * @return void
+     */
+    public function testAddStrategiesThroughMethodCall(): void
     {
         $stub = new Stub(true);
 

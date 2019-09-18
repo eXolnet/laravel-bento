@@ -12,7 +12,10 @@ class StrategiesTest extends IntegrationTest
      */
     protected $bento;
 
-    public function setUp()
+    /**
+     * @return void
+     */
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -25,12 +28,18 @@ class StrategiesTest extends IntegrationTest
 //        $this->assertFalse($this->bento->aim('name2', 'environment', 'not-the-environment')->launch());
 //    }
 
-    public function testEveryoneStrategy()
+    /**
+     * @return void
+     */
+    public function testEveryoneStrategy(): void
     {
         $this->assertTrue($this->bento->aim('name1', 'everyone')->launch());
     }
 
-    public function testLogicAndStrategy()
+    /**
+     * @return void
+     */
+    public function testLogicAndStrategy(): void
     {
         $this->assertTrue($this->bento->aim('name1', 'logic-and', function ($strategies) {
             $strategies->aim('everyone')->aim('everyone');
@@ -45,7 +54,10 @@ class StrategiesTest extends IntegrationTest
         })->launch());
     }
 
-    public function testLogicOrStrategy()
+    /**
+     * @return void
+     */
+    public function testLogicOrStrategy(): void
     {
         $this->assertTrue($this->bento->aim('name1', 'logic-or', function ($strategies) {
             $strategies->aim('everyone')->aim('everyone');
@@ -60,13 +72,19 @@ class StrategiesTest extends IntegrationTest
         })->launch());
     }
 
-    public function testLogicNotStrategy()
+    /**
+     * @return void
+     */
+    public function testLogicNotStrategy(): void
     {
         $this->assertFalse($this->bento->aim('name1', 'logic-not', 'everyone')->launch());
         $this->assertTrue($this->bento->aim('name2', 'logic-not', 'nobody')->launch());
     }
 
-    public function testNobodyStrategy()
+    /**
+     * @return void
+     */
+    public function testNobodyStrategy(): void
     {
         $this->assertFalse($this->bento->aim('name1', 'nobody')->launch());
     }
@@ -83,7 +101,10 @@ class StrategiesTest extends IntegrationTest
 //        $this->assertTrue($this->bento->aim('name2', 'percent', 100)->launch());
 //    }
 
-    public function testCustomStrategy()
+    /**
+     * @return void
+     */
+    public function testCustomStrategy(): void
     {
         $this->bento->defineStrategy('custom1', function () {
             return true;

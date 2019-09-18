@@ -19,7 +19,7 @@ class BentoServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         Blade::directive('launch', function ($expression) {
             return "<?php if (\Exolnet\Bento\BentoFacade::launch($expression)): ?>";
@@ -43,7 +43,7 @@ class BentoServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton('bento', Bento::class);
     }

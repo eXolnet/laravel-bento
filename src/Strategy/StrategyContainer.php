@@ -35,7 +35,7 @@ abstract class StrategyContainer implements FeatureAware
     /**
      * @return \Exolnet\Bento\Feature
      */
-    public function getFeature()
+    public function getFeature(): Feature
     {
         return $this->feature;
     }
@@ -43,7 +43,7 @@ abstract class StrategyContainer implements FeatureAware
     /**
      * @return array
      */
-    public function getStrategies()
+    public function getStrategies(): array
     {
         return $this->strategies;
     }
@@ -51,7 +51,7 @@ abstract class StrategyContainer implements FeatureAware
     /**
      * @return int
      */
-    public function countStrategies()
+    public function countStrategies(): int
     {
         return count($this->strategies);
     }
@@ -59,7 +59,7 @@ abstract class StrategyContainer implements FeatureAware
     /**
      * @return bool
      */
-    public function hasStrategies()
+    public function hasStrategies(): bool
     {
         return $this->countStrategies() > 0;
     }
@@ -69,7 +69,7 @@ abstract class StrategyContainer implements FeatureAware
      * @param array ...$options
      * @return $this
      */
-    public function aim($strategy, ...$options)
+    public function aim($strategy, ...$options): self
     {
         $this->strategies[] = $this->bento->makeStrategy($this->feature, $strategy, ...$options);
 
@@ -81,7 +81,7 @@ abstract class StrategyContainer implements FeatureAware
      * @param array $options
      * @return \Exolnet\Bento\Strategy\StrategyContainer
      */
-    public function __call($strategy, array $options)
+    public function __call($strategy, array $options): self
     {
         return $this->aim($strategy, ...$options);
     }
@@ -89,5 +89,5 @@ abstract class StrategyContainer implements FeatureAware
     /**
      * @return bool
      */
-    abstract public function launch();
+    abstract public function launch(): bool;
 }

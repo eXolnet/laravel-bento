@@ -7,7 +7,7 @@ class Nobody extends Strategy
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         return false;
     }

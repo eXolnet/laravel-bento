@@ -7,7 +7,7 @@ class LogicOr extends Logic
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         /** @var \Exolnet\Bento\Strategy\Strategy $strategy */
         foreach ($this->strategies as $strategy) {

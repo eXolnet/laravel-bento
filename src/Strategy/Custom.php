@@ -27,7 +27,7 @@ class Custom extends Strategy
     /**
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
@@ -35,7 +35,7 @@ class Custom extends Strategy
     /**
      * @return bool
      */
-    public function launch()
+    public function launch(): bool
     {
         return call_user_func($this->callback, $this->options);
     }

@@ -31,21 +31,30 @@ class StrategyFactoryTest extends UnitTest
      */
     protected $factory;
 
-    public function setUp()
+    /**
+     * @return void
+     */
+    public function setUp(): void
     {
         $this->feature = m::mock(Feature::class);
         $this->container = m::mock(Container::class);
         $this->factory = new StrategyFactory($this->container);
     }
 
-    public function testMakeClassStrategy()
+    /**
+     * @return void
+     */
+    public function testMakeClassStrategy(): void
     {
         $strategy = $this->factory->make($this->feature, 'everyone');
 
         $this->assertInstanceOf(Everyone::class, $strategy);
     }
 
-    public function testMakeClassStrategyWithOptions()
+    /**
+     * @return void
+     */
+    public function testMakeClassStrategyWithOptions(): void
     {
         /** @var \Exolnet\Bento\Strategy\Stub $strategy */
         $strategy = $this->factory->make($this->feature, 'stub', true);
@@ -54,7 +63,10 @@ class StrategyFactoryTest extends UnitTest
         $this->assertTrue($strategy->getState());
     }
 
-    public function testMakeClassWithDependencyInjection()
+    /**
+     * @return void
+     */
+    public function testMakeClassWithDependencyInjection(): void
     {
         $guard = m::mock(Guard::class);
 
@@ -67,20 +79,26 @@ class StrategyFactoryTest extends UnitTest
         $this->assertEquals([42], $strategy->getUserIds());
     }
 
-    public function testMakeClassWithFeatureAware()
+    /**
+     * @return void
+     */
+    public function testMakeClassWithFeatureAware(): void
     {
         $guard = m::mock(Guard::class);
 
         $this->container->shouldReceive('make')->with(Guard::class)->andReturn($guard);
 
         /** @var \Exolnet\Bento\Strategy\UserPercent $strategy */
-        $strategy = $this->factory->make($this->feature, 'user-percent', [42]);
+        $strategy = $this->factory->make($this->feature, 'user-percent', 42);
 
         $this->assertInstanceOf(UserPercent::class, $strategy);
         $this->assertSame($this->feature, $strategy->getFeature());
     }
 
-    public function testMakeCustomStrategy()
+    /**
+     * @return void
+     */
+    public function testMakeCustomStrategy(): void
     {
         $this->factory->register('custom', function () {
             return true;
@@ -93,7 +111,10 @@ class StrategyFactoryTest extends UnitTest
         $this->assertEquals(0, count($strategy->getOptions()));
     }
 
-    public function testMakeCustomStrategyWithOptions()
+    /**
+     * @return void
+     */
+    public function testMakeCustomStrategyWithOptions(): void
     {
         $this->factory->register('custom', function ($customParameter) {
             return true;
@@ -106,7 +127,10 @@ class StrategyFactoryTest extends UnitTest
         $this->assertEquals(1, count($strategy->getOptions()));
     }
 
-    public function testMakeCustomWithDependencyInjection()
+    /**
+     * @return void
+     */
+    public function testMakeCustomWithDependencyInjection(): void
     {
         $guard = m::mock(Guard::class);
 
@@ -123,7 +147,10 @@ class StrategyFactoryTest extends UnitTest
         $this->assertEquals(2, count($strategy->getOptions()));
     }
 
-    public function testMakeCustomWithFeatureAware()
+    /**
+     * @return void
+     */
+    public function testMakeCustomWithFeatureAware(): void
     {
         $guard = m::mock(Guard::class);
 

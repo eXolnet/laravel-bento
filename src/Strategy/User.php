@@ -12,18 +12,21 @@ class User extends Strategy
     protected $guard;
 
     /**
-     * @var array
+     * @var array|null
      */
     protected $userIds;
 
     /**
      * @param \Illuminate\Contracts\Auth\Guard $guard
-     * @param array|int $userIds
+     * @param array|int|null $userIds
      */
-    public function __construct(Guard $guard, $userIds)
+    public function __construct(Guard $guard, $userIds = null)
     {
-        $this->userIds = (array)$userIds;
         $this->guard = $guard;
+
+        if ($userIds) {
+            $this->userIds = (array)$userIds;
+        }
     }
 
     /**
@@ -39,7 +42,13 @@ class User extends Strategy
      */
     public function launch()
     {
-        $userId = $this->guard->id();
+        if (! $userId = $this->guard->id()) {
+            return false;
+        }
+
+        if (! is_array($this->userIds)) {
+            return true;
+        }
 
         return in_array($userId, $this->userIds);
     }

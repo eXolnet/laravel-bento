@@ -78,7 +78,7 @@ The following segmentation strategies are available to help quickly target yourÂ
 * Everyone
 * Hostname 
 * Nobody
-* User (specific user IDs)
+* User (authenticated or specific user IDs)
 * User Percent (a fraction of all connected visitors)
 * Visitor Percent (a fraction of all your visitors)
 

@@ -76,6 +76,7 @@ The following segmentation strategies are available to help quickly target yourÂ
 * Date
 * Environment
 * Everyone
+* Guest
 * Hostname 
 * Nobody
 * User (authenticated or specific user IDs)

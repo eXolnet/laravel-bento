@@ -17,7 +17,7 @@ class UserPercent extends Percent
      * @param \Exolnet\Bento\Feature $feature
      * @param int $percent
      */
-    public function __construct(Guard $guard, Feature $feature, $percent)
+    public function __construct(Feature $feature, Guard $guard, $percent)
     {
         parent::__construct($feature, $percent);
 

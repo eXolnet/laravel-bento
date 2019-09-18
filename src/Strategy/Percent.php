@@ -52,10 +52,14 @@ abstract class Percent extends Strategy
      */
     public function launch()
     {
-        $uniqueId = crc32($this->feature->getName() .'|'. $this->getUniqueId());
+        if (! $uniqueId = $this->getUniqueId()) {
+            return false;
+        }
+
+        $uniqueNumber = crc32($this->feature->getName() .'|'. $uniqueId);
 
         // Limit the unique ID between 1 and 100.
-        $percentile = $uniqueId % 100 + 1;
+        $percentile = $uniqueNumber % 100 + 1;
 
         // Based on the calculated percentile, we identify if the user has access to the feature.
         return $percentile <= $this->percent;

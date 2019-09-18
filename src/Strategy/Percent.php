@@ -4,7 +4,7 @@ namespace Exolnet\Bento\Strategy;
 
 use Exolnet\Bento\Feature;
 
-abstract class Percent extends Strategy
+abstract class Percent extends Strategy implements FeatureAware
 {
     /**
      * @var int

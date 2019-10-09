@@ -51,7 +51,7 @@ Bento::feature('feature')->aim('visitor-percent', 10)->aim('hostname', 'example.
 
 ### Launch Your Features
 
-Then, you can check if a feature is launched for a visitor with the `launch` method:
+You can check if a feature is launched for a visitor with the `launch` method:
 
 ```
 if (Bento::launch('feature')) {
@@ -59,7 +59,9 @@ if (Bento::launch('feature')) {
 }
 ```
 
-Or use the handy macro in your Blade templates:
+#### Blade
+
+In blade templates, a handy macro is also available:
 
 ```
 @launch('feature')
@@ -67,6 +69,28 @@ Or use the handy macro in your Blade templates:
 @else
     Coming soon!
 @endlaunch
+```
+
+#### Middleware
+
+Since some strategy requires the request context to be evaluated, it's recommended to use the `Feature` middleware to limit a route:
+
+1. Add the `Feature` middleware in the `$routeMiddleware` of your application's HTTP Kernel:
+
+```
+    protected $routeMiddleware = [
+        // ...
+        'launch' => \Exolnet\Bento\Middleware\Launch::class,
+        // ...
+    ];
+```
+
+2. Then, you could use it to restrict your routes:
+
+```
+Route::middleware('launch:feature')->group(function () {
+    //
+});
 ```
 
 ### Basic Segmentation Strategies

@@ -45,6 +45,8 @@ class BentoServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton('bento', Bento::class);
+        $this->app->singleton(Bento::class);
+
+        $this->app->alias(Bento::class, 'bento');
     }
 }

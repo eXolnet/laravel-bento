@@ -4,15 +4,15 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Strategy\Guest;
 use Exolnet\Bento\Tests\UnitTest;
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Factory as Auth;
 use Mockery as m;
 
 class GuestTest extends UnitTest
 {
     /**
-     * @var \Illuminate\Contracts\Auth\Guard|\Mockery\MockInterface
+     * @var \Illuminate\Contracts\Auth\Factory|\Mockery\MockInterface
      */
-    protected $guard;
+    protected $auth;
 
     /**
      * @var \Exolnet\Bento\Strategy\Guest
@@ -26,9 +26,9 @@ class GuestTest extends UnitTest
     {
         parent::setUp();
 
-        $this->guard = m::mock(Guard::class);
+        $this->auth = m::mock(Auth::class);
 
-        $this->strategy = new Guest($this->guard);
+        $this->strategy = new Guest($this->auth);
     }
 
     /**
@@ -36,7 +36,7 @@ class GuestTest extends UnitTest
      */
     public function testLaunchGuest(): void
     {
-        $this->guard->shouldReceive('guest')->once()->andReturn(true);
+        $this->auth->shouldReceive('guard->guest')->once()->andReturn(true);
 
         $this->assertTrue($this->strategy->launch());
     }
@@ -46,7 +46,7 @@ class GuestTest extends UnitTest
      */
     public function testLaunchAuthenticated(): void
     {
-        $this->guard->shouldReceive('guest')->once()->andReturn(false);
+        $this->auth->shouldReceive('guard->guest')->once()->andReturn(false);
 
         $this->assertFalse($this->strategy->launch());
     }

@@ -4,15 +4,15 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Strategy\User;
 use Exolnet\Bento\Tests\UnitTest;
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Factory as Auth;
 use Mockery as m;
 
 class UserTest extends UnitTest
 {
     /**
-     * @var \Illuminate\Contracts\Auth\Guard|\Mockery\MockInterface
+     * @var \Illuminate\Contracts\Auth\Factory|\Mockery\MockInterface
      */
-    protected $guard;
+    protected $auth;
 
     /**
      * @return void
@@ -21,7 +21,7 @@ class UserTest extends UnitTest
     {
         parent::setUp();
 
-        $this->guard = m::mock(Guard::class);
+        $this->auth = m::mock(Auth::class);
     }
 
     /**
@@ -29,9 +29,9 @@ class UserTest extends UnitTest
      */
     public function testLaunchGuest(): void
     {
-        $strategy = new User($this->guard);
+        $strategy = new User($this->auth);
 
-        $this->guard->shouldReceive('id')->once()->andReturn(null);
+        $this->auth->shouldReceive('guard->id')->once()->andReturn(null);
 
         $this->assertFalse($strategy->launch());
     }
@@ -41,9 +41,9 @@ class UserTest extends UnitTest
      */
     public function testLaunchAuthenticated(): void
     {
-        $strategy = new User($this->guard);
+        $strategy = new User($this->auth);
 
-        $this->guard->shouldReceive('id')->once()->andReturn(42);
+        $this->auth->shouldReceive('guard->id')->once()->andReturn(42);
 
         $this->assertTrue($strategy->launch());
     }
@@ -53,9 +53,9 @@ class UserTest extends UnitTest
      */
     public function testLaunchInvalidIdFromInt(): void
     {
-        $strategy = new User($this->guard, 100);
+        $strategy = new User($this->auth, 100);
 
-        $this->guard->shouldReceive('id')->once()->andReturn(42);
+        $this->auth->shouldReceive('guard->id')->once()->andReturn(42);
 
         $this->assertFalse($strategy->launch());
     }
@@ -65,9 +65,9 @@ class UserTest extends UnitTest
      */
     public function testLaunchInvalidIdFromArray(): void
     {
-        $strategy = new User($this->guard, [100, 200]);
+        $strategy = new User($this->auth, [100, 200]);
 
-        $this->guard->shouldReceive('id')->once()->andReturn(42);
+        $this->auth->shouldReceive('guard->id')->once()->andReturn(42);
 
         $this->assertFalse($strategy->launch());
     }
@@ -77,9 +77,9 @@ class UserTest extends UnitTest
      */
     public function testLaunchValidIdFromInt(): void
     {
-        $strategy = new User($this->guard, 42);
+        $strategy = new User($this->auth, 42);
 
-        $this->guard->shouldReceive('id')->once()->andReturn(42);
+        $this->auth->shouldReceive('guard->id')->once()->andReturn(42);
 
         $this->assertTrue($strategy->launch());
     }
@@ -89,9 +89,9 @@ class UserTest extends UnitTest
      */
     public function testLaunchValidIdFromArray(): void
     {
-        $strategy = new User($this->guard, [42, 200]);
+        $strategy = new User($this->auth, [42, 200]);
 
-        $this->guard->shouldReceive('id')->once()->andReturn(42);
+        $this->auth->shouldReceive('guard->id')->once()->andReturn(42);
 
         $this->assertTrue($strategy->launch());
     }

@@ -3,18 +3,17 @@
 namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Feature;
-use Exolnet\Bento\Strategy\User;
 use Exolnet\Bento\Strategy\UserPercent;
 use Exolnet\Bento\Tests\UnitTest;
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Factory as Auth;
 use Mockery as m;
 
 class UserPercentTest extends UnitTest
 {
     /**
-     * @var \Illuminate\Contracts\Auth\Guard|\Mockery\MockInterface
+     * @var \Illuminate\Contracts\Auth\Factory|\Mockery\MockInterface
      */
-    protected $guard;
+    protected $auth;
 
     /**
      * @var \Exolnet\Bento\Feature|\Mockery\MockInterface
@@ -29,7 +28,7 @@ class UserPercentTest extends UnitTest
         parent::setUp();
 
         $this->feature = m::mock(Feature::class);
-        $this->guard = m::mock(Guard::class);
+        $this->auth = m::mock(Auth::class);
     }
 
     /**
@@ -37,9 +36,9 @@ class UserPercentTest extends UnitTest
      */
     public function testLaunchGuest(): void
     {
-        $strategy = new UserPercent($this->feature, $this->guard, 100);
+        $strategy = new UserPercent($this->feature, $this->auth, 100);
 
-        $this->guard->shouldReceive('id')->once()->andReturn(null);
+        $this->auth->shouldReceive('guard->id')->once()->andReturn(null);
 
         $this->assertFalse($strategy->launch());
     }
@@ -49,9 +48,9 @@ class UserPercentTest extends UnitTest
      */
     public function testLaunchUser100p(): void
     {
-        $strategy = new UserPercent($this->feature, $this->guard, 100);
+        $strategy = new UserPercent($this->feature, $this->auth, 100);
 
-        $this->guard->shouldReceive('id')->once()->andReturn(1);
+        $this->auth->shouldReceive('guard->id')->once()->andReturn(1);
         $this->feature->shouldReceive('getName')->once()->andReturn('foo');
 
         $this->assertTrue($strategy->launch());
@@ -62,9 +61,9 @@ class UserPercentTest extends UnitTest
      */
     public function testLaunchUser0p(): void
     {
-        $strategy = new UserPercent($this->feature, $this->guard, 0);
+        $strategy = new UserPercent($this->feature, $this->auth, 0);
 
-        $this->guard->shouldReceive('id')->once()->andReturn(1);
+        $this->auth->shouldReceive('guard->id')->once()->andReturn(1);
         $this->feature->shouldReceive('getName')->once()->andReturn('foo');
 
         $this->assertFalse($strategy->launch());

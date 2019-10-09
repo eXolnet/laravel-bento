@@ -3,25 +3,25 @@
 namespace Exolnet\Bento\Strategy;
 
 use Exolnet\Bento\Feature;
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Factory as Auth;
 
 class UserPercent extends Percent
 {
     /**
-     * @var \Illuminate\Contracts\Auth\Guard
+     * @var \Illuminate\Contracts\Auth\Factory
      */
-    protected $guard;
+    protected $auth;
 
     /**
-     * @param \Illuminate\Contracts\Auth\Guard $guard
+     * @param \Illuminate\Contracts\Auth\Guard $auth
      * @param \Exolnet\Bento\Feature $feature
      * @param int $percent
      */
-    public function __construct(Feature $feature, Guard $guard, $percent)
+    public function __construct(Feature $feature, Auth $auth, $percent)
     {
         parent::__construct($feature, $percent);
 
-        $this->guard = $guard;
+        $this->auth = $auth;
     }
 
     /**
@@ -29,6 +29,6 @@ class UserPercent extends Percent
      */
     public function getUniqueId(): ?int
     {
-        return $this->guard->id();
+        return $this->auth->guard()->id();
     }
 }

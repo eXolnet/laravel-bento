@@ -2,14 +2,14 @@
 
 namespace Exolnet\Bento\Strategy;
 
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Factory as Auth;
 
 class User extends Strategy
 {
     /**
-     * @var \Illuminate\Contracts\Auth\Guard
+     * @var \Illuminate\Contracts\Auth\Factory
      */
-    protected $guard;
+    protected $auth;
 
     /**
      * @var array|null
@@ -17,12 +17,12 @@ class User extends Strategy
     protected $userIds;
 
     /**
-     * @param \Illuminate\Contracts\Auth\Guard $guard
+     * @param \Illuminate\Contracts\Auth\Factory $auth
      * @param array|int|null $userIds
      */
-    public function __construct(Guard $guard, $userIds = null)
+    public function __construct(Auth $auth, $userIds = null)
     {
-        $this->guard = $guard;
+        $this->auth = $auth;
 
         if ($userIds) {
             $this->userIds = (array)$userIds;
@@ -42,10 +42,11 @@ class User extends Strategy
      */
     public function launch(): bool
     {
-        if (! $userId = $this->guard->id()) {
+        if (! $userId = $this->auth->guard()->id()) {
             return false;
         }
 
+        // Launch the feature to any authenticated user.
         if (! is_array($this->userIds)) {
             return true;
         }

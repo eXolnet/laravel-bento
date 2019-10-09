@@ -2,21 +2,21 @@
 
 namespace Exolnet\Bento\Strategy;
 
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Factory as Auth;
 
 class Guest extends Strategy
 {
     /**
-     * @var \Illuminate\Contracts\Auth\Guard
+     * @var \Illuminate\Contracts\Auth\Factory
      */
-    protected $guard;
+    protected $auth;
 
     /**
-     * @param \Illuminate\Contracts\Auth\Guard $guard
+     * @param \Illuminate\Contracts\Auth\Factory $auth
      */
-    public function __construct(Guard $guard)
+    public function __construct(Auth $auth)
     {
-        $this->guard = $guard;
+        $this->auth = $auth;
     }
 
     /**
@@ -24,6 +24,6 @@ class Guest extends Strategy
      */
     public function launch(): bool
     {
-        return $this->guard->guest();
+        return $this->auth->guard()->guest();
     }
 }

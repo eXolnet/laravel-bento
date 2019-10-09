@@ -11,7 +11,7 @@ use Exolnet\Bento\Strategy\UserPercent;
 use Exolnet\Bento\StrategyFactory;
 use Exolnet\Bento\Tests\UnitTest;
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Factory as Auth;
 use Mockery as m;
 
 class StrategyFactoryTest extends UnitTest
@@ -68,9 +68,9 @@ class StrategyFactoryTest extends UnitTest
      */
     public function testMakeClassWithDependencyInjection(): void
     {
-        $guard = m::mock(Guard::class);
+        $auth = m::mock(Auth::class);
 
-        $this->container->shouldReceive('make')->with(Guard::class)->andReturn($guard);
+        $this->container->shouldReceive('make')->with(Auth::class)->andReturn($auth);
 
         /** @var \Exolnet\Bento\Strategy\User $strategy */
         $strategy = $this->factory->make($this->feature, 'user', [42]);
@@ -84,9 +84,9 @@ class StrategyFactoryTest extends UnitTest
      */
     public function testMakeClassWithFeatureAware(): void
     {
-        $guard = m::mock(Guard::class);
+        $auth = m::mock(Auth::class);
 
-        $this->container->shouldReceive('make')->with(Guard::class)->andReturn($guard);
+        $this->container->shouldReceive('make')->with(Auth::class)->andReturn($auth);
 
         /** @var \Exolnet\Bento\Strategy\UserPercent $strategy */
         $strategy = $this->factory->make($this->feature, 'user-percent', 42);
@@ -132,11 +132,11 @@ class StrategyFactoryTest extends UnitTest
      */
     public function testMakeCustomWithDependencyInjection(): void
     {
-        $guard = m::mock(Guard::class);
+        $auth = m::mock(Auth::class);
 
-        $this->container->shouldReceive('make')->with(Guard::class)->andReturn($guard);
+        $this->container->shouldReceive('make')->with(Auth::class)->andReturn($auth);
 
-        $this->factory->register('custom', function (Guard $guard, $customParameter) {
+        $this->factory->register('custom', function (Auth $auth, $customParameter) {
             return true;
         });
 
@@ -152,11 +152,11 @@ class StrategyFactoryTest extends UnitTest
      */
     public function testMakeCustomWithFeatureAware(): void
     {
-        $guard = m::mock(Guard::class);
+        $auth = m::mock(Auth::class);
 
-        $this->container->shouldReceive('make')->with(Guard::class)->andReturn($guard);
+        $this->container->shouldReceive('make')->with(Auth::class)->andReturn($auth);
 
-        $this->factory->register('custom', function (Guard $guard, Feature $feature, $customParameter) {
+        $this->factory->register('custom', function (Auth $auth, Feature $feature, $customParameter) {
             return true;
         });
 

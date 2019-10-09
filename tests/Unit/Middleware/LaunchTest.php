@@ -3,14 +3,14 @@
 namespace Exolnet\Bento\Tests\Unit\Middleware;
 
 use Exolnet\Bento\Bento;
-use Exolnet\Bento\Middleware\Feature;
+use Exolnet\Bento\Middleware\Launch;
 use Exolnet\Bento\Tests\UnitTest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Mockery as m;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class FeatureTest extends UnitTest
+class LaunchTest extends UnitTest
 {
     /**
      * @var \Exolnet\Bento\Bento|\Mockery\MockInterface
@@ -23,7 +23,7 @@ class FeatureTest extends UnitTest
     protected $request;
 
     /**
-     * @var \Exolnet\Bento\Middleware\Feature
+     * @var \Exolnet\Bento\Middleware\Launch
      */
     protected $middleware;
 
@@ -37,7 +37,7 @@ class FeatureTest extends UnitTest
         $this->bento = m::mock(Bento::class);
         $this->request = m::mock(Request::class);
 
-        $this->middleware = new Feature($this->bento);
+        $this->middleware = new Launch($this->bento);
     }
 
     /**

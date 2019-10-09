@@ -6,7 +6,7 @@ use Closure;
 use Exolnet\Bento\Bento;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class Feature
+class Launch
 {
     /**
      * @var \Exolnet\Bento\Bento

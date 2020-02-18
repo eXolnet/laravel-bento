@@ -30,7 +30,7 @@ class BentoServiceProvider extends ServiceProvider
         });
 
         Blade::directive('unlesslaunch', function ($expression) {
-            return "<?php if ( ! \Exolnet\Bento\BentoFacade::launch($expression)): ?>";
+            return "<?php if (\Exolnet\Bento\BentoFacade::pending($expression)): ?>";
         });
 
         Blade::directive('endunlesslaunch', function () {

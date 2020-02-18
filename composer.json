@@ -52,7 +52,7 @@
                 "Exolnet\\Bento\\BentoServiceProvider"
             ],
             "aliases": {
-                "Bento": "Exolnet\\Bento\\BentoFacade"
+                "Bento": "Exolnet\\Bento\\Facades\\Bento"
             }
         }
     }

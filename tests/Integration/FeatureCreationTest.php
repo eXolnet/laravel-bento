@@ -2,7 +2,7 @@
 
 namespace Exolnet\Bento\Tests\Integration;
 
-use Exolnet\Bento\BentoFacade;
+use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Tests\IntegrationTest;
 
@@ -20,7 +20,7 @@ class FeatureCreationTest extends IntegrationTest
     {
         parent::setUp();
 
-        $this->bento = BentoFacade::getFacadeRoot();
+        $this->bento = Bento::getFacadeRoot();
     }
 
     /**

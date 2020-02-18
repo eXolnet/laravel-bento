@@ -2,7 +2,7 @@
 
 namespace Exolnet\Bento\Tests\Integration;
 
-use Exolnet\Bento\BentoFacade;
+use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Tests\IntegrationTest;
 
 class StrategiesTest extends IntegrationTest
@@ -19,7 +19,7 @@ class StrategiesTest extends IntegrationTest
     {
         parent::setUp();
 
-        $this->bento = BentoFacade::getFacadeRoot();
+        $this->bento = Bento::getFacadeRoot();
     }
 
 //    public function testEnvironmentStrategy()

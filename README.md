@@ -30,7 +30,7 @@ Exolnet\Bento\BentoServiceProvider::class
 And the facade to the ``facades`` array in `config/app.php`: 
 
 ```
-'Bento' => Exolnet\Bento\BentoFacade::class
+'Bento' => Exolnet\Bento\Facades\Bento::class
 ```
 
 ## Usage

@@ -66,9 +66,9 @@ class Bento
      * @param string $name
      * @return bool
      */
-    public function pending(string $name): bool
+    public function await(string $name): bool
     {
-        return $this->feature($name)->pending();
+        return ! $this->launch($name);
     }
 
     /**

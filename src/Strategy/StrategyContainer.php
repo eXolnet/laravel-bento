@@ -90,12 +90,4 @@ abstract class StrategyContainer implements FeatureAware
      * @return bool
      */
     abstract public function launch(): bool;
-
-    /**
-     * @return bool
-     */
-    public function pending(): bool
-    {
-        return ! $this->launch();
-    }
 }

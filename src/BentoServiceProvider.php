@@ -29,11 +29,11 @@ class BentoServiceProvider extends ServiceProvider
             return '<?php endif; ?>';
         });
 
-        Blade::directive('unlesslaunch', function ($expression) {
-            return "<?php if (\Exolnet\Bento\BentoFacade::pending($expression)): ?>";
+        Blade::directive('await', function ($expression) {
+            return "<?php if (\Exolnet\Bento\BentoFacade::await($expression)): ?>";
         });
 
-        Blade::directive('endunlesslaunch', function () {
+        Blade::directive('endawait', function () {
             return '<?php endif; ?>';
         });
     }

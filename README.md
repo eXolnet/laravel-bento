@@ -59,9 +59,17 @@ if (Bento::launch('feature')) {
 }
 ```
 
+Or check that a feature is awaiting launch:
+
+```
+if (Bento::await('feature')) {
+    //
+}
+```
+
 #### Blade
 
-In blade templates, a handy macro is also available:
+In Blade templates, handy macros are also available:
 
 ```
 @launch('feature')
@@ -69,6 +77,14 @@ In blade templates, a handy macro is also available:
 @else
     Coming soon!
 @endlaunch
+```
+
+```
+@await('feature')
+    Coming soon!
+@else
+    Feature is launched!
+@endawait
 ```
 
 #### Middleware

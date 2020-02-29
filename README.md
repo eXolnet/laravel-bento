@@ -211,7 +211,7 @@ use \Exolnet\Bento\Strategy\Strategy;
 Bento::feature('feature')
     ->aim(new class implements Strategy {
         /**
-         * @return void
+         * @return bool
          */
         public function __invoke(): bool
         {

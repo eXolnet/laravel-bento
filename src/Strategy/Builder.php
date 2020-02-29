@@ -20,7 +20,7 @@ use InvalidArgumentException;
  * @method $this logicOr(?callable $callback = null)
  * @method $this nobody()
  * @method $this stub(bool $state)
- * @method $this user(array|int|null $userIds)
+ * @method $this user(array|int|null $userIds = null)
  * @method $this userPercent(int $percent)
  * @method $this visitorPercent(int $percent)
  */

@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Providers;
+
+use Exolnet\Bento\Facades\Bento;
+use Illuminate\Support\ServiceProvider;
+
+class BentoServiceProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        // Bento::feature('example')->aim('everyone');
+    }
+}

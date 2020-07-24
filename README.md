@@ -21,16 +21,16 @@ Require this package with composer:
 composer require eXolnet/laravel-bento
 ```
 
-If you don't use package auto-discovery, add the service provider to the ``providers`` array in `config/app.php`:
+After installing Bento, publish its example service provider to hold your feature definitions:
+
+```bash
+php artisan vendor:publish --tag=bento-provider
+```
+
+Then, add it to the `providers` array in `config/app.php`:
 
 ```
-Exolnet\Bento\BentoServiceProvider::class
-```
-
-And the facade to the ``facades`` array in `config/app.php`: 
-
-```
-'Bento' => Exolnet\Bento\Facades\Bento::class
+App\Providers\BentoServiceProvider::class
 ```
 
 ## Usage

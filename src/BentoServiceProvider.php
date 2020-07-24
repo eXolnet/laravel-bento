@@ -48,5 +48,19 @@ class BentoServiceProvider extends ServiceProvider
         $this->app->singleton(Bento::class);
 
         $this->app->alias(Bento::class, 'bento');
+
+        $this->offerPublishing();
+    }
+
+    /**
+     * @return void
+     */
+    protected function offerPublishing(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../stubs/BentoServiceProvider.stub' => app_path('Providers/BentoServiceProvider.php'),
+            ], 'bento-provider');
+        }
     }
 }

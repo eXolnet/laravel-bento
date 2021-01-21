@@ -28,4 +28,45 @@ class BentoTest extends IntegrationTest
 
         $this->assertSame($instance, $alias);
     }
+
+    /**
+     * @return void
+     */
+    public function testSetVisitorId(): void
+    {
+        $instance = $this->app->make(Bento::class);
+        $instance->setVisitorId(1234);
+
+        $this->assertEquals(1234, $instance->getVisitorId());
+    }
+
+    /**
+     * @return void
+     */
+    public function testMakeVisitorIdWithLocalHost(): void
+    {
+        $instance = $this->app->make(Bento::class);
+
+        $requestIp = request()->ip();
+        $requestHeader = request()->header('user-agent');
+
+        $this->assertEquals("127.0.0.1", $requestIp);
+        $this->assertEquals("Symfony", $requestHeader);
+        //crc32 of 127.0.0.1Symphony
+        $this->assertEquals(736005061, crc32($requestIp . $requestHeader));
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetVisitorIdWhenNoVisitorId(): void
+    {
+        $instance = $this->app->make(Bento::class);
+
+        //736005061 =crc32(127.0.0.1Symphony)
+        $this->assertEquals(736005061, crc32('127.0.0.1Symfony'));
+        $this->assertEquals(736005061, $instance->getVisitorId());
+    }
+
+
 }

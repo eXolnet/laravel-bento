@@ -54,6 +54,4 @@ class HostnameTest extends UnitTest
 
         self::assertfalse($this->strategy->launch());
     }
-
-
 }

@@ -10,6 +10,7 @@ use Exolnet\Bento\Strategy\User;
 use Exolnet\Bento\Strategy\UserPercent;
 use Exolnet\Bento\StrategyFactory;
 use Exolnet\Bento\Tests\UnitTest;
+use InvalidArgumentException;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Mockery as m;
@@ -165,5 +166,16 @@ class StrategyFactoryTest extends UnitTest
 
         $this->assertInstanceOf(Custom::class, $strategy);
         $this->assertEquals(3, count($strategy->getOptions()));
+    }
+
+    /**
+     * @throws \ReflectionException
+     * @return void
+     * @test
+     */
+    public function testMakeStrategyWithInvalidArgument(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->factory->make($this->feature, 'invalidName');
     }
 }

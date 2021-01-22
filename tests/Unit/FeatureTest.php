@@ -105,4 +105,13 @@ class FeatureTest extends UnitTest
 
         $this->assertSame($stub, $strategies[0]);
     }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testGetName(): void
+    {
+        self::assertEquals('name', $this->feature->getName());
+    }
 }

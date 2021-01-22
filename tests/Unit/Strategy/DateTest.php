@@ -3,7 +3,6 @@
 
 namespace Exolnet\Bento\Tests\Unit\Strategy;
 
-
 use Carbon\Carbon;
 use Exolnet\Bento\Strategy\Date;
 use Exolnet\Bento\Tests\UnitTest;
@@ -83,8 +82,5 @@ class DateTest extends UnitTest
         self::assertTrue($tomorrow->gt($today));
         self::assertTrue($tomorrow->startOfDay()->gt($today));
         self::assertTrue($tomorrow->subDay()->endOfDay()->gte($today));
-
-
     }
-
 }

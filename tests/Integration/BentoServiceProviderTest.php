@@ -3,7 +3,6 @@
 
 namespace Exolnet\Bento\Tests\Unit;
 
-
 use Exolnet\Bento\Facades\Bento as Bento;
 use Exolnet\Bento\Tests\Integration\BentoTest;
 

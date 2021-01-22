@@ -32,4 +32,9 @@ class VisitorPercentTest extends UnitTest
 
         self::assertEquals(1234, $this->visitorPercent->getUniqueId());
     }
+
+    public function testGetPercent(): void
+    {
+        self::assertEquals(50, $this->visitorPercent->getPercent());
+    }
 }

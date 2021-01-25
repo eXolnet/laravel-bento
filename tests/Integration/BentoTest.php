@@ -3,6 +3,7 @@
 namespace Exolnet\Bento\Tests\Integration;
 
 use Exolnet\Bento\Bento;
+use Exolnet\Bento\Feature;
 use Exolnet\Bento\Tests\IntegrationTest;
 
 class BentoTest extends IntegrationTest
@@ -51,5 +52,16 @@ class BentoTest extends IntegrationTest
         $header = request()->header('user-agent');
 
         $this->assertEquals(crc32($ip . $header), $instance->getVisitorId());
+    }
+
+    /**
+     * @return void
+     */
+    public function testAwaitWithEveryoneStrategy(): void
+    {
+        $instance = $this->app->make(Bento::class);
+        $instance->feature('foo')->aim('everyone');
+
+        self::assertFalse($instance->await('foo'));
     }
 }

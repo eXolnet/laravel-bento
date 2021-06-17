@@ -65,22 +65,4 @@ class DateTest extends UnitTest
         $strategy = new Date($date, ']');
         self::assertTrue(!$strategy->launch());
     }
-
-    /**
-     * Useless
-     */
-    public function testLaunch(): void
-    {
-        $yesterday = Carbon::now()->subDay();
-        $today = Carbon::now();
-        $tomorrow = Carbon::now()->addDay();
-
-        self::assertTrue($yesterday->lt($today));
-        self::assertTrue($yesterday->endOfDay()->lt($today));
-        self::assertTrue($yesterday->addDay()->startOfDay()->lte($today));
-
-        self::assertTrue($tomorrow->gt($today));
-        self::assertTrue($tomorrow->startOfDay()->gt($today));
-        self::assertTrue($tomorrow->subDay()->endOfDay()->gte($today));
-    }
 }

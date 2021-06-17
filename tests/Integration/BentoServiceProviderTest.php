@@ -19,7 +19,6 @@ class BentoServiceProviderTest extends BentoTest
     public function setUp(): void
     {
         parent::setUp();
-        $this->app->alias('blade.compiler', Illuminate\View\Compilers\BladeCompiler::class);
 
         $this->blade = resolve('blade.compiler');
     }

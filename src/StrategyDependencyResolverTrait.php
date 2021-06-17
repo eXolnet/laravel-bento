@@ -3,6 +3,7 @@
 namespace Exolnet\Bento;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Reflector;
 use ReflectionFunctionAbstract;
 use ReflectionParameter;
 
@@ -51,20 +52,21 @@ trait StrategyDependencyResolverTrait
      */
     protected function transformDependency(ReflectionParameter $parameter, Feature $feature, array $parameters)
     {
-        $class = $parameter->getClass();
+        $parameterType = $parameter->getType();
+        $className = $parameterType && ! $parameterType->isBuiltin() ? $parameterType->getName() : null;
 
         // If the parameter has a type-hinted class, we will check to see if it is already in
         // the list of parameters. If it is we will just skip it as it is probably a model
         // binding and we do not want to mess with those; otherwise, we resolve it here.
-        if (! $class || $this->alreadyInParameters($class->name, $parameters)) {
+        if (! $className || $this->alreadyInParameters($className, $parameters)) {
             return null;
         }
 
-        if ($class->getName() === Feature::class) {
+        if ($className === Feature::class) {
             return $feature;
         }
 
-        return $this->container->make($class->name);
+        return $this->container->make($className);
     }
 
     /**

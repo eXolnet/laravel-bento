@@ -10,6 +10,7 @@ class BentoTest extends IntegrationTest
 {
     /**
      * @return void
+     * @test
      */
     public function testIsSingleton(): void
     {
@@ -21,6 +22,7 @@ class BentoTest extends IntegrationTest
 
     /**
      * @return void
+     * @test
      */
     public function testAlias(): void
     {
@@ -32,6 +34,7 @@ class BentoTest extends IntegrationTest
 
     /**
      * @return void
+     * @test
      */
     public function testSetVisitorId(): void
     {
@@ -43,6 +46,7 @@ class BentoTest extends IntegrationTest
 
     /**
      * @return void
+     * @test
      */
     public function testGetVisitorIdWhenNoVisitorId(): void
     {
@@ -56,6 +60,7 @@ class BentoTest extends IntegrationTest
 
     /**
      * @return void
+     * @test
      */
     public function testAwaitWithEveryoneStrategy(): void
     {

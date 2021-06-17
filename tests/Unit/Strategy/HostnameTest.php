@@ -10,7 +10,6 @@ use Mockery;
 
 class HostnameTest extends UnitTest
 {
-
     /**
      * @var \Illuminate\Http\Request
      */

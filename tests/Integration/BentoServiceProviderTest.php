@@ -1,20 +1,12 @@
 <?php
 
-
 namespace Exolnet\Bento\Tests\Unit;
 
 use Exolnet\Bento\Facades\Bento as Bento;
 use Exolnet\Bento\Tests\Integration\BentoTest;
 
-/**
- * Class BentoServiceProviderTest
- * @package Exolnet\Bento\Tests\Unit
- * {@source}
- * https://stevegrunwell.com/blog/custom-laravel-blade-directives/
- */
 class BentoServiceProviderTest extends BentoTest
 {
-
     /**
      * @var \Illuminate\Contracts\Foundation\Application|mixed
      */
@@ -22,6 +14,7 @@ class BentoServiceProviderTest extends BentoTest
 
     /**
      * @return void
+     * @see https://stevegrunwell.com/blog/custom-laravel-blade-directives/
      */
     public function setUp(): void
     {
@@ -102,8 +95,7 @@ class BentoServiceProviderTest extends BentoTest
      * @param string $expression The Blade directive, as it would be written in a view.
      * @param array  $variables  Variables to extract() into the scope of the eval() statement.
      * @param string $message    A message to display if the output does not match $expected.
-     * {@source}
-     * https://stevegrunwell.com/blog/custom-laravel-blade-directives/
+     * @see https://stevegrunwell.com/blog/custom-laravel-blade-directives/
      */
     protected function assertDirectiveOutput(
         string $expected,

@@ -10,9 +10,8 @@ use Mockery;
 
 class EnvironmentTest extends UnitTest
 {
-
     /**
-     * @var Illuminate\Contracts\Config\Repository
+     * @var \Illuminate\Contracts\Config\Repository
      */
     protected $config;
     /**

@@ -33,6 +33,7 @@ class UserPercentTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testLaunchGuest(): void
     {
@@ -45,6 +46,7 @@ class UserPercentTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testLaunchUser100p(): void
     {
@@ -58,6 +60,7 @@ class UserPercentTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testLaunchUser0p(): void
     {

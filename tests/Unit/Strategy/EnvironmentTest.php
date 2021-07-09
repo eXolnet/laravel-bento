@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Strategy\Environment;
@@ -14,6 +13,7 @@ class EnvironmentTest extends UnitTest
      * @var \Illuminate\Contracts\Config\Repository
      */
     protected $config;
+
     /**
      * @var \Exolnet\Bento\Strategy\Environment
      */

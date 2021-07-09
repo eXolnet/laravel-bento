@@ -26,7 +26,7 @@ class LogicNot extends Strategy implements FeatureAware
      * @param \Exolnet\Bento\Bento $bento
      * @param \Exolnet\Bento\Feature $feature
      * @param string $name
-     * @param array ...$options
+     * @param ...$options
      */
     public function __construct(Bento $bento, Feature $feature, $name, ...$options)
     {

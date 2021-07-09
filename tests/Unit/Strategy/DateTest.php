@@ -9,7 +9,6 @@ use Exolnet\Bento\Tests\UnitTest;
 
 class DateTest extends UnitTest
 {
-
     /**
      * @return void
      * @test

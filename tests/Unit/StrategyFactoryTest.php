@@ -10,9 +10,9 @@ use Exolnet\Bento\Strategy\User;
 use Exolnet\Bento\Strategy\UserPercent;
 use Exolnet\Bento\StrategyFactory;
 use Exolnet\Bento\Tests\UnitTest;
-use InvalidArgumentException;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use InvalidArgumentException;
 use Mockery as m;
 
 class StrategyFactoryTest extends UnitTest
@@ -44,6 +44,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeClassStrategy(): void
     {
@@ -54,6 +55,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeClassStrategyWithOptions(): void
     {
@@ -66,6 +68,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeClassWithDependencyInjection(): void
     {
@@ -82,6 +85,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeClassWithFeatureAware(): void
     {
@@ -98,6 +102,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeCustomStrategy(): void
     {
@@ -114,6 +119,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeCustomStrategyWithOptions(): void
     {
@@ -130,6 +136,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeCustomWithDependencyInjection(): void
     {
@@ -150,6 +157,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeCustomWithFeatureAware(): void
     {

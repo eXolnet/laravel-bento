@@ -9,6 +9,7 @@ class NobodyTest extends UnitTest
 {
     /**
      * @return void
+     * @test
      */
     public function testLaunch(): void
     {

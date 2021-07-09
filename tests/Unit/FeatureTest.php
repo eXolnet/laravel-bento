@@ -31,6 +31,7 @@ class FeatureTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testFeatureIsInstantiable(): void
     {
@@ -39,6 +40,7 @@ class FeatureTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testFeatureHasNoStrategiesByDefault(): void
     {
@@ -49,6 +51,7 @@ class FeatureTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testFeatureIsNotLaunchWithoutStrategy(): void
     {
@@ -57,6 +60,7 @@ class FeatureTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testFeatureAimIsFluent(): void
     {
@@ -69,6 +73,7 @@ class FeatureTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testAddStrategiesToFeature(): void
     {
@@ -88,6 +93,7 @@ class FeatureTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testAddStrategiesThroughMethodCall(): void
     {

@@ -3,7 +3,6 @@
 namespace Exolnet\Bento\Tests\Integration;
 
 use Exolnet\Bento\Bento;
-use Exolnet\Bento\Feature;
 use Exolnet\Bento\Tests\IntegrationTest;
 
 class BentoTest extends IntegrationTest

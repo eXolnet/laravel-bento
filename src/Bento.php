@@ -45,7 +45,7 @@ class Bento
     /**
      * @param string $name
      * @param string $strategy
-     * @param array ...$options
+     * @param ...$options
      * @return \Exolnet\Bento\Feature
      */
     public function aim(string $name, string $strategy, ...$options): Feature
@@ -107,7 +107,7 @@ class Bento
     /**
      * @param \Exolnet\Bento\Feature $feature
      * @param string $name
-     * @param array ...$options
+     * @param ...$options
      * @return \Exolnet\Bento\Strategy\Strategy
      * @throws \ReflectionException
      */

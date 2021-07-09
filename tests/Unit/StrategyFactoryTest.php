@@ -12,6 +12,7 @@ use Exolnet\Bento\StrategyFactory;
 use Exolnet\Bento\Tests\UnitTest;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use InvalidArgumentException;
 use Mockery as m;
 
 class StrategyFactoryTest extends UnitTest
@@ -43,6 +44,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeClassStrategy(): void
     {
@@ -53,6 +55,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeClassStrategyWithOptions(): void
     {
@@ -65,6 +68,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeClassWithDependencyInjection(): void
     {
@@ -81,6 +85,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeClassWithFeatureAware(): void
     {
@@ -97,6 +102,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeCustomStrategy(): void
     {
@@ -113,6 +119,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeCustomStrategyWithOptions(): void
     {
@@ -129,6 +136,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeCustomWithDependencyInjection(): void
     {
@@ -149,6 +157,7 @@ class StrategyFactoryTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testMakeCustomWithFeatureAware(): void
     {
@@ -165,5 +174,16 @@ class StrategyFactoryTest extends UnitTest
 
         $this->assertInstanceOf(Custom::class, $strategy);
         $this->assertEquals(3, count($strategy->getOptions()));
+    }
+
+    /**
+     * @throws \ReflectionException
+     * @return void
+     * @test
+     */
+    public function testMakeStrategyWithInvalidArgument(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->factory->make($this->feature, 'invalidName');
     }
 }

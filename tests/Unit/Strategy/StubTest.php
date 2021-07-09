@@ -9,6 +9,7 @@ class StubTest extends UnitTest
 {
     /**
      * @return void
+     * @test
      */
     public function testLaunchTrue(): void
     {
@@ -19,6 +20,7 @@ class StubTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testLaunchFalse(): void
     {

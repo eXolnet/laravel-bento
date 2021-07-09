@@ -33,6 +33,7 @@ class GuestTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testLaunchGuest(): void
     {
@@ -43,6 +44,7 @@ class GuestTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testLaunchAuthenticated(): void
     {

@@ -9,6 +9,7 @@ class BentoTest extends IntegrationTest
 {
     /**
      * @return void
+     * @test
      */
     public function testIsSingleton(): void
     {
@@ -20,6 +21,7 @@ class BentoTest extends IntegrationTest
 
     /**
      * @return void
+     * @test
      */
     public function testAlias(): void
     {
@@ -27,5 +29,43 @@ class BentoTest extends IntegrationTest
         $alias    = $this->app->make('bento');
 
         $this->assertSame($instance, $alias);
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testSetVisitorId(): void
+    {
+        $instance = $this->app->make(Bento::class);
+        $instance->setVisitorId(1234);
+
+        $this->assertEquals(1234, $instance->getVisitorId());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testGetVisitorIdWhenNoVisitorId(): void
+    {
+        $instance = $this->app->make(Bento::class);
+
+        $ip = request()->ip();
+        $header = request()->header('user-agent');
+
+        $this->assertEquals(crc32($ip . $header), $instance->getVisitorId());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testAwaitWithEveryoneStrategy(): void
+    {
+        $instance = $this->app->make(Bento::class);
+        $instance->feature('foo')->aim('everyone');
+
+        self::assertFalse($instance->await('foo'));
     }
 }

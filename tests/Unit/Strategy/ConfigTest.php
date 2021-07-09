@@ -25,10 +25,12 @@ class ConfigTest extends UnitTest
     }
 
     /**
+     * @param bool $expected
      * @return void
      * @dataProvider provideTestLaunch
+     * @test
      */
-    public function testLaunch($expected): void
+    public function testLaunch(bool $expected): void
     {
         $strategy = new Config($this->config, 'feature.key');
 

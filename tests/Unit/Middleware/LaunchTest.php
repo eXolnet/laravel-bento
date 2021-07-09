@@ -42,6 +42,7 @@ class LaunchTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testFeatureLaunched(): void
     {
@@ -63,6 +64,7 @@ class LaunchTest extends UnitTest
 
     /**
      * @return void
+     * @test
      */
     public function testFeatureNotLaunched(): void
     {

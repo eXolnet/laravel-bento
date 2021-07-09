@@ -66,7 +66,7 @@ abstract class StrategyContainer implements FeatureAware
 
     /**
      * @param string $strategy
-     * @param array ...$options
+     * @param ...$options
      * @return $this
      */
     public function aim($strategy, ...$options): self

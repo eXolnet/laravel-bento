@@ -2,6 +2,7 @@
 
 namespace Exolnet\Bento\Tests\Integration;
 
+use Carbon\Carbon;
 use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Tests\IntegrationTest;
@@ -25,6 +26,7 @@ class FeatureCreationTest extends IntegrationTest
 
     /**
      * @return void
+     * @test
      */
     public function testCreateNewFeature(): void
     {
@@ -35,6 +37,7 @@ class FeatureCreationTest extends IntegrationTest
 
     /**
      * @return void
+     * @test
      */
     public function testFeatureAimFluent(): void
     {
@@ -46,6 +49,7 @@ class FeatureCreationTest extends IntegrationTest
 
     /**
      * @return void
+     * @test
      */
     public function testFeatureAim(): void
     {
@@ -63,5 +67,43 @@ class FeatureCreationTest extends IntegrationTest
         $launch = $this->bento->launch('name');
 
         $this->assertFalse($launch);
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testCreateNewFeatureWithDefaultParam(): void
+    {
+        //Default operator is >=
+        $date = Carbon::now();
+        self::assertFalse($this->bento->aim('name2', 'date', $date)->launch());
+        $date = Carbon::tomorrow();
+        self::assertTrue($this->bento->aim('name3', 'date', $date)->launch());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testCreateNewFeatureWithInjection(): void
+    {
+        $date = Carbon::now();
+        self::assertTrue($this->bento->aim('name4', 'date', $date, '=')->launch());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testCreateNewFeatureWithParameterAlreadyInParameters(): void
+    {
+        self::assertTrue($this->bento
+            ->aim('name3', 'visitorpercent', $this->bento, 100)
+            ->launch());
+
+        self::assertTrue($this->bento
+            ->aim('name4', 'visitorpercent', 100)
+            ->launch());
     }
 }

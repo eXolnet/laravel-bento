@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Carbon\Carbon;

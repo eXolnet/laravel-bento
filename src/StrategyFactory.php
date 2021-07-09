@@ -74,10 +74,10 @@ class StrategyFactory
      */
     protected function makeClass(Feature $feature, string $name, array $parameters)
     {
-        $className = '\\Exolnet\\Bento\\Strategy\\'. Str::studly($name);
+        $className = '\\Exolnet\\Bento\\Strategy\\' . Str::studly($name);
 
         if (! class_exists($className)) {
-            throw new InvalidArgumentException('Could not instantiate strategy with name '. $name);
+            throw new InvalidArgumentException('Could not instantiate strategy with name ' . $name);
         }
 
         $constructor = (new ReflectionClass($className))->getConstructor();

@@ -32,7 +32,7 @@ class Launch
     public function handle($request, Closure $next, string $feature)
     {
         if (! $this->bento->launch($feature)) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException();
         }
 
         return $next($request);

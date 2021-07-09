@@ -59,7 +59,7 @@ class BentoServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../stubs/BentoServiceProvider.stub' => app_path('Providers/BentoServiceProvider.php'),
+                __DIR__ . '/../stubs/BentoServiceProvider.stub' => app_path('Providers/BentoServiceProvider.php'),
             ], 'bento-provider');
         }
     }

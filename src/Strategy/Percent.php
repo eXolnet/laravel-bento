@@ -56,7 +56,7 @@ abstract class Percent extends Strategy implements FeatureAware
             return false;
         }
 
-        $uniqueNumber = crc32($this->feature->getName() .'|'. $uniqueId);
+        $uniqueNumber = crc32($this->feature->getName() . '|' . $uniqueId);
 
         // Limit the unique ID between 1 and 100.
         $percentile = $uniqueNumber % 100 + 1;

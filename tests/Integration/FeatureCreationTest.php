@@ -65,7 +65,7 @@ class FeatureCreationTest extends IntegrationTest
      */
     public function testFeatureAim(): void
     {
-        $feature = $this->bento->aim('name', 'visitor-percent', 10);
+        $feature = $this->bento->feature('name')->aim('visitor-percent', 10);
 
         $this->assertInstanceOf(Feature::class, $feature);
         $this->assertCount(1, $feature->getStrategies());
@@ -87,11 +87,11 @@ class FeatureCreationTest extends IntegrationTest
      */
     public function testCreateNewFeatureWithDefaultParam(): void
     {
-        //Default operator is >=
-        $date = Carbon::now();
-        self::assertFalse($this->bento->aim('name2', 'date', $date)->launch());
+        // Default operator is >=
+        $date = Carbon::yesterday();
+        $this->assertFalse($this->bento->feature('name2')->aim('date', $date)->launch());
         $date = Carbon::tomorrow();
-        self::assertTrue($this->bento->aim('name3', 'date', $date)->launch());
+        $this->assertTrue($this->bento->feature('name3')->aim('date', $date)->launch());
     }
 
     /**
@@ -100,8 +100,9 @@ class FeatureCreationTest extends IntegrationTest
      */
     public function testCreateNewFeatureWithInjection(): void
     {
-        $date = Carbon::now();
-        self::assertTrue($this->bento->aim('name4', 'date', $date, '=')->launch());
+        Carbon::setTestNow($date = Carbon::now());
+
+        $this->assertTrue($this->bento->feature('name4')->aim('date', $date, '=')->launch());
     }
 
     /**
@@ -110,12 +111,8 @@ class FeatureCreationTest extends IntegrationTest
      */
     public function testCreateNewFeatureWithParameterAlreadyInParameters(): void
     {
-        self::assertTrue($this->bento
-            ->aim('name3', 'visitorpercent', $this->bento, 100)
-            ->launch());
+        $this->assertTrue($this->bento->feature('name3')->aim('visitor-percent', $this->bento, 100)->launch());
 
-        self::assertTrue($this->bento
-            ->aim('name4', 'visitorpercent', 100)
-            ->launch());
+        $this->assertTrue($this->bento->feature('name4')->aim('visitor-percent', 100)->launch());
     }
 }

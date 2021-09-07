@@ -5,6 +5,7 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 use Carbon\Carbon;
 use Exolnet\Bento\Strategy\Date;
 use Exolnet\Bento\Tests\UnitTest;
+use InvalidArgumentException;
 
 class DateTest extends UnitTest
 {
@@ -14,7 +15,7 @@ class DateTest extends UnitTest
      */
     public function testLaunchDateIsToday(): void
     {
-        $date = Carbon::now();
+        Carbon::setTestNow($date = Carbon::now());
         $strategy = new Date($date, '=');
         self::assertTrue($strategy->launch());
     }
@@ -59,8 +60,10 @@ class DateTest extends UnitTest
      */
     public function testNoLaunchIfOperatorInvalid(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $date = Carbon::now()->addDay();
         $strategy = new Date($date, ']');
-        self::assertTrue(!$strategy->launch());
+        $strategy->launch();
     }
 }

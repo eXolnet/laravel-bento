@@ -2,7 +2,7 @@
 
 namespace Exolnet\Bento\Strategy;
 
-class Custom extends Strategy
+class Custom implements Strategy
 {
     /**
      * @var callable

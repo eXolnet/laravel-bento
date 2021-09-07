@@ -2,7 +2,7 @@
 
 namespace Exolnet\Bento\Strategy;
 
-class Stub extends Strategy
+class Stub implements Strategy
 {
     /**
      * @var bool

@@ -5,7 +5,7 @@ namespace Exolnet\Bento\Strategy;
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
 
-abstract class Logic extends StrategyContainer
+abstract class Logic extends AimsStrategies implements Strategy
 {
     /**
      * @param \Exolnet\Bento\Bento $bento

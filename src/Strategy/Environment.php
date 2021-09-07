@@ -4,7 +4,7 @@ namespace Exolnet\Bento\Strategy;
 
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 
-class Environment extends Strategy
+class Environment implements Strategy
 {
     /**
      * @var \Illuminate\Contracts\Config\Repository

@@ -4,7 +4,7 @@ namespace Exolnet\Bento\Strategy;
 
 use Illuminate\Http\Request;
 
-class Hostname extends Strategy
+class Hostname implements Strategy
 {
     /**
      * @var \Illuminate\Http\Request

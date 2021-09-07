@@ -111,7 +111,7 @@ class Bento
      * @return \Exolnet\Bento\Strategy\Strategy
      * @throws \ReflectionException
      */
-    public function makeStrategy(Feature $feature, string $name, ...$options)
+    public function makeStrategy(Feature $feature, string $name, ...$options): Strategy
     {
         return $this->factory->make($feature, $name, ...$options);
     }

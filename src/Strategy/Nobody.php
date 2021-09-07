@@ -2,7 +2,7 @@
 
 namespace Exolnet\Bento\Strategy;
 
-class Nobody extends Strategy
+class Nobody implements Strategy
 {
     /**
      * @return bool

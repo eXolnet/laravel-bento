@@ -4,7 +4,7 @@ namespace Exolnet\Bento\Strategy;
 
 use Illuminate\Contracts\Auth\Factory as Auth;
 
-class User extends Strategy
+class User implements Strategy
 {
     /**
      * @var \Illuminate\Contracts\Auth\Factory

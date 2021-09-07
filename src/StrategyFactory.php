@@ -39,7 +39,7 @@ class StrategyFactory
      * @return \Exolnet\Bento\Strategy\Strategy
      * @throws \ReflectionException
      */
-    public function make(Feature $feature, string $name, ...$parameters)
+    public function make(Feature $feature, string $name, ...$parameters): Strategy
     {
         if (isset($this->customStrategies[$name])) {
             return $this->makeCustom($feature, $name, $parameters);
@@ -72,7 +72,7 @@ class StrategyFactory
      * @return \Exolnet\Bento\Strategy\Strategy
      * @throws \ReflectionException
      */
-    protected function makeClass(Feature $feature, string $name, array $parameters)
+    protected function makeClass(Feature $feature, string $name, array $parameters): Strategy
     {
         $className = '\\Exolnet\\Bento\\Strategy\\' . Str::studly($name);
 

@@ -4,7 +4,7 @@ namespace Exolnet\Bento\Strategy;
 
 use Illuminate\Support\Carbon;
 
-class Date extends Strategy
+class Date implements Strategy
 {
     /**
      * @var \Carbon\Carbon

@@ -128,23 +128,4 @@ class StrategiesTest extends IntegrationTest
     //    $this->assertFalse($this->bento->feature('name1')->percent(0)->launch());
     //    $this->assertTrue($this->bento->feature('name2')->percent(', 100)->launch());
     // }
-
-    /**
-     * @return void
-     * @test
-     */
-    public function testCustomStrategy(): void
-    {
-        $this->bento->defineStrategy('custom1', function () {
-            return true;
-        });
-
-        $this->assertTrue($this->bento->feature('name1')->aim('custom1')->launch());
-
-        $this->bento->defineStrategy('custom2', function () {
-            return false;
-        });
-
-        $this->assertFalse($this->bento->feature('name2')->aim('custom2')->launch());
-    }
 }

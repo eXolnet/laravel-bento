@@ -9,8 +9,8 @@ use Exception;
  *
  * @method self all(callable $callback = null)
  * @method self any(callable $callback = null)
+ * @method self callback(callable $callback)
  * @method self config(string $key)
- * @method self custom(callable $callback, array $options = [])
  * @method self date(string|int $date, string $operator = '>=')
  * @method self environment(array|string $environments)
  * @method self everyone()

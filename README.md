@@ -17,7 +17,7 @@ The core concepts of this library are inspired by [Airbnb's Trebuchet](https://g
 
 Require this package with composer:
 
-```
+```bash
 composer require eXolnet/laravel-bento
 ```
 
@@ -29,7 +29,7 @@ php artisan vendor:publish --tag=bento-provider
 
 Then, add it to the `providers` array in `config/app.php`:
 
-```
+```php
 App\Providers\BentoServiceProvider::class
 ```
 
@@ -39,21 +39,21 @@ App\Providers\BentoServiceProvider::class
 
 Define features and their launch segmentation strategies. You can define one strategy with the `aim` method:
 
-```
-Bento::aim('feature', 'visitor-percent', 10);
+```php
+Bento::aim('feature')->visitorPercent(10);
 ```
 
 Or you can combine multiple strategies:
 
-```
-Bento::feature('feature')->aim('visitor-percent', 10)->aim('hostname', 'example.com');
+```php
+Bento::feature('feature')->visitorPercent(10)->hostname('example.com');
 ```
 
 ### Launch Your Features
 
 You can check if a feature is launched for a visitor with the `launch` method:
 
-```
+```php
 if (Bento::launch('feature')) {
     //
 }
@@ -61,7 +61,7 @@ if (Bento::launch('feature')) {
 
 Or check that a feature is awaiting launch:
 
-```
+```php
 if (Bento::await('feature')) {
     //
 }
@@ -93,7 +93,7 @@ Since some strategy requires the request context to be evaluated, it's recommend
 
 1. Add the `Feature` middleware in the `$routeMiddleware` of your application's HTTP Kernel:
 
-```
+```php
     protected $routeMiddleware = [
         // ...
         'launch' => \Exolnet\Bento\Middleware\Launch::class,
@@ -103,7 +103,7 @@ Since some strategy requires the request context to be evaluated, it's recommend
 
 2. Then, you could use it to restrict your routes:
 
-```
+```php
 Route::middleware('launch:feature')->group(function () {
     //
 });
@@ -127,29 +127,33 @@ The following segmentation strategies are available to help quickly target yourÂ
 
 Additional logic segmentation strategies are available to help target your users with more complex rules.
 
-#### Logic Not
+#### Not
 
-```
-Bento::aim('feature', 'logic-not', 'everybody');
+```php
+Bento::aim('feature')->not->everybody();
 ```
 
-#### Logic And
+#### All
 
-```
-Bento::aim('feature', 'logic-and', function($feature) {
-    $feature
-        ->aim('environment', 'production')
-        ->aim('visitor-percent', 20);
+```php
+use \Exolnet\Bento\Strategy\AimsStrategies;
+
+Bento::aim('feature')->all(function(AimsStrategies $aims) {
+    $aims
+        ->environment('production')
+        ->visitorPercent(20);
 });
 ```
 
-#### Logic Or
+#### Any
 
-```
-Bento::aim('feature', 'logic-or', function($feature) {
-    $feature
-        ->aim('environment', 'staging')
-        ->aim('user', [1, 2]);
+```php
+use \Exolnet\Bento\Strategy\AimsStrategies;
+
+Bento::aim('feature')->any(function(AimsStrategies $aims) {
+    $aims
+        ->environment('staging')
+        ->user([1, 2]);
 });
 ```
 
@@ -159,7 +163,7 @@ You can create your own custom strategies.
 
 You can also inject dependencies the same way [Laravel Controllers' method injection](https://laravel.com/docs/5.4/controllers#dependency-injection-and-controllers) works. A common use-case for method injection is injecting the `Illuminate\Contracts\Auth\Guard` instance into your strategy to target users by property:
 
-```
+```php
 use Illuminate\Contracts\Auth\Guard;
 
 Bento::defineStrategy('role', function(Guard $guard, $role) {
@@ -169,7 +173,7 @@ Bento::defineStrategy('role', function(Guard $guard, $role) {
 
 Then, you can use your custom strategy like the default one:
 
-```
+```php
 Bento::feature('feature')->aim('role', 'admin');
 ```
 

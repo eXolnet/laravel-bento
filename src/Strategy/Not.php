@@ -28,7 +28,7 @@ class Not implements FeatureAware, Strategy
      * @param string $name
      * @param ...$options
      */
-    public function __construct(Bento $bento, Feature $feature, $name, ...$options)
+    public function __construct(Bento $bento, Feature $feature, string $name, ...$options)
     {
         $this->bento = $bento;
         $this->feature = $feature;

@@ -51,6 +51,18 @@ class FeatureCreationTest extends IntegrationTest
      * @return void
      * @test
      */
+    public function testFeatureAimFluentProxy(): void
+    {
+        $feature = $this->bento->feature('name')->visitorPercent(10);
+
+        $this->assertInstanceOf(Feature::class, $feature);
+        $this->assertCount(1, $feature->getStrategies());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
     public function testFeatureAim(): void
     {
         $feature = $this->bento->aim('name', 'visitor-percent', 10);

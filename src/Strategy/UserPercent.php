@@ -13,11 +13,11 @@ class UserPercent extends Percent
     protected $auth;
 
     /**
-     * @param \Illuminate\Contracts\Auth\Guard $auth
      * @param \Exolnet\Bento\Feature $feature
+     * @param \Illuminate\Contracts\Auth\Factory $auth
      * @param int $percent
      */
-    public function __construct(Feature $feature, Auth $auth, $percent)
+    public function __construct(Feature $feature, Auth $auth, int $percent)
     {
         parent::__construct($feature, $percent);
 

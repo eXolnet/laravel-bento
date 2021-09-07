@@ -66,7 +66,7 @@ class FeatureTest extends UnitTest
     {
         $this->bento->shouldReceive('makeStrategy')->with($this->feature, 'everyone');
 
-        $actual = $this->feature->aim('everyone');
+        $actual = $this->feature->everyone();
 
         $this->assertSame($actual, $this->feature);
     }
@@ -80,7 +80,7 @@ class FeatureTest extends UnitTest
         $stub = new Stub(true);
 
         $this->bento->shouldReceive('makeStrategy')->with($this->feature, 'nobody')->andReturn($stub);
-        $this->feature->aim('nobody');
+        $this->feature->nobody();
 
         $strategies = $this->feature->getStrategies();
 

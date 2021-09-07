@@ -17,7 +17,7 @@ class VisitorPercent extends Percent
      * @param \Exolnet\Bento\Feature $feature
      * @param int $percent
      */
-    public function __construct(Bento $bento, Feature $feature, $percent)
+    public function __construct(Bento $bento, Feature $feature, int $percent)
     {
         parent::__construct($feature, $percent);
 

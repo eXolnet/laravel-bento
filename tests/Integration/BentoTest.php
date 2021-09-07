@@ -63,8 +63,9 @@ class BentoTest extends IntegrationTest
      */
     public function testAwaitWithEveryoneStrategy(): void
     {
+        /** @var \Exolnet\Bento\Bento $instance */
         $instance = $this->app->make(Bento::class);
-        $instance->feature('foo')->aim('everyone');
+        $instance->feature('foo')->everyone();
 
         self::assertFalse($instance->await('foo'));
     }

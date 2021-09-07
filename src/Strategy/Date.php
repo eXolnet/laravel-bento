@@ -52,7 +52,7 @@ class Date implements Strategy
         }
 
         throw new InvalidArgumentException(
-            'Invalid '. $this->operator .' operator for strategy '. static::class
+            'Invalid ' . $this->operator . ' operator for strategy ' . static::class
         );
     }
 

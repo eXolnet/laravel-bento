@@ -32,7 +32,7 @@ class Await
     public function handle($request, Closure $next, string $feature)
     {
         if (! $this->bento->await($feature)) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException();
         }
 
         return $next($request);

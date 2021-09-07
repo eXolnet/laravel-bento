@@ -19,7 +19,7 @@ class BladeTest extends IntegrationTest
     {
         Bento::feature('foo')->stub($state);
 
-        $view = app(Factory::class)->file(__DIR__ .'/../Fixtures/'. $directive .'.blade.php');
+        $view = app(Factory::class)->file(__DIR__ . '/../Fixtures/' . $directive . '.blade.php');
         $html = $view->render();
 
         $expected = $state ? 'Launch' : 'Await';

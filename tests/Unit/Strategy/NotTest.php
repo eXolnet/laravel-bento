@@ -43,7 +43,9 @@ class NotTest extends UnitTest
      */
     public function testGetFeature(): void
     {
-        $this->not = new Not(function () {});
+        $this->not = new Not(function () {
+            //
+        });
         $this->assertNull($this->not->getFeature());
 
         $this->not->setFeature($this->feature);

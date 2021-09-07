@@ -7,7 +7,7 @@ use Exolnet\Bento\Middleware\Launch;
 use Exolnet\Bento\Tests\UnitTest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Mockery as m;
+use Mockery;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LaunchTest extends UnitTest
@@ -34,8 +34,8 @@ class LaunchTest extends UnitTest
     {
         parent::setUp();
 
-        $this->bento = m::mock(Bento::class);
-        $this->request = m::mock(Request::class);
+        $this->bento = Mockery::mock(Bento::class);
+        $this->request = Mockery::mock(Request::class);
 
         $this->middleware = new Launch($this->bento);
     }
@@ -48,7 +48,7 @@ class LaunchTest extends UnitTest
     {
         $this->bento->shouldReceive('launch')->once()->with('feature')->andReturn(true);
 
-        $responseExpected = m::mock(Response::class);
+        $responseExpected = Mockery::mock(Response::class);
 
         $next = function (...$arguments) use ($responseExpected) {
             $this->assertCount(1, $arguments);

@@ -6,7 +6,7 @@ use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\UserPercent;
 use Exolnet\Bento\Tests\UnitTest;
 use Illuminate\Contracts\Auth\Factory as Auth;
-use Mockery as m;
+use Mockery;
 
 class UserPercentTest extends UnitTest
 {
@@ -27,8 +27,8 @@ class UserPercentTest extends UnitTest
     {
         parent::setUp();
 
-        $this->feature = m::mock(Feature::class);
-        $this->auth = m::mock(Auth::class);
+        $this->feature = Mockery::mock(Feature::class);
+        $this->auth = Mockery::mock(Auth::class);
     }
 
     /**

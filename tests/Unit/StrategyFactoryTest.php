@@ -10,7 +10,7 @@ use Exolnet\Bento\StrategyFactory;
 use Exolnet\Bento\Tests\UnitTest;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Auth\Factory as Auth;
-use Mockery as m;
+use Mockery;
 
 class StrategyFactoryTest extends UnitTest
 {
@@ -34,8 +34,8 @@ class StrategyFactoryTest extends UnitTest
      */
     public function setUp(): void
     {
-        $this->feature = m::mock(Feature::class);
-        $this->container = m::mock(Container::class);
+        $this->feature = Mockery::mock(Feature::class);
+        $this->container = Mockery::mock(Container::class);
         $this->factory = new StrategyFactory($this->container);
     }
 
@@ -69,7 +69,7 @@ class StrategyFactoryTest extends UnitTest
      */
     public function testMakeClassWithDependencyInjection(): void
     {
-        $auth = m::mock(Auth::class);
+        $auth = Mockery::mock(Auth::class);
 
         $this->container->shouldReceive('make')->with(Auth::class)->andReturn($auth);
 

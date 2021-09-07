@@ -7,7 +7,7 @@ use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\Stub;
 use Exolnet\Bento\StrategyFactory;
 use Exolnet\Bento\Tests\UnitTest;
-use Mockery as m;
+use Mockery;
 
 class FeatureTest extends UnitTest
 {
@@ -26,7 +26,7 @@ class FeatureTest extends UnitTest
      */
     public function setUp(): void
     {
-        $this->bento = m::mock(Bento::class);
+        $this->bento = Mockery::mock(Bento::class);
         $this->feature = new Feature('name');
     }
 
@@ -65,7 +65,7 @@ class FeatureTest extends UnitTest
      */
     public function testFeatureAimIsFluent(): void
     {
-        $strategyFactory = m::mock(StrategyFactory::class);
+        $strategyFactory = Mockery::mock(StrategyFactory::class);
 
         app()->bind(StrategyFactory::class, function () use ($strategyFactory) {
             return $strategyFactory;
@@ -86,7 +86,7 @@ class FeatureTest extends UnitTest
     {
         $stub = new Stub(true);
 
-        $strategyFactory = m::mock(StrategyFactory::class);
+        $strategyFactory = Mockery::mock(StrategyFactory::class);
 
         app()->bind(StrategyFactory::class, function () use ($strategyFactory) {
             return $strategyFactory;
@@ -112,7 +112,7 @@ class FeatureTest extends UnitTest
     {
         $stub = new Stub(true);
 
-        $strategyFactory = m::mock(StrategyFactory::class);
+        $strategyFactory = Mockery::mock(StrategyFactory::class);
 
         app()->bind(StrategyFactory::class, function () use ($strategyFactory) {
             return $strategyFactory;

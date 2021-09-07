@@ -37,16 +37,39 @@ App\Providers\BentoServiceProvider::class
 
 ### Create Features
 
-Define features and their launch segmentation strategies. You can define one strategy with the `aim` method:
+Define features and their launch segmentation strategies. You can define one strategy with the `feature` method:
 
 ```php
-Bento::aim('feature')->visitorPercent(10);
+Bento::feature('feature')->visitorPercent(10);
 ```
 
 Or you can combine multiple strategies:
 
 ```php
 Bento::feature('feature')->visitorPercent(10)->hostname('example.com');
+```
+
+Your features could be grouped in the `boot` method of a service provider:
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Exolnet\Bento\Facades\Bento;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * @return void
+     */
+    public function boot(): void
+    {
+        Bento::feature('foo')->everyone();
+        Bento::feature('bar')->everyone();
+    }
+}
 ```
 
 ### Launch Your Features
@@ -89,22 +112,29 @@ In Blade templates, handy macros are also available:
 
 #### Middleware
 
-Since some strategy requires the request context to be evaluated, it's recommended to use the `Feature` middleware to limit a route:
+Since some strategy requires the request context to be evaluated, it's recommended to use middleware to limit a route:
 
-1. Add the `Feature` middleware in the `$routeMiddleware` of your application's HTTP Kernel:
+1. Add the following middleware in the `$routeMiddleware` of your application's HTTP Kernel:
 
 ```php
     protected $routeMiddleware = [
         // ...
+        'await' => \Exolnet\Bento\Middleware\Await::class,
         'launch' => \Exolnet\Bento\Middleware\Launch::class,
         // ...
     ];
 ```
 
-2. Then, you could use it to restrict your routes:
+2. Then, you could use them to restrict your routes:
 
 ```php
 Route::middleware('launch:feature')->group(function () {
+    //
+});
+```
+
+```php
+Route::middleware('await:feature')->group(function () {
     //
 });
 ```
@@ -113,12 +143,15 @@ Route::middleware('launch:feature')->group(function () {
 
 The following segmentation strategies are available to help quickly target your users:
 
+* Callback
+* Config
 * Date
 * Environment
 * Everyone
 * Guest
 * Hostname 
 * Nobody
+* Stub
 * User (authenticated or specific user IDs)
 * User Percent (a fraction of all connected visitors)
 * Visitor Percent (a fraction of all your visitors)
@@ -130,7 +163,7 @@ Additional logic segmentation strategies are available to help target your users
 #### Not
 
 ```php
-Bento::aim('feature')->not->everybody();
+Bento::feature('feature')->not->everybody();
 ```
 
 #### All
@@ -138,7 +171,7 @@ Bento::aim('feature')->not->everybody();
 ```php
 use \Exolnet\Bento\Strategy\AimsStrategies;
 
-Bento::aim('feature')->all(function(AimsStrategies $aims) {
+Bento::feature('feature')->all(function(AimsStrategies $aims) {
     $aims
         ->environment('production')
         ->visitorPercent(20);
@@ -150,7 +183,7 @@ Bento::aim('feature')->all(function(AimsStrategies $aims) {
 ```php
 use \Exolnet\Bento\Strategy\AimsStrategies;
 
-Bento::aim('feature')->any(function(AimsStrategies $aims) {
+Bento::feature('feature')->any(function(AimsStrategies $aims) {
     $aims
         ->environment('staging')
         ->user([1, 2]);
@@ -180,7 +213,7 @@ Bento::feature('feature')->aim('role', 'admin');
 
 ## Testing
 
-To run the phpUnit tests, please use:
+To run the PHPUnit tests, please use:
 
 ``` bash
 $ composer test

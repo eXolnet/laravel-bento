@@ -101,7 +101,7 @@ class BentoServiceProviderTest extends BentoTest
         string $expression = '',
         array $variables = [],
         string $message = ''
-    ) {
+    ): void {
         $compiled = $this->blade->compileString($expression);
 
         /*

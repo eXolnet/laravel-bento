@@ -13,7 +13,7 @@ abstract class IntegrationTest extends TestCase
      * @param  \Illuminate\Foundation\Application $app
      * @return array
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [BentoServiceProvider::class];
     }

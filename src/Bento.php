@@ -87,7 +87,7 @@ class Bento
      * @param int $visitorId
      * @return $this
      */
-    public function setVisitorId(int $visitorId)
+    public function setVisitorId(int $visitorId): self
     {
         $this->visitorId = $visitorId;
 

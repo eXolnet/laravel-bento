@@ -22,7 +22,7 @@ class StrategiesTest extends IntegrationTest
         $this->bento = Bento::getFacadeRoot();
     }
 
-    // public function testEnvironmentStrategy()
+    // public function testEnvironmentStrategy(): void
     // {
     //    $this->assertTrue($this->bento->aim('name1', 'environment', 'testing')->launch());
     //    $this->assertFalse($this->bento->aim('name2', 'environment', 'not-the-environment')->launch());
@@ -94,13 +94,13 @@ class StrategiesTest extends IntegrationTest
         $this->assertFalse($this->bento->aim('name1', 'nobody')->launch());
     }
 
-    // public function testUserStrategy()
+    // public function testUserStrategy(): void
     // {
     //    $this->assertTrue($this->bento->aim('name1', 'user', [1, 2])->launch());
     //    $this->assertFalse$this->bento->aim('name2', 'user', [1, 2])->launch());
     // }
 
-    // public function testVisitorPercentStrategy()
+    // public function testVisitorPercentStrategy(): void
     // {
     //    $this->assertFalse($this->bento->aim('name1', 'percent', 0)->launch());
     //    $this->assertTrue($this->bento->aim('name2', 'percent', 100)->launch());

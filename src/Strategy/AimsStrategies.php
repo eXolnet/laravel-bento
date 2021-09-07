@@ -2,42 +2,28 @@
 
 namespace Exolnet\Bento\Strategy;
 
-use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
 
-abstract class AimsStrategies extends AimsStrategy implements FeatureAware
+abstract class AimsStrategies extends AimsStrategy
 {
-    /**
-     * @var \Exolnet\Bento\Bento
-     */
-    protected $bento;
-
-    /**
-     * @var \Exolnet\Bento\Feature
-     */
-    protected $feature;
-
     /**
      * @var array<int, \Exolnet\Bento\Strategy\Strategy>
      */
     protected $strategies = [];
 
     /**
-     * @param \Exolnet\Bento\Bento $bento
      * @param \Exolnet\Bento\Feature $feature
+     * @return void
      */
-    public function __construct(Bento $bento, Feature $feature)
+    public function setFeature(Feature $feature): void
     {
-        $this->bento = $bento;
-        $this->feature = $feature;
-    }
+        parent::setFeature($feature);
 
-    /**
-     * @return \Exolnet\Bento\Feature
-     */
-    public function getFeature(): Feature
-    {
-        return $this->feature;
+        foreach ($this->strategies as $strategy) {
+            if ($strategy instanceof FeatureAwareStrategy) {
+                $strategy->setFeature($strategy);
+            }
+        }
     }
 
     /**
@@ -65,19 +51,18 @@ abstract class AimsStrategies extends AimsStrategy implements FeatureAware
     }
 
     /**
-     * @param string $strategy
-     * @param ...$options
+     * @param \Exolnet\Bento\Strategy\Strategy|string $strategy
+     * @param ...$parameters
      * @return $this
      */
-    public function aim(string $strategy, ...$options): self
+    public function aim($strategy, ...$parameters): self
     {
-        $this->strategies[] = $this->bento->makeStrategy($this->feature, $strategy, ...$options);
+        $this->strategies[] = $strategy = $this->makeStrategy($strategy, $parameters);
+
+        if ($this->feature && $strategy instanceof FeatureAwareStrategy) {
+            $strategy->setFeature($this->feature);
+        }
 
         return $this;
     }
-
-    /**
-     * @return bool
-     */
-    abstract public function launch(): bool;
 }

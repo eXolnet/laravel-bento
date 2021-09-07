@@ -2,7 +2,6 @@
 
 namespace Exolnet\Bento\Strategy;
 
-use Exolnet\Bento\Feature;
 use Illuminate\Contracts\Auth\Factory as Auth;
 
 class UserPercent extends Percent
@@ -13,13 +12,12 @@ class UserPercent extends Percent
     protected $auth;
 
     /**
-     * @param \Exolnet\Bento\Feature $feature
      * @param \Illuminate\Contracts\Auth\Factory $auth
      * @param int $percent
      */
-    public function __construct(Feature $feature, Auth $auth, int $percent)
+    public function __construct(Auth $auth, int $percent)
     {
-        parent::__construct($feature, $percent);
+        parent::__construct($percent);
 
         $this->auth = $auth;
     }

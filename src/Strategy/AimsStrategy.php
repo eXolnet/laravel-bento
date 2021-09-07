@@ -2,7 +2,10 @@
 
 namespace Exolnet\Bento\Strategy;
 
+use BadMethodCallException;
 use Exception;
+use Exolnet\Bento\Feature;
+use Exolnet\Bento\StrategyFactory;
 
 /**
  * @property-read \Exolnet\Bento\Strategy\HigherOrderNotProxy $not
@@ -23,14 +26,36 @@ use Exception;
  * @method self userPercent(int $percent)
  * @method self visitorPercent(int $percent)
  */
-abstract class AimsStrategy
+abstract class AimsStrategy implements FeatureAwareStrategy
 {
     /**
-     * @param string $strategy
-     * @param ...$options
-     * @return \Exolnet\Bento\Strategy\AimsStrategy
+     * @var \Exolnet\Bento\Feature|null
      */
-    abstract public function aim(string $strategy, ...$options);
+    protected $feature;
+
+    /**
+     * @return \Exolnet\Bento\Feature
+     */
+    public function getFeature(): ?Feature
+    {
+        return $this->feature;
+    }
+
+    /**
+     * @param  \Exolnet\Bento\Feature $feature
+     * @return void
+     */
+    public function setFeature(Feature $feature): void
+    {
+        $this->feature = $feature;
+    }
+
+    /**
+     * @param string $strategy
+     * @param ...$parameters
+     * @return $this
+     */
+    abstract public function aim(string $strategy, ...$parameters);
 
     /**
      * Dynamically access collection proxies.
@@ -50,12 +75,40 @@ abstract class AimsStrategy
     }
 
     /**
-     * @param string $strategy
-     * @param array $options
+     * @param string $method
+     * @param array $parameters
      * @return $this
      */
-    public function __call(string $strategy, array $options): self
+    public function __call(string $method, array $parameters): self
     {
-        return $this->aim($strategy, ...$options);
+        if ($strategy = $this->makeStrategy($method, $parameters)) {
+            return $this->aim($strategy);
+        }
+
+        throw new BadMethodCallException(
+            sprintf('Call to undefined method %s::%s()', static::class, $method)
+        );
+    }
+
+    /**
+     * @param \Exolnet\Bento\Strategy\Strategy|string $strategy
+     * @param array $parameters
+     * @return \Exolnet\Bento\Strategy\Strategy
+     */
+    protected function makeStrategy($strategy, array $parameters = []): Strategy
+    {
+        if ($strategy instanceof Strategy) {
+            return $strategy;
+        }
+
+        return $this->newStrategyFactory()->make($strategy, $parameters);
+    }
+
+    /**
+     * @return \Exolnet\Bento\StrategyFactory
+     */
+    protected function newStrategyFactory(): StrategyFactory
+    {
+        return app(StrategyFactory::class);
     }
 }

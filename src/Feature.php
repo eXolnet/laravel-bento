@@ -12,13 +12,13 @@ class Feature extends AllStrategy
     protected $name;
 
     /**
-     * @param \Exolnet\Bento\Bento $bento
-     * @param callable|null $name
+     * @param string $name
      */
-    public function __construct(Bento $bento, $name)
+    public function __construct(string $name)
     {
-        parent::__construct($bento, $this);
+        parent::__construct();
 
+        $this->feature = $this;
         $this->name = $name;
     }
 

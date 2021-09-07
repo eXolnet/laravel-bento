@@ -34,7 +34,9 @@ class VisitorPercentTest extends UnitTest
 
         $this->bento = Mockery::mock(Bento::class);
         $this->feature = Mockery::mock(Feature::class);
-        $this->visitorPercent = new VisitorPercent($this->bento, $this->feature, 50);
+        $this->visitorPercent = new VisitorPercent($this->bento, 50);
+
+        $this->visitorPercent->setFeature($this->feature);
     }
 
     /**

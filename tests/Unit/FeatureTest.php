@@ -5,6 +5,7 @@ namespace Exolnet\Bento\Tests\Unit;
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\Stub;
+use Exolnet\Bento\StrategyFactory;
 use Exolnet\Bento\Tests\UnitTest;
 use Mockery as m;
 
@@ -26,7 +27,7 @@ class FeatureTest extends UnitTest
     public function setUp(): void
     {
         $this->bento = m::mock(Bento::class);
-        $this->feature = new Feature($this->bento, 'name');
+        $this->feature = new Feature('name');
     }
 
     /**
@@ -64,7 +65,13 @@ class FeatureTest extends UnitTest
      */
     public function testFeatureAimIsFluent(): void
     {
-        $this->bento->shouldReceive('makeStrategy')->with($this->feature, 'everyone');
+        $strategyFactory = m::mock(StrategyFactory::class);
+
+        app()->bind(StrategyFactory::class, function () use ($strategyFactory) {
+            return $strategyFactory;
+        });
+
+        $strategyFactory->shouldReceive('make')->with('everyone', []);
 
         $actual = $this->feature->everyone();
 
@@ -79,7 +86,13 @@ class FeatureTest extends UnitTest
     {
         $stub = new Stub(true);
 
-        $this->bento->shouldReceive('makeStrategy')->with($this->feature, 'nobody')->andReturn($stub);
+        $strategyFactory = m::mock(StrategyFactory::class);
+
+        app()->bind(StrategyFactory::class, function () use ($strategyFactory) {
+            return $strategyFactory;
+        });
+
+        $strategyFactory->shouldReceive('make')->with('nobody', [])->andReturn($stub);
         $this->feature->nobody();
 
         $strategies = $this->feature->getStrategies();
@@ -99,7 +112,13 @@ class FeatureTest extends UnitTest
     {
         $stub = new Stub(true);
 
-        $this->bento->shouldReceive('makeStrategy')->with($this->feature, 'visitorPercent', 10)->andReturn($stub);
+        $strategyFactory = m::mock(StrategyFactory::class);
+
+        app()->bind(StrategyFactory::class, function () use ($strategyFactory) {
+            return $strategyFactory;
+        });
+
+        $strategyFactory->shouldReceive('make')->with('visitorPercent', [10])->andReturn($stub);
 
         $this->feature->visitorPercent(10);
 

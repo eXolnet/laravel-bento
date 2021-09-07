@@ -2,7 +2,7 @@
 
 namespace Exolnet\Bento\Strategy;
 
-class All extends Logic
+class All extends LogicGroup
 {
     /**
      * @return bool

@@ -4,7 +4,7 @@ namespace Exolnet\Bento\Strategy;
 
 use Exolnet\Bento\Feature;
 
-abstract class Percent implements FeatureAware, Strategy
+abstract class Percent implements FeatureAwareStrategy, Strategy
 {
     /**
      * @var int
@@ -12,26 +12,25 @@ abstract class Percent implements FeatureAware, Strategy
     protected $percent;
 
     /**
-     * @var \Exolnet\Bento\Feature
+     * @var \Exolnet\Bento\Feature|null
      */
     protected $feature;
 
     /**
-     * @param \Exolnet\Bento\Feature $feature
      * @param int $percent
      */
-    public function __construct(Feature $feature, int $percent)
+    public function __construct(int $percent)
     {
-        $this->feature = $feature;
         $this->percent = $percent;
     }
 
     /**
-     * @return \eXolnet\Bento\Feature
+     * @param  \Exolnet\Bento\Feature $feature
+     * @return void
      */
-    public function getFeature(): Feature
+    public function setFeature(Feature $feature): void
     {
-        return $this->feature;
+        $this->feature = $feature;
     }
 
     /**

@@ -43,11 +43,10 @@ class NotTest extends UnitTest
      */
     public function testGetFeature(): void
     {
-        $strategy = Mockery::mock(Everyone::class);
+        $this->not = new Not(function () {});
+        $this->assertNull($this->not->getFeature());
 
-        $this->bento->shouldReceive('makeStrategy')->once()->andReturn($strategy);
-        $this->not = new Not($this->bento, $this->feature, 'everyone');
-
-        self::assertEquals($this->feature, $this->not->getFeature());
+        $this->not->setFeature($this->feature);
+        $this->assertEquals($this->feature, $this->not->getFeature());
     }
 }

@@ -37,7 +37,8 @@ class UserPercentTest extends UnitTest
      */
     public function testLaunchGuest(): void
     {
-        $strategy = new UserPercent($this->feature, $this->auth, 100);
+        $strategy = new UserPercent($this->auth, 100);
+        $strategy->setFeature($this->feature);
 
         $this->auth->shouldReceive('guard->id')->once()->andReturn(null);
 
@@ -50,7 +51,8 @@ class UserPercentTest extends UnitTest
      */
     public function testLaunchUser100p(): void
     {
-        $strategy = new UserPercent($this->feature, $this->auth, 100);
+        $strategy = new UserPercent($this->auth, 100);
+        $strategy->setFeature($this->feature);
 
         $this->auth->shouldReceive('guard->id')->once()->andReturn(1);
         $this->feature->shouldReceive('getName')->once()->andReturn('foo');
@@ -64,7 +66,8 @@ class UserPercentTest extends UnitTest
      */
     public function testLaunchUser0p(): void
     {
-        $strategy = new UserPercent($this->feature, $this->auth, 0);
+        $strategy = new UserPercent($this->auth, 0);
+        $strategy->setFeature($this->feature);
 
         $this->auth->shouldReceive('guard->id')->once()->andReturn(1);
         $this->feature->shouldReceive('getName')->once()->andReturn('foo');

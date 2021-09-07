@@ -42,7 +42,10 @@ class AimsStrategiesTest extends UnitTest
      */
     public function testGetFeature(): void
     {
-        $this->logic = new All($this->bento, $this->feature);
-        self::assertEquals($this->feature, $this->logic->getFeature());
+        $this->logic = new All();
+        $this->assertNull($this->logic->getFeature());
+
+        $this->logic->setFeature($this->feature);
+        $this->assertEquals($this->feature, $this->logic->getFeature());
     }
 }

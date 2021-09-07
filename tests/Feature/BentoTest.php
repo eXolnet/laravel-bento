@@ -1,6 +1,6 @@
 <?php
 
-namespace Exolnet\Bento\Tests\Integration;
+namespace Exolnet\Bento\Tests\Feature;
 
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Tests\IntegrationTest;

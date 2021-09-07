@@ -1,6 +1,6 @@
 <?php
 
-namespace Exolnet\Bento\Tests\Integration;
+namespace Exolnet\Bento\Tests\Feature;
 
 use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Strategy\AimsStrategies;

@@ -1,9 +1,8 @@
 <?php
 
-namespace Exolnet\Bento\Tests\Unit;
+namespace Exolnet\Bento\Tests\Feature;
 
 use Exolnet\Bento\Facades\Bento as Bento;
-use Exolnet\Bento\Tests\Integration\BentoTest;
 
 class BentoServiceProviderTest extends BentoTest
 {

@@ -8,7 +8,7 @@ use Exolnet\Bento\Feature;
 use Exolnet\Bento\StrategyFactory;
 
 /**
- * @property-read \Exolnet\Bento\Strategy\HigherOrderNotProxy $not
+ * @property-read \Exolnet\Bento\Strategy\NotHigherOrderProxy $not
  *
  * @method self all(callable $callback = null)
  * @method self any(callable $callback = null)
@@ -20,7 +20,7 @@ use Exolnet\Bento\StrategyFactory;
  * @method self guest()
  * @method self hostname(array|string $hostnames)
  * @method self nobody()
- * @method self not(string $name, ...$options)
+ * @method self not(callable|string $name, ...$parameters)
  * @method self stub(bool $state)
  * @method self user(array|int|null $userIds = null)
  * @method self userPercent(int $percent)
@@ -68,10 +68,10 @@ abstract class AimsStrategy implements FeatureAwareStrategy
     public function __get($key)
     {
         if ($key === 'not') {
-            return new HigherOrderNotProxy($this);
+            return new NotHigherOrderProxy($this);
         }
 
-        throw new Exception("Property [{$key}] does not exist on this collection instance.");
+        throw new Exception("Property [$key] does not exist on this collection instance.");
     }
 
     /**

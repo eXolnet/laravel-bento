@@ -2,7 +2,7 @@
 
 namespace Exolnet\Bento\Strategy;
 
-class HigherOrderNotProxy extends AimsStrategy
+class NotHigherOrderProxy extends AimsStrategy
 {
     /**
      * @var \Exolnet\Bento\Strategy\AimsStrategies
@@ -20,12 +20,12 @@ class HigherOrderNotProxy extends AimsStrategy
     }
 
     /**
-     * @param string $strategy
-     * @param mixed ...$options
+     * @param \Exolnet\Bento\Strategy\Strategy|string $strategy
+     * @param mixed ...$parameters
      * @return \Exolnet\Bento\Strategy\AimsStrategy
      */
-    public function aim(string $strategy, ...$options)
+    public function aim($strategy, ...$parameters)
     {
-        return $this->aims->not($strategy, ...$options);
+        return $this->aims->not($strategy, ...$parameters);
     }
 }

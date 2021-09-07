@@ -102,6 +102,16 @@ class StrategiesTest extends IntegrationTest
      * @return void
      * @test
      */
+    public function testHigherOrderNotStrategy(): void
+    {
+        $this->assertFalse($this->bento->feature('name1')->not->everyone()->launch());
+        $this->assertTrue($this->bento->feature('name2')->not->nobody()->launch());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
     public function testNobodyStrategy(): void
     {
         $this->assertFalse($this->bento->feature('name1')->nobody()->launch());

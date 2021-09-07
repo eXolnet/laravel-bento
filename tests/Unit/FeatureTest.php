@@ -137,6 +137,6 @@ class FeatureTest extends UnitTest
      */
     public function testGetName(): void
     {
-        self::assertEquals('name', $this->feature->getName());
+        $this->assertEquals('name', $this->feature->getName());
     }
 }

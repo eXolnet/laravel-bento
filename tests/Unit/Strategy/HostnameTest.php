@@ -39,7 +39,7 @@ class HostnameTest extends UnitTest
     {
         $this->request->shouldReceive('getHost')->once()->andReturn('admin');
 
-        self::assertTrue($this->strategy->launch());
+        $this->assertTrue($this->strategy->launch());
     }
 
     /**
@@ -50,6 +50,6 @@ class HostnameTest extends UnitTest
     {
         $this->request->shouldReceive('getHost')->once()->andReturn('tester');
 
-        self::assertfalse($this->strategy->launch());
+        $this->assertfalse($this->strategy->launch());
     }
 }

@@ -47,7 +47,7 @@ class VisitorPercentTest extends UnitTest
     {
         $this->bento->shouldReceive('getVisitorId')->once()->andReturn(1234);
 
-        self::assertEquals(1234, $this->visitorPercent->getUniqueId());
+        $this->assertEquals(1234, $this->visitorPercent->getUniqueId());
     }
 
     /**
@@ -56,6 +56,6 @@ class VisitorPercentTest extends UnitTest
      */
     public function testGetPercent(): void
     {
-        self::assertEquals(50, $this->visitorPercent->getPercent());
+        $this->assertEquals(50, $this->visitorPercent->getPercent());
     }
 }

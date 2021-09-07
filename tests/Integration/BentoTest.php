@@ -67,6 +67,6 @@ class BentoTest extends IntegrationTest
         $instance = $this->app->make(Bento::class);
         $instance->feature('foo')->everyone();
 
-        self::assertFalse($instance->await('foo'));
+        $this->assertFalse($instance->await('foo'));
     }
 }

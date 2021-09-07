@@ -39,6 +39,6 @@ class EnvironmentTest extends UnitTest
     {
         $this->config->shouldReceive('get')->once()->andReturn('testing');
 
-        self::assertTrue($this->strategy->launch());
+        $this->assertTrue($this->strategy->launch());
     }
 }

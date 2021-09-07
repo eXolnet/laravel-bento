@@ -17,7 +17,7 @@ class DateTest extends UnitTest
     {
         Carbon::setTestNow($date = Carbon::now());
         $strategy = new Date($date, '=');
-        self::assertTrue($strategy->launch());
+        $this->assertTrue($strategy->launch());
     }
 
     /**
@@ -29,12 +29,12 @@ class DateTest extends UnitTest
         //Launch is true since yesterday
         $date = Carbon::now()->subDay();
         $strategy = new Date($date, '<');
-        self::assertTrue($strategy->launch());
+        $this->assertTrue($strategy->launch());
 
         //launch is tru since the day before yesterday at 23:59:59.999999
         $date = Carbon::now()->endOfDay()->subDays(2);
         $strategy = new Date($date, '<=');
-        self::assertTrue($strategy->launch());
+        $this->assertTrue($strategy->launch());
     }
 
     /**
@@ -46,12 +46,12 @@ class DateTest extends UnitTest
         //Launch is true from tomorrow
         $date = Carbon::now()->addDay();
         $strategy = new Date($date, '>');
-        self::assertTrue($strategy->launch());
+        $this->assertTrue($strategy->launch());
 
         //Launch is true from today at 23:59:59.999999
         $date = Carbon::now()->endOfDay();
         $strategy = new Date($date, '>=');
-        self::assertTrue($strategy->launch());
+        $this->assertTrue($strategy->launch());
     }
 
     /**

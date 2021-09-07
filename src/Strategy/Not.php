@@ -5,7 +5,7 @@ namespace Exolnet\Bento\Strategy;
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
 
-class LogicNot extends Strategy implements FeatureAware
+class Not implements FeatureAware, Strategy
 {
     /**
      * @var \Exolnet\Bento\Bento

@@ -4,11 +4,11 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
-use Exolnet\Bento\Strategy\LogicNot;
+use Exolnet\Bento\Strategy\All;
 use Exolnet\Bento\Tests\UnitTest;
 use Mockery;
 
-class LogicNotTest extends UnitTest
+class AimsStrategiesTest extends UnitTest
 {
     /**
      * @var \Exolnet\Bento\Bento
@@ -21,9 +21,9 @@ class LogicNotTest extends UnitTest
     protected $feature;
 
     /**
-     * @var \Exolnet\Bento\Strategy\LogicNot
+     * @var \Exolnet\Bento\Strategy\All
      */
-    protected $logicNot;
+    protected $logic;
 
     /**
      * @return void
@@ -42,9 +42,7 @@ class LogicNotTest extends UnitTest
      */
     public function testGetFeature(): void
     {
-        $this->bento->shouldReceive('makeStrategy')->once()->andReturn(true);
-        $this->logicNot = new LogicNot($this->bento, $this->feature, 'everyone');
-
-        self::assertEquals($this->feature, $this->logicNot->getFeature());
+        $this->logic = new All($this->bento, $this->feature);
+        self::assertEquals($this->feature, $this->logic->getFeature());
     }
 }

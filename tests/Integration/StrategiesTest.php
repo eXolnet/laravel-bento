@@ -41,17 +41,17 @@ class StrategiesTest extends IntegrationTest
      * @return void
      * @test
      */
-    public function testLogicAndStrategy(): void
+    public function testAllStrategy(): void
     {
-        $this->assertTrue($this->bento->aim('name1', 'logic-and', function ($strategies) {
+        $this->assertTrue($this->bento->aim('name1', 'all', function ($strategies) {
             $strategies->aim('everyone')->aim('everyone');
         })->launch());
 
-        $this->assertFalse($this->bento->aim('name2', 'logic-and', function ($strategies) {
+        $this->assertFalse($this->bento->aim('name2', 'all', function ($strategies) {
             $strategies->aim('nobody')->aim('everyone');
         })->launch());
 
-        $this->assertFalse($this->bento->aim('name3', 'logic-and', function ($strategies) {
+        $this->assertFalse($this->bento->aim('name3', 'all', function ($strategies) {
             $strategies->aim('nobody')->aim('nobody');
         })->launch());
     }
@@ -60,17 +60,17 @@ class StrategiesTest extends IntegrationTest
      * @return void
      * @test
      */
-    public function testLogicOrStrategy(): void
+    public function testAnyStrategy(): void
     {
-        $this->assertTrue($this->bento->aim('name1', 'logic-or', function ($strategies) {
+        $this->assertTrue($this->bento->aim('name1', 'any', function ($strategies) {
             $strategies->aim('everyone')->aim('everyone');
         })->launch());
 
-        $this->assertTrue($this->bento->aim('name2', 'logic-or', function ($strategies) {
+        $this->assertTrue($this->bento->aim('name2', 'any', function ($strategies) {
             $strategies->aim('nobody')->aim('everyone');
         })->launch());
 
-        $this->assertFalse($this->bento->aim('name3', 'logic-or', function ($strategies) {
+        $this->assertFalse($this->bento->aim('name3', 'any', function ($strategies) {
             $strategies->aim('nobody')->aim('nobody');
         })->launch());
     }
@@ -79,10 +79,10 @@ class StrategiesTest extends IntegrationTest
      * @return void
      * @test
      */
-    public function testLogicNotStrategy(): void
+    public function testNotStrategy(): void
     {
-        $this->assertFalse($this->bento->aim('name1', 'logic-not', 'everyone')->launch());
-        $this->assertTrue($this->bento->aim('name2', 'logic-not', 'nobody')->launch());
+        $this->assertFalse($this->bento->aim('name1', 'not', 'everyone')->launch());
+        $this->assertTrue($this->bento->aim('name2', 'not', 'nobody')->launch());
     }
 
     /**

@@ -2,9 +2,9 @@
 
 namespace Exolnet\Bento;
 
-use Exolnet\Bento\Strategy\LogicAnd;
+use Exolnet\Bento\Strategy\All as AllStrategy;
 
-class Feature extends LogicAnd
+class Feature extends AllStrategy
 {
     /**
      * @var string

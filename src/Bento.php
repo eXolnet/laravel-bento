@@ -42,7 +42,7 @@ class Bento
      */
     public function await(string $name): bool
     {
-        return ! $this->launch($name);
+        return $this->feature($name)->await();
     }
 
     /**

@@ -32,10 +32,14 @@ class StrategyFactory
      */
     public function make(string $name, array $parameters = []): Strategy
     {
-        $className = '\\Exolnet\\Bento\\Strategy\\' . Str::studly($name);
+        if (! class_exists($name)) {
+            $className = '\\Exolnet\\Bento\\Strategy\\' . Str::studly($name);
 
-        if (! class_exists($className)) {
-            throw new InvalidArgumentException('Could not instantiate strategy with name ' . $name);
+            if (! class_exists($className)) {
+                throw new InvalidArgumentException('Could not instantiate strategy with name ' . $name);
+            }
+        } else {
+            $className = $name;
         }
 
         $constructor = (new ReflectionClass($className))->getConstructor();

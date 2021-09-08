@@ -6,6 +6,7 @@ use BadMethodCallException;
 use Carbon\Carbon;
 use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Feature;
+use Exolnet\Bento\Tests\Fixtures\CustomStrategy;
 use Exolnet\Bento\Tests\TestCase;
 use InvalidArgumentException;
 
@@ -137,5 +138,15 @@ class CreationTest extends TestCase
         $this->assertFalse($this->bento->feature('name1')->not->everyone()->launch());
 
         $this->assertTrue($this->bento->feature('name2')->not->nobody()->launch());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testCustomStrategyClass(): void
+    {
+        $this->assertTrue($this->bento->feature('name1')->aim(CustomStrategy::class, true)->launch());
+        $this->assertFalse($this->bento->feature('name2')->aim(CustomStrategy::class, false)->launch());
     }
 }

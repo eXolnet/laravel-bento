@@ -192,9 +192,9 @@ Bento::feature('feature')->any(function (AimsStrategies $aims) {
 
 ### Custom Segmentation Strategies
 
-You can create your own custom strategies using the callback strategy.
+You can create custom strategies with dependency injection support similarly to [Laravel Controllers' method injection](https://laravel.com/docs/5.4/controllers#dependency-injection-and-controllers). A common use-case for method injection is injecting the `Illuminate\Contracts\Auth\Guard` instance into your strategy to target users by property:
 
-You can also inject dependencies the same way [Laravel Controllers' method injection](https://laravel.com/docs/5.4/controllers#dependency-injection-and-controllers) works. A common use-case for method injection is injecting the `Illuminate\Contracts\Auth\Guard` instance into your strategy to target users by property:
+#### Callback
 
 ```php
 use Illuminate\Contracts\Auth\Guard;
@@ -202,6 +202,43 @@ use Illuminate\Contracts\Auth\Guard;
 Bento::feature('feature')->custom(function (Guard $guard, $role) {
     return $guard->user() && $guard->user()->role === 'admin';
 });
+```
+
+#### Class
+
+```php
+use Illuminate\Contracts\Auth\Guard;
+
+class RoleStrategy {
+    /**
+     * @var \Illuminate\Contracts\Auth\Guard
+     */
+    protected $guard;
+    
+    /**
+     * @var string 
+     */
+    protected $role;
+
+    /**
+     * @param \Illuminate\Contracts\Auth\Guard $guard
+     */
+    public function __construct(Guard $guard, string $role)
+    {
+        $this->guard = $guard;
+        $this->role = $role;
+    }
+
+    /**
+     * @return bool
+     */
+    public function launch(): bool
+    {
+        return $this->guard->user() && $this->guard->user()->role === $this->role;
+    }
+}
+
+Bento::feature('feature')->aim(RoleStrategy::class, 'admin');
 ```
 
 ## Testing

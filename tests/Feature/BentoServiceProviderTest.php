@@ -3,8 +3,9 @@
 namespace Exolnet\Bento\Tests\Feature;
 
 use Exolnet\Bento\Facades\Bento as Bento;
+use Exolnet\Bento\Tests\TestCase;
 
-class BentoServiceProviderTest extends BentoTest
+class BentoServiceProviderTest extends TestCase
 {
     /**
      * @var \Illuminate\Contracts\Foundation\Application|mixed

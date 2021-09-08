@@ -4,9 +4,9 @@ namespace Exolnet\Bento\Tests\Feature;
 
 use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Strategy\AimsStrategies;
-use Exolnet\Bento\Tests\IntegrationTest;
+use Exolnet\Bento\Tests\TestCase;
 
-class StrategiesTest extends IntegrationTest
+class StrategiesTestCase extends TestCase
 {
     /**
      * @var \Exolnet\Bento\Bento
@@ -21,21 +21,6 @@ class StrategiesTest extends IntegrationTest
         parent::setUp();
 
         $this->bento = Bento::getFacadeRoot();
-    }
-
-    // public function testEnvironmentStrategy(): void
-    // {
-    //    $this->assertTrue($this->bento->feature('name1')->environment('testing')->launch());
-    //    $this->assertFalse($this->bento->feature('name2')->environment('not-the-environment')->launch());
-    // }
-
-    /**
-     * @return void
-     * @test
-     */
-    public function testEveryoneStrategy(): void
-    {
-        $this->assertTrue($this->bento->feature('name1')->everyone()->launch());
     }
 
     /**
@@ -86,6 +71,47 @@ class StrategiesTest extends IntegrationTest
                 ->nobody()
                 ->nobody();
         })->launch());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testCallback(): void
+    {
+        $feature = $this->bento->feature('name1')->callback(function () {
+            return true;
+        });
+
+        $this->assertTrue($feature->launch());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testCallbackWithParameters(): void
+    {
+        $feature = $this->bento->feature('name1')->callback(function (Bento $bento) {
+            return $bento instanceof Bento;
+        });
+
+        $this->assertTrue($feature->launch());
+    }
+
+    // public function testEnvironmentStrategy(): void
+    // {
+    //    $this->assertTrue($this->bento->feature('name1')->environment('testing')->launch());
+    //    $this->assertFalse($this->bento->feature('name2')->environment('not-the-environment')->launch());
+    // }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testEveryoneStrategy(): void
+    {
+        $this->assertTrue($this->bento->feature('name1')->everyone()->launch());
     }
 
     /**

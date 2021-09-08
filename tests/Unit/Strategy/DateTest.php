@@ -4,10 +4,10 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Carbon\Carbon;
 use Exolnet\Bento\Strategy\Date;
-use Exolnet\Bento\Tests\UnitTest;
+use Exolnet\Bento\Tests\TestCase;
 use InvalidArgumentException;
 
-class DateTest extends UnitTest
+class DateTest extends TestCase
 {
     /**
      * @return void

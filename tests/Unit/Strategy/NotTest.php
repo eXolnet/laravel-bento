@@ -6,10 +6,10 @@ use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\Everyone;
 use Exolnet\Bento\Strategy\Not;
-use Exolnet\Bento\Tests\UnitTest;
+use Exolnet\Bento\Tests\TestCase;
 use Mockery;
 
-class NotTest extends UnitTest
+class NotTest extends TestCase
 {
     /**
      * @var \Exolnet\Bento\Bento
@@ -31,8 +31,6 @@ class NotTest extends UnitTest
      */
     protected function setUp(): void
     {
-        parent::setUp();
-
         $this->bento = Mockery::mock(Bento::class);
         $this->feature = Mockery::mock(Feature::class);
     }

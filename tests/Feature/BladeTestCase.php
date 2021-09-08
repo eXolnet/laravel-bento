@@ -3,11 +3,11 @@
 namespace Exolnet\Bento\Tests\Feature;
 
 use Exolnet\Bento\Facades\Bento;
-use Exolnet\Bento\Tests\IntegrationTest;
+use Exolnet\Bento\Tests\TestCase;
 use Generator;
 use Illuminate\Contracts\View\Factory;
 
-class BladeTest extends IntegrationTest
+class BladeTestCase extends TestCase
 {
     /**
      * @param string $directive

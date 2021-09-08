@@ -6,10 +6,10 @@ use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\Stub;
 use Exolnet\Bento\StrategyFactory;
-use Exolnet\Bento\Tests\UnitTest;
+use Exolnet\Bento\Tests\TestCase;
 use Mockery;
 
-class FeatureTest extends UnitTest
+class FeatureTest extends TestCase
 {
     /**
      * @var \Mockery\MockInterface|\Exolnet\Bento\Bento

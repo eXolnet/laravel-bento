@@ -5,9 +5,9 @@ namespace Exolnet\Bento\Tests\Feature;
 use Carbon\Carbon;
 use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Feature;
-use Exolnet\Bento\Tests\IntegrationTest;
+use Exolnet\Bento\Tests\TestCase;
 
-class FeatureCreationTest extends IntegrationTest
+class CreationTestCase extends TestCase
 {
     /**
      * @var \Exolnet\Bento\Bento
@@ -114,5 +114,16 @@ class FeatureCreationTest extends IntegrationTest
         $this->assertTrue($this->bento->feature('name3')->aim('visitor-percent', $this->bento, 100)->launch());
 
         $this->assertTrue($this->bento->feature('name4')->aim('visitor-percent', 100)->launch());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testNotHigherOrderProxy(): void
+    {
+        $this->assertFalse($this->bento->feature('name1')->not->everyone()->launch());
+
+        $this->assertTrue($this->bento->feature('name2')->not->nobody()->launch());
     }
 }

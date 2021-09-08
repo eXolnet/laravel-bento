@@ -4,9 +4,9 @@ namespace Exolnet\Bento\Tests;
 
 use Exolnet\Bento\BentoServiceProvider;
 use Exolnet\Bento\Strategy\Date;
-use Orchestra\Testbench\TestCase;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-abstract class IntegrationTest extends TestCase
+abstract class TestCase extends OrchestraTestCase
 {
     /**
      * @return void

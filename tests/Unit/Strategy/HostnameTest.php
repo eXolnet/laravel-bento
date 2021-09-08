@@ -3,11 +3,11 @@
 namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Strategy\Hostname;
-use Exolnet\Bento\Tests\UnitTest;
+use Exolnet\Bento\Tests\TestCase;
 use Illuminate\Http\Request;
 use Mockery;
 
-class HostnameTest extends UnitTest
+class HostnameTest extends TestCase
 {
     /**
      * @var \Illuminate\Http\Request
@@ -24,8 +24,6 @@ class HostnameTest extends UnitTest
      */
     protected function setUp(): void
     {
-        parent::setUp();
-
         $this->request = Mockery::mock(Request::class);
 
         $this->strategy = new Hostname($this->request, ['admin']);

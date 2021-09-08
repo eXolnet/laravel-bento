@@ -5,10 +5,10 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\All;
-use Exolnet\Bento\Tests\UnitTest;
+use Exolnet\Bento\Tests\TestCase;
 use Mockery;
 
-class AimsStrategiesTest extends UnitTest
+class AimsStrategiesTest extends TestCase
 {
     /**
      * @var \Exolnet\Bento\Bento
@@ -30,8 +30,6 @@ class AimsStrategiesTest extends UnitTest
      */
     protected function setUp(): void
     {
-        parent::setUp();
-
         $this->bento = Mockery::mock(Bento::class);
         $this->feature = Mockery::mock(Feature::class);
     }

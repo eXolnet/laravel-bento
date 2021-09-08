@@ -3,11 +3,11 @@
 namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Strategy\Guest;
-use Exolnet\Bento\Tests\UnitTest;
+use Exolnet\Bento\Tests\TestCase;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use Mockery;
 
-class GuestTest extends UnitTest
+class GuestTest extends TestCase
 {
     /**
      * @var \Illuminate\Contracts\Auth\Factory|\Mockery\MockInterface
@@ -24,8 +24,6 @@ class GuestTest extends UnitTest
      */
     protected function setUp(): void
     {
-        parent::setUp();
-
         $this->auth = Mockery::mock(Auth::class);
 
         $this->strategy = new Guest($this->auth);

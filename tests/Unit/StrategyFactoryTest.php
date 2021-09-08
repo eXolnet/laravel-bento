@@ -7,12 +7,13 @@ use Exolnet\Bento\Strategy\Everyone;
 use Exolnet\Bento\Strategy\Stub;
 use Exolnet\Bento\Strategy\User;
 use Exolnet\Bento\StrategyFactory;
-use Exolnet\Bento\Tests\UnitTest;
+use Exolnet\Bento\Tests\TestCase;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use InvalidArgumentException;
 use Mockery;
 
-class StrategyFactoryTest extends UnitTest
+class StrategyFactoryTest extends TestCase
 {
     /**
      * @var \Mockery\MockInterface|\Exolnet\Bento\Feature
@@ -78,5 +79,16 @@ class StrategyFactoryTest extends UnitTest
 
         $this->assertInstanceOf(User::class, $strategy);
         $this->assertEquals([42], $strategy->getUserIds());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testMakeInvalidClass(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->factory->make('invalid');
     }
 }

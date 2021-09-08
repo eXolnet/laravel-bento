@@ -5,10 +5,10 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\VisitorPercent;
-use Exolnet\Bento\Tests\UnitTest;
+use Exolnet\Bento\Tests\TestCase;
 use Mockery;
 
-class VisitorPercentTest extends UnitTest
+class VisitorPercentTest extends TestCase
 {
     /**
      * @var \Exolnet\Bento\Bento
@@ -30,8 +30,6 @@ class VisitorPercentTest extends UnitTest
      */
     protected function setUp(): void
     {
-        parent::setUp();
-
         $this->bento = Mockery::mock(Bento::class);
         $this->feature = Mockery::mock(Feature::class);
         $this->visitorPercent = new VisitorPercent($this->bento, 50);

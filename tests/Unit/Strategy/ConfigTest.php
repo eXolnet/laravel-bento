@@ -3,11 +3,11 @@
 namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Strategy\Config;
-use Exolnet\Bento\Tests\UnitTest;
+use Exolnet\Bento\Tests\TestCase;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Mockery;
 
-class ConfigTest extends UnitTest
+class ConfigTest extends TestCase
 {
     /**
      * @var \Illuminate\Contracts\Config\Repository|\Mockery\MockInterface
@@ -19,8 +19,6 @@ class ConfigTest extends UnitTest
      */
     protected function setUp(): void
     {
-        parent::setUp();
-
         $this->config = Mockery::mock(ConfigRepository::class);
     }
 

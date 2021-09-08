@@ -4,50 +4,42 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Strategy\Hostname;
 use Exolnet\Bento\Tests\TestCase;
+use Generator;
 use Illuminate\Http\Request;
 use Mockery;
 
 class HostnameTest extends TestCase
 {
     /**
-     * @var \Illuminate\Http\Request
-     */
-    protected $request;
-
-    /**
-     * @var \Exolnet\Bento\Strategy\Hostname
-     */
-    protected $strategy;
-
-    /**
+     * @param string|array $hosts
+     * @param string $actualHost
+     * @param bool $expectedLaunch
      * @return void
+     * @dataProvider provideTestLaunch
      */
-    protected function setUp(): void
+    public function testLaunch($hosts, string $actualHost, bool $expectedLaunch): void
     {
-        $this->request = Mockery::mock(Request::class);
+        $request = Mockery::mock(Request::class);
 
-        $this->strategy = new Hostname($this->request, ['admin']);
+        $strategy = new Hostname($request, $hosts);
+
+        $request->shouldReceive('getHost')->once()->andReturn($actualHost);
+
+        $actualLaunch = $strategy->launch();
+
+        $this->assertEquals($expectedLaunch, $actualLaunch);
     }
 
     /**
-     * @return void
-     * @test
+     * @return \Generator
      */
-    public function testLaunchForValidHostname(): void
+    public function provideTestLaunch(): Generator
     {
-        $this->request->shouldReceive('getHost')->once()->andReturn('admin');
+        yield ['localhost', 'localhost', true];
+        yield ['localhost', 'bento.dev', false];
 
-        $this->assertTrue($this->strategy->launch());
-    }
-
-    /**
-     * @return void
-     * @test
-     */
-    public function testLaunchForInvalidHostname(): void
-    {
-        $this->request->shouldReceive('getHost')->once()->andReturn('tester');
-
-        $this->assertfalse($this->strategy->launch());
+        yield [['localhost', 'bento.dev'], 'localhost', true];
+        yield [['localhost', 'bento.dev'], 'bento.dev', true];
+        yield [['localhost', 'bento.dev'], 'bento.test', false];
     }
 }

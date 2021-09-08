@@ -6,6 +6,7 @@ use BadMethodCallException;
 use Exception;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\StrategyFactory;
+use InvalidArgumentException;
 
 /**
  * @property-read \Exolnet\Bento\Strategy\NotHigherOrderProxy $not
@@ -81,13 +82,15 @@ abstract class AimsStrategy implements FeatureAwareStrategy
      */
     public function __call(string $method, array $parameters): self
     {
-        if ($strategy = $this->makeStrategy($method, $parameters)) {
-            return $this->aim($strategy);
-        }
+        try {
+            $strategy = $this->makeStrategy($method, $parameters);
 
-        throw new BadMethodCallException(
-            sprintf('Call to undefined method %s::%s()', static::class, $method)
-        );
+            return $this->aim($strategy);
+        } catch (InvalidArgumentException $e) {
+            throw new BadMethodCallException(
+                sprintf('Call to undefined method %s::%s()', static::class, $method)
+            );
+        }
     }
 
     /**

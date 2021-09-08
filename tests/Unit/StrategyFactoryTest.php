@@ -35,6 +35,8 @@ class StrategyFactoryTest extends TestCase
      */
     public function setUp(): void
     {
+        parent::setUp();
+
         $this->feature = Mockery::mock(Feature::class);
         $this->container = Mockery::mock(Container::class);
         $this->factory = new StrategyFactory($this->container);

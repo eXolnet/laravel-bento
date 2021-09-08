@@ -2,6 +2,7 @@
 
 namespace Exolnet\Bento\Tests\Unit\Strategy;
 
+use Exception;
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Strategy\All;
@@ -30,6 +31,8 @@ class AimsStrategiesTest extends TestCase
      */
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->bento = Mockery::mock(Bento::class);
         $this->feature = Mockery::mock(Feature::class);
     }
@@ -45,5 +48,29 @@ class AimsStrategiesTest extends TestCase
 
         $this->logic->setFeature($this->feature);
         $this->assertEquals($this->feature, $this->logic->getFeature());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testGetInvalidArgument(): void
+    {
+        $this->logic = new All();
+
+        $this->expectException(Exception::class);
+        $this->logic->invalid;
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testCallInvalidStrategy(): void
+    {
+        $this->logic = new All();
+
+        $this->expectException(\BadMethodCallException::class);
+        $this->logic->invalid();
     }
 }

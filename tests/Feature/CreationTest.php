@@ -2,6 +2,7 @@
 
 namespace Exolnet\Bento\Tests\Feature;
 
+use BadMethodCallException;
 use Carbon\Carbon;
 use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Feature;
@@ -77,7 +78,7 @@ class CreationTest extends TestCase
      */
     public function testInvalidAim(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(BadMethodCallException::class);
 
         $this->bento->feature('name')->invalid();
     }

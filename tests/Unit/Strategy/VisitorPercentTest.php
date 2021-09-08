@@ -30,6 +30,8 @@ class VisitorPercentTest extends TestCase
      */
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->bento = Mockery::mock(Bento::class);
         $this->feature = Mockery::mock(Feature::class);
         $this->visitorPercent = new VisitorPercent($this->bento, 50);
@@ -55,5 +57,18 @@ class VisitorPercentTest extends TestCase
     public function testGetPercent(): void
     {
         $this->assertEquals(50, $this->visitorPercent->getPercent());
+    }
+
+    /**
+     * @return void
+     * @test
+     */
+    public function testVisitorIdIsRetrievedFromBento(): void
+    {
+        $this->bento->shouldReceive('getVisitorId')->andReturn(42);
+
+        $actual = $this->visitorPercent->getUniqueId();
+
+        $this->assertEquals(42, $actual);
     }
 }

@@ -19,6 +19,8 @@ class UserTest extends TestCase
      */
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->auth = Mockery::mock(Auth::class);
     }
 

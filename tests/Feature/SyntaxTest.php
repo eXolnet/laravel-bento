@@ -142,7 +142,7 @@ class SyntaxTest extends TestCase
     public function testCustomAnonymousStrategy(): void
     {
         $feature = Bento::feature('custom')
-            ->aim(new class implements Strategy {
+            ->aim(new class () implements Strategy {
                 /**
                  * @return bool
                  */

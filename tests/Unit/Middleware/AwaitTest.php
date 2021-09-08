@@ -32,6 +32,8 @@ class AwaitTest extends TestCase
      */
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->bento = Mockery::mock(Bento::class);
         $this->request = Mockery::mock(Request::class);
 

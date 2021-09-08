@@ -25,6 +25,8 @@ class UserPercentTest extends TestCase
      */
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->feature = Mockery::mock(Feature::class);
         $this->auth = Mockery::mock(Auth::class);
     }

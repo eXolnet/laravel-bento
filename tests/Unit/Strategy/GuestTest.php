@@ -24,6 +24,8 @@ class GuestTest extends TestCase
      */
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->auth = Mockery::mock(Auth::class);
 
         $this->strategy = new Guest($this->auth);

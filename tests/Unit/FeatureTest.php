@@ -26,6 +26,8 @@ class FeatureTest extends TestCase
      */
     public function setUp(): void
     {
+        parent::setUp();
+
         $this->bento = Mockery::mock(Bento::class);
         $this->feature = new Feature('name');
     }

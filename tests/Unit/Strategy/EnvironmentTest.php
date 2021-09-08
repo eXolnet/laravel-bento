@@ -4,39 +4,55 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Strategy\Environment;
 use Exolnet\Bento\Tests\TestCase;
+use Generator;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Mockery;
 
 class EnvironmentTest extends TestCase
 {
     /**
-     * @var \Illuminate\Contracts\Config\Repository
+     * @var \Illuminate\Contracts\Config\Repository|\Mockery\MockInterface
      */
     protected $config;
-
-    /**
-     * @var \Exolnet\Bento\Strategy\Environment
-     */
-    protected $strategy;
 
     /**
      * @return void
      */
     protected function setUp(): void
     {
-        $this->config = Mockery::mock(ConfigRepository::class);
+        parent::setUp();
 
-        $this->strategy = new Environment($this->config, ['testing']);
+        $this->config = Mockery::mock(ConfigRepository::class);
     }
 
     /**
+     * @param string|array $environments
+     * @param string $actualEnvironment
+     * @param bool $expectedLaunch
      * @return void
-     * @test
+     * @dataProvider provideTestLaunch
      */
-    public function testLaunch(): void
+    public function testLaunch($environments, string $actualEnvironment, bool $expectedLaunch): void
     {
-        $this->config->shouldReceive('get')->once()->andReturn('testing');
+        $strategy = new Environment($this->config, $environments);
 
-        $this->assertTrue($this->strategy->launch());
+        $this->config->shouldReceive('get')->with('app.env')->once()->andReturn($actualEnvironment);
+
+        $actualLaunch = $strategy->launch();
+
+        $this->assertEquals($expectedLaunch, $actualLaunch);
+    }
+
+    /**
+     * @return \Generator
+     */
+    public function provideTestLaunch(): Generator
+    {
+        yield ['local', 'local', true];
+        yield ['local', 'production', false];
+
+        yield [['local', 'testing'], 'local', true];
+        yield [['local', 'testing'], 'testing', true];
+        yield [['local', 'testing'], 'production', false];
     }
 }

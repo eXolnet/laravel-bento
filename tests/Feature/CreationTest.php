@@ -7,7 +7,7 @@ use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Tests\TestCase;
 
-class CreationTestCase extends TestCase
+class CreationTest extends TestCase
 {
     /**
      * @var \Exolnet\Bento\Bento

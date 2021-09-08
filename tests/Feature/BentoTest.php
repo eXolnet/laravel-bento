@@ -5,7 +5,7 @@ namespace Exolnet\Bento\Tests\Feature;
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Tests\TestCase;
 
-class BentoTestCase extends TestCase
+class BentoTest extends TestCase
 {
     /**
      * @return void

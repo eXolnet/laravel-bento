@@ -7,7 +7,7 @@ use Exolnet\Bento\Tests\TestCase;
 use Generator;
 use Illuminate\Contracts\View\Factory;
 
-class BladeTestCase extends TestCase
+class BladeTest extends TestCase
 {
     /**
      * @param string $directive

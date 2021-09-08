@@ -6,7 +6,7 @@ use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Strategy\AimsStrategies;
 use Exolnet\Bento\Tests\TestCase;
 
-class StrategiesTestCase extends TestCase
+class StrategiesTest extends TestCase
 {
     /**
      * @var \Exolnet\Bento\Bento

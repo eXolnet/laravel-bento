@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Tests\TestCase;
+use InvalidArgumentException;
 
 class CreationTest extends TestCase
 {
@@ -69,6 +70,16 @@ class CreationTest extends TestCase
 
         $this->assertInstanceOf(Feature::class, $feature);
         $this->assertCount(1, $feature->getStrategies());
+    }
+
+    /**
+     * @return void
+     */
+    public function testInvalidAim(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        $this->bento->feature('name')->invalid();
     }
 
     /**

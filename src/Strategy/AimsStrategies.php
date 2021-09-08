@@ -21,7 +21,7 @@ abstract class AimsStrategies extends AimsStrategy
 
         foreach ($this->strategies as $strategy) {
             if ($strategy instanceof FeatureAwareStrategy) {
-                $strategy->setFeature($strategy);
+                $strategy->setFeature($feature);
             }
         }
     }

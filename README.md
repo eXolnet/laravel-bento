@@ -163,7 +163,7 @@ Additional logic segmentation strategies are available to help target your users
 #### Not
 
 ```php
-Bento::feature('feature')->not->everybody();
+Bento::feature('feature')->not->everyone();
 ```
 
 #### All
@@ -171,7 +171,7 @@ Bento::feature('feature')->not->everybody();
 ```php
 use \Exolnet\Bento\Strategy\AimsStrategies;
 
-Bento::feature('feature')->all(function(AimsStrategies $aims) {
+Bento::feature('feature')->all(function (AimsStrategies $aims) {
     $aims
         ->environment('production')
         ->visitorPercent(20);
@@ -183,7 +183,7 @@ Bento::feature('feature')->all(function(AimsStrategies $aims) {
 ```php
 use \Exolnet\Bento\Strategy\AimsStrategies;
 
-Bento::feature('feature')->any(function(AimsStrategies $aims) {
+Bento::feature('feature')->any(function (AimsStrategies $aims) {
     $aims
         ->environment('staging')
         ->user([1, 2]);
@@ -199,7 +199,7 @@ You can also inject dependencies the same way [Laravel Controllers' method injec
 ```php
 use Illuminate\Contracts\Auth\Guard;
 
-Bento::feature('feature')->custom(function(Guard $guard, $role) {
+Bento::feature('feature')->custom(function (Guard $guard, $role) {
     return $guard->user() && $guard->user()->role === 'admin';
 });
 ```

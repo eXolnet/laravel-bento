@@ -4,7 +4,6 @@ namespace Exolnet\Bento\Tests\Unit\Strategy;
 
 use Exolnet\Bento\Bento;
 use Exolnet\Bento\Feature;
-use Exolnet\Bento\Strategy\Everyone;
 use Exolnet\Bento\Strategy\Not;
 use Exolnet\Bento\Strategy\VisitorPercent;
 use Exolnet\Bento\Tests\TestCase;

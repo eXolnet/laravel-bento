@@ -8,7 +8,6 @@ use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Feature;
 use Exolnet\Bento\Tests\Fixtures\CustomStrategy;
 use Exolnet\Bento\Tests\TestCase;
-use InvalidArgumentException;
 
 class CreationTest extends TestCase
 {

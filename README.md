@@ -2,7 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/eXolnet/laravel-bento/v/stable?format=flat-square)](https://packagist.org/packages/eXolnet/laravel-bento)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Build Status](https://img.shields.io/github/workflow/status/eXolnet/laravel-bento/tests?label=tests&style=flat-square)](https://github.com/eXolnet/laravel-bento/actions?query=workflow%3Atests)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/eXolnet/laravel-bento/tests.yml?label=tests&style=flat-square)](https://github.com/eXolnet/laravel-bento/actions?query=workflow%3Atests)
 [![Total Downloads](https://img.shields.io/packagist/dt/eXolnet/laravel-bento.svg?style=flat-square)](https://packagist.org/packages/eXolnet/laravel-bento)
 
 Bento helps you organize feature launches by custom user segments.

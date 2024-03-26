@@ -33,7 +33,7 @@ class HostnameTest extends TestCase
     /**
      * @return \Generator
      */
-    public function provideTestLaunch(): Generator
+    public static function provideTestLaunch(): Generator
     {
         yield ['localhost', 'localhost', true];
         yield ['localhost', 'bento.dev', false];

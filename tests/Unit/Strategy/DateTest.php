@@ -49,7 +49,7 @@ class DateTest extends TestCase
     /**
      * @return \Generator
      */
-    public function provideTestLaunch(): Generator
+    public static function provideTestLaunch(): Generator
     {
         yield ['2019-12-31', '<', true];
         yield ['2020-01-01', '<', false];

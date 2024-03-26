@@ -26,7 +26,7 @@ class CallbackTest extends TestCase
     /**
      * @return \Generator
      */
-    public function provideTestLaunch(): Generator
+    public static function provideTestLaunch(): Generator
     {
         yield [true];
         yield [false];

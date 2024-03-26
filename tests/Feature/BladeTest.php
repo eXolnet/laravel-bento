@@ -30,7 +30,7 @@ class BladeTest extends TestCase
     /**
      * @return \Generator
      */
-    public function provideTestDirective(): Generator
+    public static function provideTestDirective(): Generator
     {
         yield ['launch', true];
         yield ['launch', false];

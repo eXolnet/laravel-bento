@@ -46,7 +46,7 @@ class EnvironmentTest extends TestCase
     /**
      * @return \Generator
      */
-    public function provideTestLaunch(): Generator
+    public static function provideTestLaunch(): Generator
     {
         yield ['local', 'local', true];
         yield ['local', 'production', false];

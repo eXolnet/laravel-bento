@@ -44,7 +44,7 @@ class ConfigTest extends TestCase
     /**
      * @return array
      */
-    public function provideTestLaunch(): array
+    public static function provideTestLaunch(): array
     {
         return [
             [true],

@@ -25,7 +25,6 @@ class BentoServiceProviderTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testDirectiveLaunch(): void
     {
@@ -41,7 +40,6 @@ class BentoServiceProviderTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testDirectiveNoLaunch(): void
     {
@@ -57,7 +55,6 @@ class BentoServiceProviderTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testDirectiveAwait(): void
     {
@@ -73,7 +70,6 @@ class BentoServiceProviderTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testDirectiveNotAwait(): void
     {

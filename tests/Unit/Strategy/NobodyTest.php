@@ -9,7 +9,6 @@ class NobodyTest extends TestCase
 {
     /**
      * @return void
-     * @test
      */
     public function testLaunch(): void
     {

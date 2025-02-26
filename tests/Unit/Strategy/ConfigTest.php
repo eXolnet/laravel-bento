@@ -28,7 +28,6 @@ class ConfigTest extends TestCase
      * @param bool $expected
      * @return void
      * @dataProvider provideTestLaunch
-     * @test
      */
     public function testLaunch(bool $expected): void
     {

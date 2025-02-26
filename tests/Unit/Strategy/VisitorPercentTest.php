@@ -41,7 +41,6 @@ class VisitorPercentTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testGetFeature(): void
     {
@@ -52,7 +51,6 @@ class VisitorPercentTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testGetPercent(): void
     {
@@ -61,7 +59,6 @@ class VisitorPercentTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testVisitorIdIsRetrievedFromBento(): void
     {

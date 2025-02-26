@@ -42,7 +42,6 @@ class LaunchTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testFeatureLaunched(): void
     {
@@ -64,7 +63,6 @@ class LaunchTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testFeatureNotLaunched(): void
     {

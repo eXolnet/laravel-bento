@@ -25,7 +25,6 @@ class StrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testAllStrategy(): void
     {
@@ -50,7 +49,6 @@ class StrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testAnyStrategy(): void
     {
@@ -75,7 +73,6 @@ class StrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testCallback(): void
     {
@@ -88,7 +85,6 @@ class StrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testCallbackWithParameters(): void
     {
@@ -107,7 +103,6 @@ class StrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testEveryoneStrategy(): void
     {
@@ -116,7 +111,6 @@ class StrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testNotStrategy(): void
     {
@@ -126,7 +120,6 @@ class StrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testHigherOrderNotStrategy(): void
     {
@@ -136,7 +129,6 @@ class StrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testNobodyStrategy(): void
     {

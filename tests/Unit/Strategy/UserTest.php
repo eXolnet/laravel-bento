@@ -26,7 +26,6 @@ class UserTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchGuest(): void
     {
@@ -39,7 +38,6 @@ class UserTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchAuthenticated(): void
     {
@@ -52,7 +50,6 @@ class UserTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchInvalidIdFromInt(): void
     {
@@ -65,7 +62,6 @@ class UserTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchInvalidIdFromArray(): void
     {
@@ -78,7 +74,6 @@ class UserTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchValidIdFromInt(): void
     {
@@ -91,7 +86,6 @@ class UserTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchValidIdFromArray(): void
     {

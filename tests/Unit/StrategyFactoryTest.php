@@ -40,11 +40,12 @@ class StrategyFactoryTest extends TestCase
         $this->feature = Mockery::mock(Feature::class);
         $this->container = Mockery::mock(Container::class);
         $this->factory = new StrategyFactory($this->container);
+
+        $this->container->shouldReceive('fireAfterResolvingAttributeCallbacks');
     }
 
     /**
      * @return void
-     * @test
      */
     public function testMakeClassStrategy(): void
     {
@@ -55,7 +56,6 @@ class StrategyFactoryTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testMakeClassStrategyWithOptions(): void
     {
@@ -68,7 +68,6 @@ class StrategyFactoryTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testMakeClassWithDependencyInjection(): void
     {
@@ -85,7 +84,6 @@ class StrategyFactoryTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testMakeInvalidClass(): void
     {

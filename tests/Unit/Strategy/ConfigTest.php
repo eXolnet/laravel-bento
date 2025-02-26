@@ -6,6 +6,7 @@ use Exolnet\Bento\Strategy\Config;
 use Exolnet\Bento\Tests\TestCase;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Mockery;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class ConfigTest extends TestCase
 {
@@ -27,9 +28,8 @@ class ConfigTest extends TestCase
     /**
      * @param bool $expected
      * @return void
-     * @dataProvider provideTestLaunch
-     * @test
      */
+    #[DataProvider('provideTestLaunch')]
     public function testLaunch(bool $expected): void
     {
         $strategy = new Config($this->config, 'feature.key');

@@ -33,7 +33,6 @@ class UserPercentTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchGuest(): void
     {
@@ -47,7 +46,6 @@ class UserPercentTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchUser100p(): void
     {
@@ -62,7 +60,6 @@ class UserPercentTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchUser0p(): void
     {

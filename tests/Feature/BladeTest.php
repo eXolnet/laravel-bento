@@ -6,6 +6,7 @@ use Exolnet\Bento\Facades\Bento;
 use Exolnet\Bento\Tests\TestCase;
 use Generator;
 use Illuminate\Contracts\View\Factory;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class BladeTest extends TestCase
 {
@@ -13,8 +14,8 @@ class BladeTest extends TestCase
      * @param string $directive
      * @param bool $state
      * @return void
-     * @dataProvider provideTestDirective
      */
+    #[DataProvider('provideTestDirective')]
     public function testDirective(string $directive, bool $state): void
     {
         Bento::feature('foo')->stub($state);

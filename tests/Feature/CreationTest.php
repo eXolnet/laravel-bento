@@ -28,7 +28,6 @@ class CreationTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testCreateNewFeature(): void
     {
@@ -39,7 +38,6 @@ class CreationTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testFeatureAimFluent(): void
     {
@@ -51,7 +49,6 @@ class CreationTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testFeatureAimFluentProxy(): void
     {
@@ -63,7 +60,6 @@ class CreationTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testFeatureAim(): void
     {
@@ -95,7 +91,6 @@ class CreationTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testCreateNewFeatureWithDefaultParam(): void
     {
@@ -108,7 +103,6 @@ class CreationTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testCreateNewFeatureWithInjection(): void
     {
@@ -119,7 +113,6 @@ class CreationTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testCreateNewFeatureWithParameterAlreadyInParameters(): void
     {
@@ -130,7 +123,6 @@ class CreationTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testNotHigherOrderProxy(): void
     {
@@ -141,7 +133,6 @@ class CreationTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testCustomStrategyClass(): void
     {

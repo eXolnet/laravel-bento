@@ -7,6 +7,7 @@ use Exolnet\Bento\Tests\TestCase;
 use Generator;
 use Illuminate\Http\Request;
 use Mockery;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class HostnameTest extends TestCase
 {
@@ -15,8 +16,8 @@ class HostnameTest extends TestCase
      * @param string $actualHost
      * @param bool $expectedLaunch
      * @return void
-     * @dataProvider provideTestLaunch
      */
+    #[DataProvider('provideTestLaunch')]
     public function testLaunch($hosts, string $actualHost, bool $expectedLaunch): void
     {
         $request = Mockery::mock(Request::class);

@@ -7,6 +7,7 @@ use Exolnet\Bento\Tests\TestCase;
 use Generator;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Mockery;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class EnvironmentTest extends TestCase
 {
@@ -30,8 +31,8 @@ class EnvironmentTest extends TestCase
      * @param string $actualEnvironment
      * @param bool $expectedLaunch
      * @return void
-     * @dataProvider provideTestLaunch
      */
+    #[DataProvider('provideTestLaunch')]
     public function testLaunch($environments, string $actualEnvironment, bool $expectedLaunch): void
     {
         $strategy = new Environment($this->config, $environments);

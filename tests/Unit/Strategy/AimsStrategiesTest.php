@@ -39,7 +39,6 @@ class AimsStrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testGetFeature(): void
     {
@@ -52,7 +51,6 @@ class AimsStrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testGetInvalidArgument(): void
     {
@@ -64,7 +62,6 @@ class AimsStrategiesTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testCallInvalidStrategy(): void
     {

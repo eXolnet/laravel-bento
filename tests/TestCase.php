@@ -13,6 +13,8 @@ abstract class TestCase extends OrchestraTestCase
      */
     public function tearDown(): void
     {
+        parent::tearDown();
+
         Date::setNow(null);
     }
 

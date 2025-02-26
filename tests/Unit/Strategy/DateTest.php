@@ -7,6 +7,7 @@ use Exolnet\Bento\Strategy\Date;
 use Exolnet\Bento\Tests\TestCase;
 use Generator;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class DateTest extends TestCase
 {
@@ -35,8 +36,8 @@ class DateTest extends TestCase
 
     /**
      * @return void
-     * @dataProvider provideTestLaunch
      */
+    #[DataProvider('provideTestLaunch')]
     public function testLaunch($date, $operator, $expected): void
     {
         $strategy = new Date($date, $operator);

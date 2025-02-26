@@ -42,7 +42,6 @@ class AwaitTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testFeatureNotLaunched(): void
     {
@@ -64,7 +63,6 @@ class AwaitTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testFeatureLaunched(): void
     {

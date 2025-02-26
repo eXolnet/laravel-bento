@@ -9,7 +9,6 @@ class StubTest extends TestCase
 {
     /**
      * @return void
-     * @test
      */
     public function testLaunchTrue(): void
     {
@@ -20,7 +19,6 @@ class StubTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchFalse(): void
     {

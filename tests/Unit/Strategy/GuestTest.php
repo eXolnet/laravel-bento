@@ -33,7 +33,6 @@ class GuestTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchGuest(): void
     {
@@ -44,7 +43,6 @@ class GuestTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchAuthenticated(): void
     {

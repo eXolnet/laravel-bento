@@ -40,7 +40,6 @@ class NotTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testGetFeature(): void
     {
@@ -55,7 +54,6 @@ class NotTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testUpdateFeatureWithAFeatureAwareStrategy(): void
     {
@@ -72,7 +70,6 @@ class NotTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testLaunchWithoutAnyStrategy(): void
     {
